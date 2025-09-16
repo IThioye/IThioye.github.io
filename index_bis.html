@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Name - Developer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #e4e4e7;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        header {
+            padding: 2rem 0;
+            text-align: center;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .hero {
+            margin-bottom: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa, #c084fc);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 8px;
+            color: #e4e4e7;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #60a5fa, #c084fc);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Filters */
+        .filters {
+            margin-bottom: 3rem;
+            background: rgba(30, 41, 59, 0.5);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .filter-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .filter-label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #cbd5e1;
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background: rgba(51, 65, 85, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 20px;
+            color: #e4e4e7;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.875rem;
+        }
+
+        .filter-btn:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.4);
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-color: transparent;
+            color: white;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: rgba(51, 65, 85, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 8px;
+            color: #e4e4e7;
+            font-size: 1rem;
+        }
+
+        .search-box::placeholder {
+            color: #94a3b8;
+        }
+
+        .search-box:focus {
+            outline: none;
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 16px;
+            padding: 2rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(59, 130, 246, 0.5), transparent);
+        }
+
+        .project-card {
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(59, 130, 246, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: #f1f5f9;
+        }
+
+        .project-description {
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            font-size: 0.75rem;
+            color: #93c5fd;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            color: #60a5fa;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.5);
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 3rem;
+            color: #64748b;
+            display: none;
+        }
+
+        .no-results.show {
+            display: block;
+        }
+
+        /* Project Detail Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 2rem;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: rgba(15, 23, 42, 0.95);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 16px;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-header {
+            position: sticky;
+            top: 0;
+            background: rgba(15, 23, 42, 0.98);
+            backdrop-filter: blur(20px);
+            padding: 2rem 2rem 1rem;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+
+        .modal-title {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #60a5fa, #c084fc);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+        }
+
+        .close-btn {
+            background: rgba(51, 65, 85, 0.8);
+            border: 1px solid rgba(148, 163, 184, 0.2);
+            border-radius: 8px;
+            color: #e4e4e7;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+        }
+
+        .close-btn:hover {
+            background: rgba(239, 68, 68, 0.2);
+            border-color: rgba(239, 68, 68, 0.4);
+            color: #fca5a5;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .project-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: rgba(30, 41, 59, 0.5);
+            border-radius: 12px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+        }
+
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .meta-label {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-weight: 600;
+        }
+
+        .meta-value {
+            color: #e4e4e7;
+            font-weight: 500;
+        }
+
+        .project-overview {
+            margin-bottom: 2rem;
+        }
+
+        .section-header {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-content {
+            color: #cbd5e1;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .project-images {
+            margin-bottom: 2rem;
+        }
+
+        .image-gallery {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .image-gallery.single {
+            grid-template-columns: 1fr;
+        }
+
+        .image-gallery.double {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .image-gallery.multiple {
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+
+        .project-image {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .project-image:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: scale(1.02);
+        }
+
+        .project-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .image-caption {
+            padding: 0.75rem;
+            background: rgba(30, 41, 59, 0.8);
+            font-size: 0.875rem;
+            color: #94a3b8;
+            text-align: center;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .tech-item {
+            padding: 0.5rem 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 20px;
+            color: #93c5fd;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .features-list li {
+            padding: 0.75rem 0;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-icon {
+            color: #60a5fa;
+            margin-top: 0.125rem;
+            flex-shrink: 0;
+        }
+
+        .challenges-section, .learnings-section {
+            margin-bottom: 2rem;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            padding: 2rem;
+            background: rgba(30, 41, 59, 0.3);
+            border-top: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 0 0 16px 16px;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-radius: 8px;
+            color: #60a5fa;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .action-btn:hover {
+            background: rgba(59, 130, 246, 0.2);
+            border-color: rgba(59, 130, 246, 0.5);
+            transform: translateY(-1px);
+        }
+
+        .action-btn.primary {
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            border-color: transparent;
+            color: white;
+        }
+
+        .action-btn.primary:hover {
+            background: linear-gradient(135deg, #2563eb, #7c3aed);
+        }
+
+        /* Skills Section */
+        .skills-section {
+            padding: 4rem 0;
+            background: rgba(15, 23, 42, 0.8);
+            margin-top: 2rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            padding: 1rem;
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            border-color: rgba(59, 130, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-buttons {
+                justify-content: center;
+            }
+
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="hero">
+                <h1>Your Name</h1>
+                <p>Full Stack Developer & Problem Solver</p>
+                <div class="social-links">
+                    <a href="https://github.com/yourusername" target="_blank">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        GitHub
+                    </a>
+                    <a href="https://linkedin.com/in/yourprofile" target="_blank">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        </svg>
+                        LinkedIn
+                    </a>
+                    <a href="mailto:your.email@example.com">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                        </svg>
+                        Email
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="projects-section">
+        <div class="container">
+            <h2 class="section-title">Featured Projects</h2>
+            
+            <div class="filters">
+                <div class="filter-group">
+                    <label class="filter-label">Position</label>
+                    <div class="filter-buttons" id="positionFilters">
+                        <button class="filter-btn active" data-position="all">All</button>
+                        <button class="filter-btn" data-position="frontend">Frontend</button>
+                        <button class="filter-btn" data-position="backend">Backend</button>
+                        <button class="filter-btn" data-position="fullstack">Full Stack</button>
+                        <button class="filter-btn" data-position="mobile">Mobile</button>
+                        <button class="filter-btn" data-position="devops">DevOps</button>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Category</label>
+                    <div class="filter-buttons" id="categoryFilters">
+                        <button class="filter-btn active" data-category="all">All</button>
+                        <button class="filter-btn" data-category="web-app">Web App</button>
+                        <button class="filter-btn" data-category="api">API</button>
+                        <button class="filter-btn" data-category="library">Library</button>
+                        <button class="filter-btn" data-category="tool">Tool</button>
+                        <button class="filter-btn" data-category="game">Game</button>
+                    </div>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="filter-label">Search Keywords</label>
+                    <input type="text" class="search-box" id="keywordSearch" placeholder="Search projects by keywords, technologies, or description...">
+                </div>
+            </div>
+
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Projects will be populated by JavaScript -->
+            </div>
+
+            <div class="no-results" id="noResults">
+                <h3>No projects found</h3>
+                <p>Try adjusting your filters or search terms.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Project Detail Modal -->
+    <div class="modal-overlay" id="projectModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="modalTitle"></h1>
+                <button class="close-btn" id="closeModal">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="project-meta" id="projectMeta"></div>
+                
+                <div class="project-overview">
+                    <h3 class="section-header">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                        </svg>
+                        Overview
+                    </h3>
+                    <div class="section-content" id="projectOverview"></div>
+                </div>
+
+                <div class="project-images" id="projectImages" style="display: none;">
+                    <h3 class="section-header">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z"/>
+                        </svg>
+                        Screenshots & Media
+                    </h3>
+                    <div class="image-gallery" id="imageGallery"></div>
+                </div>
+
+                <div class="tech-stack-section">
+                    <h3 class="section-header">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7H14A7,7 0 0,1 21,14H22A1,1 0 0,1 23,15V18A1,1 0 0,1 22,19H21V20A2,2 0 0,1 19,22H5A2,2 0 0,1 3,20V19H2A1,1 0 0,1 1,18V15A1,1 0 0,1 2,14H3A7,7 0 0,1 10,7H11V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2M7.5,13A2.5,2.5 0 0,0 5,15.5A2.5,2.5 0 0,0 7.5,18A2.5,2.5 0 0,0 10,15.5A2.5,2.5 0 0,0 7.5,13M16.5,13A2.5,2.5 0 0,0 14,15.5A2.5,2.5 0 0,0 16.5,18A2.5,2.5 0 0,0 19,15.5A2.5,2.5 0 0,0 16.5,13Z"/>
+                        </svg>
+                        Technology Stack
+                    </h3>
+                    <div class="tech-stack" id="techStack"></div>
+                </div>
+
+                <div class="features-section">
+                    <h3 class="section-header">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M10,17L5,12L6.41,10.58L10,14.17L17.59,6.58L19,8M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
+                        </svg>
+                        Key Features
+                    </h3>
+                    <ul class="features-list" id="featuresList"></ul>
+                </div>
+
+                <div class="challenges-section">
+                    <h3 class="section-header">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M13,14H11V10H13M13,18H11V16H13M1,21H23L12,2L1,21Z"/>
+                        </svg>
+                        Challenges & Solutions
+                    </h3>
+                    <div class="section-content" id="challengesContent"></div>
+                </div>
+
+                <div class="learnings-section">
+                    <h3 class="section-header">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/>
+                        </svg>
+                        What I Learned
+                    </h3>
+                    <div class="section-content" id="learningsContent"></div>
+                </div>
+            </div>
+
+            <div class="modal-actions" id="modalActions"></div>
+        </div>
+    </div>
+
+    <section class="skills-section">
+        <div class="container">
+            <h2 class="section-title">Skills & Technologies</h2>
+            <div class="skills-grid">
+                <div class="skill-item">JavaScript/TypeScript</div>
+                <div class="skill-item">React/Next.js</div>
+                <div class="skill-item">Node.js</div>
+                <div class="skill-item">Python</div>
+                <div class="skill-item">PostgreSQL</div>
+                <div class="skill-item">MongoDB</div>
+                <div class="skill-item">AWS/Cloud</div>
+                <div class="skill-item">Docker</div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+// Sample project data - replace with your actual projects
+        const projects = [
+            {
+                id: 1,
+                title: "E-Commerce Platform",
+                type:"work",
+                description: "Full-stack e-commerce solution with React frontend, Node.js backend, and PostgreSQL database. Features include user authentication, payment processing, inventory management, and admin dashboard.",
+                position: "fullstack",
+                category: "web-app",
+                keywords: ["react", "nodejs", "postgresql", "stripe", "authentication", "ecommerce"],
+                tags: ["React", "Node.js", "PostgreSQL", "Stripe", "JWT"],
+                github: "https://github.com/yourusername/ecommerce-platform",
+                demo: "https://your-ecommerce-demo.com",
+                // Detailed information for modal
+                overview: "This comprehensive e-commerce platform was built to provide a complete online shopping experience. The project demonstrates full-stack development skills with a focus on user experience, security, and scalability. The application handles everything from product browsing to order fulfillment, with a robust admin panel for business management.",
+                duration: "3 months",
+                team: "Solo Project",
+                status: "Completed",
+                images: [
+                    {
+                        url: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800",
+                        caption: "Homepage with product showcase and search functionality"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800",
+                        caption: "Shopping cart and checkout process"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800",
+                        caption: "Admin dashboard with analytics and inventory management"
+                    }
+                ],
+                techStack: ["React", "Node.js", "Express", "PostgreSQL", "Stripe API", "JWT", "bcrypt", "CSS3", "Material-UI"],
+                features: [
+                    "User authentication with JWT tokens and secure password hashing",
+                    "Product catalog with search, filtering, and pagination",
+                    "Shopping cart with persistent storage and real-time updates",
+                    "Secure payment processing using Stripe integration",
+                    "Order management system with status tracking",
+                    "Admin dashboard with inventory and user management",
+                    "Responsive design for mobile and desktop devices",
+                    "Email notifications for order confirmations and updates"
+                ],
+                challenges: "The main challenges included implementing secure payment processing, managing complex state across the application, and optimizing database queries for large product catalogs. I solved the payment security by implementing proper validation and using Stripe's secure tokenization. For state management, I used Redux with proper middleware, and optimized database performance with indexing and efficient query patterns.",
+                learnings: "This project taught me the importance of security in e-commerce applications, especially regarding payment processing and user data protection. I gained deep experience with full-stack architecture, API design, and the complexities of managing financial transactions. The project also improved my skills in database design and optimization."
+            },
+            {
+                id: 2,
+                title: "Task Management API",
+                type:"work",
+                description: "RESTful API built with Express.js and MongoDB for task management. Includes user authentication, CRUD operations, file uploads, and real-time notifications using WebSockets.",
+                position: "backend",
+                category: "api",
+                keywords: ["nodejs", "express", "mongodb", "websockets", "rest", "api", "authentication"],
+                tags: ["Node.js", "Express", "MongoDB", "Socket.io", "JWT"],
+                github: "https://github.com/yourusername/task-api",
+                demo: null,
+                overview: "A robust RESTful API designed to power task management applications. Built with scalability and performance in mind, this API provides comprehensive task management capabilities with real-time features. The architecture follows REST principles while incorporating modern features like WebSocket connections for live updates.",
+                duration: "6 weeks",
+                team: "Solo Project",
+                status: "Completed",
+                images: [
+                    {
+                        url: "https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800",
+                        caption: "API documentation and endpoint testing interface"
+                    }
+                ],
+                techStack: ["Node.js", "Express.js", "MongoDB", "Mongoose", "Socket.io", "JWT", "Multer", "bcrypt", "Joi"],
+                features: [
+                    "RESTful API design with proper HTTP methods and status codes",
+                    "User authentication and authorization with JWT tokens",
+                    "CRUD operations for tasks, projects, and user management",
+                    "File upload functionality for task attachments",
+                    "Real-time notifications using WebSocket connections",
+                    "Data validation and sanitization for security",
+                    "Rate limiting and request throttling",
+                    "Comprehensive error handling and logging"
+                ],
+                challenges: "Implementing real-time features while maintaining API performance was challenging. I had to carefully design the WebSocket integration to avoid conflicts with REST endpoints. Another challenge was handling file uploads securely while managing storage efficiently. I solved these by implementing proper middleware chains and using cloud storage with signed URLs.",
+                learnings: "This project deepened my understanding of API design principles and real-time communication patterns. I learned about the trade-offs between different authentication methods and gained experience with MongoDB's aggregation pipeline for complex queries. The project also taught me about API security best practices and performance optimization techniques."
+            },
+            {
+                id: 3,
+                title: "Weather Dashboard",
+                type:"work",
+                description: "React-based weather dashboard with geolocation support, favorites system, and 7-day forecasts. Uses OpenWeather API and features responsive design with dark/light themes.",
+                position: "frontend",
+                category: "web-app",
+                keywords: ["react", "api", "weather", "geolocation", "responsive", "dashboard"],
+                tags: ["React", "OpenWeather API", "CSS3", "Geolocation"],
+                github: "https://github.com/yourusername/weather-dashboard",
+                demo: "https://your-weather-app.com",
+                overview: "An intuitive weather dashboard that provides comprehensive weather information with a focus on user experience and accessibility. The application combines current weather data with extended forecasts, featuring a clean interface that adapts to different screen sizes and user preferences.",
+                duration: "4 weeks",
+                team: "Solo Project",
+                status: "Completed",
+                images: [
+                    {
+                        url: "https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?w=800",
+                        caption: "Main dashboard showing current weather and forecasts"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1592210454359-9043f067919b?w=800",
+                        caption: "Dark theme with detailed weather metrics"
+                    }
+                ],
+                techStack: ["React", "JavaScript", "CSS3", "OpenWeather API", "Geolocation API", "Local Storage", "Chart.js"],
+                features: [
+                    "Automatic location detection using browser geolocation",
+                    "Search functionality for cities worldwide",
+                    "Current weather conditions with detailed metrics",
+                    "7-day weather forecast with hourly breakdowns",
+                    "Favorites system for quick access to saved locations",
+                    "Dark/light theme toggle with user preference persistence",
+                    "Responsive design optimized for all device sizes",
+                    "Weather data visualization with interactive charts"
+                ],
+                challenges: "The biggest challenge was handling the various edge cases with the geolocation API and managing API rate limits efficiently. Weather data can be inconsistent, so I implemented robust error handling and fallback mechanisms. I also had to optimize the app for different network conditions and handle offline scenarios gracefully.",
+                learnings: "This project improved my skills in working with external APIs and handling asynchronous data. I learned about browser APIs like Geolocation and gained experience in creating responsive designs that work well across different devices. The project also taught me about state management patterns in React and performance optimization techniques."
+            },
+            {
+                id: 4,
+                title: "React Component Library",
+                type:"work",
+                description: "Reusable UI component library built with TypeScript and styled-components. Includes comprehensive documentation, unit tests, and Storybook integration for component development.",
+                position: "frontend",
+                category: "library",
+                keywords: ["react", "typescript", "components", "storybook", "testing", "ui"],
+                tags: ["React", "TypeScript", "Styled-Components", "Storybook", "Jest"],
+                github: "https://github.com/yourusername/ui-components",
+                demo: "https://your-storybook.com",
+                overview: "A comprehensive React component library designed to accelerate development and ensure design consistency across projects. Built with TypeScript for type safety and styled-components for flexible styling, this library provides a solid foundation for building modern web applications.",
+                duration: "8 weeks",
+                team: "Solo Project",
+                status: "Ongoing",
+                images: [
+                    {
+                        url: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800",
+                        caption: "Storybook interface showing component variations"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?w=800",
+                        caption: "Component documentation with usage examples"
+                    }
+                ],
+                techStack: ["React", "TypeScript", "Styled-Components", "Storybook", "Jest", "React Testing Library", "Rollup", "ESLint"],
+                features: [
+                    "20+ reusable components with consistent design patterns",
+                    "Full TypeScript support with comprehensive type definitions",
+                    "Flexible theming system using styled-components",
+                    "Interactive documentation with Storybook",
+                    "Comprehensive unit tests with high coverage",
+                    "Automated testing and deployment pipeline",
+                    "NPM package with proper versioning and changelogs",
+                    "Accessibility features built into all components"
+                ],
+                challenges: "Creating a flexible theming system that could accommodate different design requirements while maintaining consistency was complex. I also had to ensure proper tree-shaking and bundle optimization for library consumers. Testing components in isolation while ensuring they work well together required careful planning of the testing strategy.",
+                learnings: "This project taught me about library design patterns and the importance of API consistency. I gained deep knowledge of TypeScript's advanced features and learned about package publishing and versioning strategies. The experience also improved my understanding of accessibility principles and how to build inclusive user interfaces."
+            },
+            {
+                id: 5,
+                title: "Mobile Expense Tracker",
+                type:"work",
+                description: "React Native app for expense tracking with offline support, data visualization, and cloud sync. Features camera integration for receipt scanning and budget alerts.",
+                position: "mobile",
+                category: "tool",
+                keywords: ["react-native", "mobile", "expenses", "offline", "camera", "charts"],
+                tags: ["React Native", "SQLite", "Camera", "Charts", "AsyncStorage"],
+                github: "https://github.com/yourusername/expense-tracker",
+                demo: null,
+                overview: "A comprehensive mobile expense tracking application that helps users manage their finances on the go. The app combines intuitive expense entry with powerful analytics and budgeting features, designed to work seamlessly both online and offline.",
+                duration: "10 weeks",
+                team: "Solo Project",
+                status: "Completed",
+                images: [
+                    {
+                        url: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400",
+                        caption: "Expense entry screen with camera integration"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400",
+                        caption: "Analytics dashboard with spending insights"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400",
+                        caption: "Budget tracking and alert system"
+                    }
+                ],
+                techStack: ["React Native", "SQLite", "AsyncStorage", "React Navigation", "Victory Charts", "React Native Camera", "Firebase"],
+                features: [
+                    "Intuitive expense entry with category selection",
+                    "Camera integration for receipt capture and storage",
+                    "Offline functionality with local SQLite database",
+                    "Cloud synchronization when connection is available",
+                    "Budget setting and alert notifications",
+                    "Detailed analytics with charts and spending insights",
+                    "Export functionality for financial reports",
+                    "Multi-currency support with exchange rate updates"
+                ],
+                challenges: "Implementing reliable offline synchronization was the biggest challenge, especially handling conflicts when data changes both locally and on the server. The camera integration also required careful handling of permissions and image optimization. Performance optimization for large datasets on mobile devices needed special attention.",
+                learnings: "This project gave me extensive experience with React Native and mobile development patterns. I learned about offline-first application design and data synchronization strategies. The project also taught me about mobile UI/UX principles and the importance of performance optimization on resource-constrained devices."
+            },
+            {
+                id: 6,
+                title: "CI/CD Pipeline Automation",
+                type:"work",
+                description: "Docker-based CI/CD pipeline using GitHub Actions and AWS. Automates testing, building, and deployment processes for multiple environments with monitoring and rollback capabilities.",
+                position: "devops",
+                category: "tool",
+                keywords: ["docker", "github-actions", "aws", "cicd", "automation", "monitoring"],
+                tags: ["Docker", "GitHub Actions", "AWS", "Terraform", "Monitoring"],
+                github: "https://github.com/yourusername/cicd-pipeline",
+                demo: null,
+                overview: "A comprehensive CI/CD automation solution that streamlines the development workflow from code commit to production deployment. This system ensures reliable, repeatable deployments while maintaining high code quality and system reliability through automated testing and monitoring.",
+                duration: "12 weeks",
+                team: "Solo Project",
+                status: "Completed",
+                images: [
+                    {
+                        url: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=800",
+                        caption: "GitHub Actions workflow visualization"
+                    },
+                    {
+                        url: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800",
+                        caption: "AWS infrastructure monitoring dashboard"
+                    }
+                ],
+                techStack: ["Docker", "GitHub Actions", "AWS ECS", "AWS CloudFormation", "Terraform", "Prometheus", "Grafana", "Nginx"],
+                features: [
+                    "Automated testing pipeline with unit, integration, and E2E tests",
+                    "Multi-stage Docker builds optimized for production",
+                    "Infrastructure as Code using Terraform and CloudFormation",
+                    "Blue-green deployments with zero-downtime rollouts",
+                    "Automated rollback mechanisms on deployment failures",
+                    "Real-time monitoring and alerting with Prometheus and Grafana",
+                    "Security scanning for containers and dependencies",
+                    "Environment-specific configurations and secrets management"
+                ],
+                challenges: "Setting up reliable blue-green deployments while managing database migrations was complex. I had to ensure that the pipeline could handle both forward and backward compatibility during deployments. Another challenge was implementing comprehensive monitoring that could detect issues before they affected users, requiring careful selection of metrics and alert thresholds.",
+                learnings: "This project taught me about infrastructure automation and the importance of treating infrastructure as code. I gained experience with AWS services and learned about deployment strategies that minimize risk. The project also improved my understanding of monitoring and observability practices in production systems."
+            }
+        ];
+
+        let filteredProjects = [...projects];
+        let activePositionFilter = 'all';
+        let activeCategoryFilter = 'all';
+        let searchKeyword = '';
+
+        function renderProjects() {
+            const grid = document.getElementById('projectsGrid');
+            const noResults = document.getElementById('noResults');
+
+            if (filteredProjects.length === 0) {
+                grid.style.display = 'none';
+                noResults.classList.add('show');
+                return;
+            }
+
+            grid.style.display = 'grid';
+            noResults.classList.remove('show');
+
+            grid.innerHTML = filteredProjects.map(project => `
+                <div class="project-card" data-project-id="${project.id}">
+                    <h3 class="project-title">${project.title}</h3>
+                    <p class="project-description">${project.description}</p>
+                    <div class="project-tags">
+                        ${project.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    <div class="project-links">
+                        <a href="${project.github}" target="_blank" class="project-link" onclick="event.stopPropagation()">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                            GitHub
+                        </a>
+                        ${project.demo ? `
+                            <a href="${project.demo}" target="_blank" class="project-link" onclick="event.stopPropagation()">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+                                </svg>
+                                Live Demo
+                            </a>
+                        ` : ''}
+                    </div>
+                </div>
+            `).join('');
+
+            // Add click event listeners to project cards
+            document.querySelectorAll('.project-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    const projectId = parseInt(card.dataset.projectId);
+                    showProjectModal(projectId);
+                });
+            });
+        }
+
+        function showProjectModal(projectId) {
+            const project = projects.find(p => p.id === projectId);
+            if (!project) return;
+
+            const modal = document.getElementById('projectModal');
+            
+            // Populate modal content
+            document.getElementById('modalTitle').textContent = project.title;
+            
+            // Project meta information
+            document.getElementById('projectMeta').innerHTML = `
+                <div class="meta-item">
+                    <div class="meta-label">Duration</div>
+                    <div class="meta-value">${project.duration}</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Team</div>
+                    <div class="meta-value">${project.team}</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Status</div>
+                    <div class="meta-value">${project.status}</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Position</div>
+                    <div class="meta-value">${project.position.charAt(0).toUpperCase() + project.position.slice(1)}</div>
+                </div>
+                <div class="meta-item">
+                    <div class="meta-label">Category</div>
+                    <div class="meta-value">${project.category.replace('-', ' ').replace(/\b\w/g, l => l.toUpperCase())}</div>
+                </div>
+            `;
+            
+            // Project overview
+            document.getElementById('projectOverview').textContent = project.overview;
+            
+            // Images section
+            const imagesSection = document.getElementById('projectImages');
+            const imageGallery = document.getElementById('imageGallery');
+            
+            if (project.images && project.images.length > 0) {
+                imagesSection.style.display = 'block';
+                
+                // Set gallery layout class based on number of images
+                imageGallery.className = 'image-gallery';
+                if (project.images.length === 1) {
+                    imageGallery.classList.add('single');
+                } else if (project.images.length === 2) {
+                    imageGallery.classList.add('double');
+                } else {
+                    imageGallery.classList.add('multiple');
+                }
+                
+                imageGallery.innerHTML = project.images.map(image => `
+                    <div class="project-image">
+                        <img src="${image.url}" alt="${image.caption}" loading="lazy">
+                        <div class="image-caption">${image.caption}</div>
+                    </div>
+                `).join('');
+            } else {
+                imagesSection.style.display = 'none';
+            }
+            
+            // Tech stack
+            document.getElementById('techStack').innerHTML = project.techStack.map(tech => 
+                `<span class="tech-item">${tech}</span>`
+            ).join('');
+            
+            // Features
+            document.getElementById('featuresList').innerHTML = project.features.map(feature => `
+                <li>
+                    <svg class="feature-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M10,17L5,12L6.41,10.58L10,14.17L17.59,6.58L19,8M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
+                    </svg>
+                    ${feature}
+                </li>
+            `).join('');
+            
+            // Challenges & Solutions
+            document.getElementById('challengesContent').textContent = project.challenges;
+            
+            // What I Learned
+            document.getElementById('learningsContent').textContent = project.learnings;
+            
+            // Modal actions
+            document.getElementById('modalActions').innerHTML = `
+                <a href="${project.github}" target="_blank" class="action-btn primary">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.30.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                    </svg>
+                    View on GitHub
+                </a>
+                ${project.demo ? `
+                    <a href="${project.demo}" target="_blank" class="action-btn">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+                        </svg>
+                        Live Demo
+                    </a>
+                ` : ''}
+            `;
+            
+            // Show modal
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function hideProjectModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        function filterProjects() {
+            filteredProjects = projects.filter(project => {
+                const matchesPosition = activePositionFilter === 'all' || project.position === activePositionFilter;
+                const matchesCategory = activeCategoryFilter === 'all' || project.category === activeCategoryFilter;
+                const matchesKeyword = !searchKeyword || 
+                    project.title.toLowerCase().includes(searchKeyword.toLowerCase()) ||
+                    project.description.toLowerCase().includes(searchKeyword.toLowerCase()) ||
+                    project.keywords.some(keyword => keyword.toLowerCase().includes(searchKeyword.toLowerCase())) ||
+                    project.tags.some(tag => tag.toLowerCase().includes(searchKeyword.toLowerCase()));
+
+                return matchesPosition && matchesCategory && matchesKeyword;
+            });
+
+            renderProjects();
+        }
+
+        // Position filter event listeners
+        document.getElementById('positionFilters').addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-btn')) {
+                // Remove active class from all position buttons
+                document.querySelectorAll('#positionFilters .filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                e.target.classList.add('active');
+                activePositionFilter = e.target.dataset.position;
+                filterProjects();
+            }
+        });
+
+        // Category filter event listeners
+        document.getElementById('categoryFilters').addEventListener('click', (e) => {
+            if (e.target.classList.contains('filter-btn')) {
+                // Remove active class from all category buttons
+                document.querySelectorAll('#categoryFilters .filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                e.target.classList.add('active');
+                activeCategoryFilter = e.target.dataset.category;
+                filterProjects();
+            }
+        });
+
+        // Search input event listener
+        document.getElementById('keywordSearch').addEventListener('input', (e) => {
+            searchKeyword = e.target.value;
+            filterProjects();
+        });
+
+        // Modal event listeners
+        document.getElementById('closeModal').addEventListener('click', hideProjectModal);
+        
+        document.getElementById('projectModal').addEventListener('click', (e) => {
+            if (e.target.id === 'projectModal') {
+                hideProjectModal();
+            }
+        });
+
+        // Escape key to close modal
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                hideProjectModal();
+            }
+        });
+
+        // Initial render
+        renderProjects();
+    </script>
+</body>
+</html>
