@@ -48,10 +48,10 @@ function createProjectCard(project) {
         <div class="project-card" data-project-id="${project.id}">
             <h3 class="project-title">${project.title}</h3>
             <div class="project-meta-info">
-                <p><strong>${project.startDate} - ${project.endDate}</strong></p>
                 <p>
-                    <strong>${project.position}</strong>
-                    <span>${project.company}</span></p>
+                    <span>${project.company}</span>                
+                    <strong>${project.startDate} - ${project.endDate}</strong>
+                </p>
                 
             </div>
             <p class="project-description">${project.description}</p>
