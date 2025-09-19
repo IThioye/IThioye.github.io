@@ -109,7 +109,16 @@ function showProjectModal(projectId) {
         </div>
         <div class="meta-item">
             <div class="meta-label">Poste</div>
-            <div class="meta-value">${project.position.charAt(0).toUpperCase() + project.position.slice(1)}</div>
+            <div class="meta-value">
+                ${
+                    Array.isArray(project.position)
+                    ? project.position
+                        .map(pos => pos.replace(/-/g, ' '))
+                        .join(', ')
+                    : project.position
+                        .replace(/-/g, ' ')
+                }
+            </div>
         </div>
         <div class="meta-item">
             <div class="meta-label">Catégorie</div>
@@ -117,11 +126,10 @@ function showProjectModal(projectId) {
                 ${
                     Array.isArray(project.category)
                     ? project.category
-                        .map(cat => cat.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()))
+                        .map(cat => cat.replace(/-/g, ' '))
                         .join(', ')
                     : project.category
                         .replace(/-/g, ' ')
-                        .replace(/\b\w/g, l => l.toUpperCase())
                 }
             </div>
         </div>
@@ -215,8 +223,12 @@ function filterProjects() {
 
     // ✅ Update the GLOBAL variable (remove const)
     filteredProjects = projects.filter(project => {
-        const matchesPosition =
-            activePositionFilter === 'all' || project.position === activePositionFilter;
+        // const matchesPosition =
+        //     activePositionFilter === 'all' || project.position === activePositionFilter;
+        
+        const matchesPosition = Array.isArray(project.position)
+            ? activePositionFilter === 'all' || project.position.includes(activePositionFilter)
+            : activePositionFilter === 'all' || project.position === activePositionFilter;
 
         const matchesCategory = Array.isArray(project.category)
             ? activeCategoryFilter === 'all' || project.category.includes(activeCategoryFilter)
