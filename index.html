@@ -4,218 +4,206 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ibrahima - Portfolio</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./home/index_style.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
+    <div class="particles"></div>
+    <div class="progress-indicator"></div>
+
+    <nav class="navbar">
+        <div class="container">
             <ul>
-                <li><a href="#about">About Me</a></li>
-                <li><a href="#work">Expériences et Projets</a></li>
+                <li><a href="#about" class="active">About Me</a></li>
+                <li><a href="#projects">Expériences pros et projets</a></li>
                 <li><a href="#skills">Compétences et Technologies</a></li>
                 <li><a href="#certifications">Certifications</a></li>
             </ul>
-        </nav>
+        </div>
+    </nav>
 
+    <header>
         <div class="container">
             <div class="hero">
-                <h1>Ibrahima Thioye</h1>
-                <p>Ingénieur IA / Data Scientist</p>
-                <div class="social-links">
+                <div class="hero-avatar reveal">
+                    <div class="hero-avatar-inner">IT</div>
+                </div>
+                <h1 class="reveal">Ibrahima THIOYE</h1>
+                <h2 class="hero-subtitle reveal">Ingénieur IA / Data scientist</h2>
+                <div class="typing-text reveal"></div>
+                <div class="hero-cta reveal">
+                    <a href="#projects" class="cta-button cta-primary">Voir mes projets</a>
+                    <a href="CV_Ibrahima.pdf" download class="cta-button cta-secondary">Téléchargez mon CV</a>
+                </div>
+                <div class="social-links reveal">
                     <a href="https://github.com/IThioye" target="_blank">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
                         </svg>
-                        GitHub
                     </a>
                     <a href="https://www.linkedin.com/in/ibrahima-thioye/" target="_blank">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
                         </svg>
-                        LinkedIn
                     </a>
-                    <a href="mailto:ibrahimathioye03@gmail.com">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                    <a href="mailto:ibrahimathioye03@gmail.com" title="Email">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
                         </svg>
-                        Email
                     </a>
                 </div>
             </div>
         </div>
     </header>
 
-    <section id="about" class="about-section">
-    <div class="container">
-        <h2 class="section-title">About Me</h2>
-        <p class="about-text">
-        Passionate AI engineer and data scientist with expertise in machine learning,
-        deep learning, and data analysis. I enjoy solving complex problems, building
-        intelligent systems, and sharing knowledge through impactful projects.
-        </p>
-    </div>
-    </section>
+    <main>
+        <section id="about" class="about-section">
+            <div class="container reveal">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>
+                            Passionné par l'intelligence artificielle et la science des données, 
+                            je transforme des données complexes en insights exploitables pour 
+                            résoudre des problèmes concrets du monde réel.
+                        </p>
+                        <p>
+                            Mon expertise couvre l'apprentissage automatique, l'apprentissage 
+                            profond, et l'analyse de données. J'aime relever des défis techniques 
+                            complexes et partager mes connaissances à travers des projets impactants.
+                        </p>
+                    </div>
+                    <div class="about-highlights">
+                        <div class="highlight-item">
+                            <div class="highlight-icon">🤖</div>
+                            <div>
+                                <strong>Intelligence Artificielle</strong><br>
+                                <span style="color: #94a3b8;">Machine Learning & Deep Learning</span>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">📊</div>
+                            <div>
+                                <strong>Science des Données</strong><br>
+                                <span style="color: #94a3b8;">Analyse & Visualisation</span>
+                            </div>
+                        </div>
+                        <div class="highlight-item">
+                            <div class="highlight-icon">🚀</div>
+                            <div>
+                                <strong>Innovation</strong><br>
+                                <span style="color: #94a3b8;">Solutions créatives & Impact</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <section id="work" class="projects-section">
+        <section id="projects" class="projects-section">
+            <div class="container reveal">
+                <h2 class="section-title">Expériences professionelles et projets</h2>
+                <div class="featured-projects">
+                    <div class="projects-grid" id="featuredProjectsGrid">
+                        </div>
+                    <div class="show-more-link">
+                        <a href="./projects.html" class="cta-button cta-primary">Voir tous les projets</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills-section reveal">
+            <div class="container">
+                <h2 class="section-title">Compétences & Technologies</h2>
+                <div class="skills-grid">
+                    <div class="skill-item">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🐍</div>
+                        <strong>Python</strong>
+                    </div>
+                    <div class="skill-item">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🧠</div>
+                        <strong>TensorFlow</strong>
+                    </div>
+                    <div class="skill-item">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">⚛️</div>
+                        <strong>React</strong>
+                    </div>
+                    <div class="skill-item">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🟢</div>
+                        <strong>Node.js</strong>
+                    </div>
+                    <div class="skill-item">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🐘</div>
+                        <strong>PostgreSQL</strong>
+                    </div>
+                    <div class="skill-item">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🍃</div>
+                        <strong>MongoDB</strong>
+                    </div>
+                    <div class="skill-item">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">☁️</div>
+                        <strong>AWS</strong>
+                    </div>
+                    <div class="skill-item">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🐳</div>
+                        <strong>Docker</strong>
+                    </div>
+                    <div class="skill-item">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">📊</div>
+                        <strong>Pandas</strong>
+                    </div>
+                    <div class="skill-item">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">🔥</div>
+                        <strong>PyTorch</strong>
+                    </div>
+                    <div class="skill-item">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">📈</div>
+                        <strong>Scikit-learn</strong>
+                    </div>
+                    <div class="skill-item">
+                        <div style="font-size: 2rem; margin-bottom: 1rem;">⚡</div>
+                        <strong>FastAPI</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications" class="certifications-section">
+            <div class="container reveal">
+                <h2 class="section-title">Certifications</h2>
+                <div class="certifications-grid" id="certificationsGrid">
+                    </div>
+            </div>
+        </section>
+        <!-- Back to Top Button -->
+        <button class="back-to-top" id="backToTop">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M7 14L12 9L17 14H7Z"/>
+            </svg>
+        </button>
+    </main>
+
+    <footer class="footer">
         <div class="container">
-            <h2 class="section-title">Mon travail</h2>
-            
-            <div class="filters">
-                <div class="filter-group">
-                    <label for="positionFilter" class="filter-label">Poste</label>
-                    <select id="positionFilter" class="filter-select">
-                        <option value="all">Tout</option>
-                        <option value="Data Scientist">Data Scientist</option>
-                        <option value="Data Analyst">Data Analyst</option>
-                        <option value="Développeur">Développeur</option>
-                        <option value="Web Scraper">Web Scraper</option>
-                    </select>
-                </div>
-                
-                <div class="filter-group">
-                    <label for="categoryFilter" class="filter-label">Catégorie</label>
-                    <select id="categoryFilter" class="filter-select">
-                        <option value="all">Tout</option>
-                        <option value="Machine Learning">Machine Learning</option>
-                        <option value="Deep Learning">Deep Learning</option>
-                        <option value="Analyse et Visualisation de données">Analyse et Visualisation de données</option>
-                        <option value="Web Scraping / Collecte de données">Web Scraping / Collecte de données</option>
-                        <option value="Automatisation">Automatisation</option>
-                        <option value="API">API</option>
-                    </select>
-                </div>
-                
-                
-                <div class="filter-group" style="flex-grow: 1;">
-                    <label for="keywordSearch" class="filter-label">Mots-clés</label>
-                    <input type="text" class="search-box" id="keywordSearch" placeholder="Rechercher...">
-                </div>
-            </div>
-            
-            <div class="subsection-container">
-                <h3 class="subsection-title">Expériences Professionelles</h3>
-                <div class="projects-grid" id="workExperienceGrid">
-                    </div>
-            </div>
-            
-            <div class="subsection-container">
-                <h3 class="subsection-title">Projets</h3>
-                <div class="projects-grid" id="personalProjectsGrid">
-                    </div>
-            </div>
-
-            <div class="no-results" id="noResults">
-                <h3>Aucun résultat trouvé</h3>
-                <p>Essayez d'ajuster les filtres ou mots clés</p>
-            </div>
+            <p>&copy; 2025 Ibrahima. All rights reserved.</p>
         </div>
-    </section>
+    </footer>
 
-    <div class="modal-overlay" id="projectModal">
+    <div id="projectModal" class="modal">
         <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title" id="modalTitle"></h1>
-                <button class="close-btn" id="closeModal">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                    </svg>
-                </button>
+            <span class="close-btn" id="closeModal">&times;</span>
+            <h3 id="modal-title"></h3>
+            <div class="modal-meta">
+                <div class="modal-meta-item" id="modal-company"></div>
+                <div class="modal-meta-item" id="modal-date"></div>
+                <div class="modal-meta-item" id="modal-category"></div>
             </div>
-            
-            <div class="modal-body">
-                <div class="project-meta" id="projectMeta"></div>
-                
-                <div class="project-overview">
-                    <h3 class="section-header">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
-                        </svg>
-                        Contexte
-                    </h3>
-                    <div class="section-content" id="projectOverview"></div>
-                </div>
-
-                <div class="features-section">
-                    <h3 class="section-header">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M10,17L5,12L6.41,10.58L10,14.17L17.59,6.58L19,8M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
-                        </svg>
-                        Tâches
-                    </h3>
-                    <ul class="features-list" id="featuresList"></ul>
-                </div>
-
-                <div class="challenges-section">
-                    <h3 class="section-header">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M13,14H11V10H13M13,18H11V16H13M1,21H23L12,2L1,21Z"/>
-                        </svg>
-                        Difficultés & Solutions
-                    </h3>
-                    <div class="section-content" id="challengesContent"></div>
-                </div>
-
-                <div class="project-images" id="projectImages" style="display: none;">
-                    <h3 class="section-header">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z"/>
-                        </svg>
-                        Images
-                    </h3>
-                    <div class="image-gallery" id="imageGallery"></div>
-                </div>
-
-                <div class="learnings-section">
-                    <h3 class="section-header">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/>
-                        </svg>
-                        Ce que j'ai appris
-                    </h3>
-                    <div class="section-content" id="learningsContent"></div>
-                </div>
-                
-                <div class="tech-stack-section">
-                    <h3 class="section-header">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7H14A7,7 0 0,1 21,14H22A1,1 0 0,1 23,15V18A1,1 0 0,1 22,19H21V20A2,2 0 0,1 19,22H5A2,2 0 0,1 3,20V19H2A1,1 0 0,1 1,18V15A1,1 0 0,1 2,14H3A7,7 0 0,1 10,7H11V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2M7.5,13A2.5,2.5 0 0,0 5,15.5A2.5,2.5 0 0,0 7.5,18A2.5,2.5 0 0,0 10,15.5A2.5,2.5 0 0,0 7.5,13M16.5,13A2.5,2.5 0 0,0 14,15.5A2.5,2.5 0 0,0 16.5,18A2.5,2.5 0 0,0 19,15.5A2.5,2.5 0 0,0 16.5,13Z"/>
-                        </svg>
-                        Stack technologique
-                    </h3>
-                    <div class="tech-stack" id="techStack"></div>
-                </div>
-            </div>
-
-            <div class="modal-actions" id="modalActions"></div>
+            <p id="modal-description" class="modal-description"></p>
+            <div id="modal-details" class="modal-project-content"></div>
+            <div id="modal-tags" class="modal-tags"></div>
+            <div id="modal-links" class="modal-links"></div>
         </div>
     </div>
 
-    <section id="skills" class="skills-section">
-        <div class="container">
-            <h2 class="section-title">Compétences & Technologies</h2>
-            <div class="skills-grid">
-                <div class="skill-item">JavaScript/TypeScript</div>
-                <div class="skill-item">React/Next.js</div>
-                <div class="skill-item">Node.js</div>
-                <div class="skill-item">Python</div>
-                <div class="skill-item">PostgreSQL</div>
-                <div class="skill-item">MongoDB</div>
-                <div class="skill-item">AWS/Cloud</div>
-                <div class="skill-item">Docker</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="certifications" class="certifications-section">
-        <div class="container">
-            <h2 class="section-title">Certifications</h2>
-            <div class="certifications-grid" id="certificationsGrid">
-                </div>
-        </div>
-    </section>
-
-
-    <script src="./script.js" type="module"></script>
-
+    <script src="./home/index_script.js" type="module"></script>
 </body>
 </html>
