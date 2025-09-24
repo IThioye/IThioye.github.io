@@ -272,6 +272,7 @@ header {
     transform: translateY(-2px);
 }
 
+
 .social-links {
     display: flex;
     justify-content: center;
@@ -494,7 +495,7 @@ header {
     background: rgba(59, 130, 246, 0.1);
     border: 1px solid rgba(59, 130, 246, 0.2);
     border-radius: 12px;
-    font-size: 0.75rem;
+    font-size: 1rem;
     color: #93c5fd;
 }
 
@@ -636,12 +637,13 @@ header {
 /* Subsections */
 .ai-subblock {
     margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 .ai-subtitle {
     font-size: 1.2rem;
     font-weight: 700;
     color: #a5b4fc;
-    margin-bottom: 0.75rem;
+    margin-bottom: 1rem;
     position: relative;
 }
 .ai-subtitle::after {
