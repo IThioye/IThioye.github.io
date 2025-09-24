@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tous les projets - Ibrahima</title>
+    <link rel="stylesheet" href="./projects/projects_style.css">
+</head>
+<body>
+    <div class="particles"></div>
+    <div class="progress-indicator"></div>
+
+    <nav class="navbar">
+        <div class="container">
+            <ul>
+                <li>
+                    <svg width="25" height="25" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 -100 640 640"><path d="M341.8 72.6C329.5 61.2 310.5 61.2 298.3 72.6L74.3 280.6C64.7 289.6 61.5 303.5 66.3 315.7C71.1 327.9 82.8 336 96 336L112 336L112 512C112 547.3 140.7 576 176 576L464 576C499.3 576 528 547.3 528 512L528 336L544 336C557.2 336 569 327.9 573.8 315.7C578.6 303.5 575.4 289.5 565.8 280.6L341.8 72.6zM304 384L336 384C362.5 384 384 405.5 384 432L384 528L256 528L256 432C256 405.5 277.5 384 304 384z"/>
+                    </svg>
+                    <a href="./index.html"> Retour à l'accueil
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="projects" class="projects-section">
+            <div class="container reveal">
+                <div class="filters">
+                    <div class="filter-group">
+                        <label for="positionFilter" class="filter-label">Poste</label>
+                        <select id="positionFilter" class="filter-select">
+                            <option value="all">Tout</option>
+                            <option value="Data Scientist">Data Scientist</option>
+                            <option value="Data Analyst">Data Analyst</option>
+                            <option value="Développeur">Développeur</option>
+                            <option value="Web Scraper">Web Scraper</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="categoryFilter" class="filter-label">Catégorie</label>
+                        <select id="categoryFilter" class="filter-select">
+                            <option value="all">Tout</option>
+                            <option value="Machine Learning">Machine Learning</option>
+                            <option value="Deep Learning">Deep Learning</option>
+                            <option value="Analyse et Visualisation de données">Analyse et Visualisation de données</option>
+                            <option value="Web Scraping / Collecte de données">Web Scraping / Collecte de données</option>
+                            <option value="Automatisation">Automatisation</option>
+                            <option value="API">API</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="keywordSearch" class="filter-label">Mots-clés</label>
+                        <input type="text" id="keywordSearch" class="search-box" placeholder="Rechercher...">
+                    </div>
+                </div>
+                <div id="noResults" style="display: none; text-align: center; color: #94a3b8; padding: 2rem;">Aucun projet trouvé.</div>
+                
+                <div class="subsection-container" id="workExperienceContainer">
+                    <h3 class="subsection-title">Expériences professionelles</h3>
+                    <div class="projects-grid" id="workExperienceGrid"></div>
+                </div>
+
+                <div class="subsection-container" id="personalProjectsContainer">
+                    <h3 class="subsection-title">Projets</h3>
+                    <div class="projects-grid" id="personalProjectsGrid">
+                        </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Ibrahima. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div id="projectModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="modalTitle"></h1>
+                <button class="close-btn" id="closeModal">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="project-meta" id="projectMeta"></div>
+                
+                <div class="project-overview">
+                    <h3 class="section-header">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                        </svg>
+                        Contexte
+                    </h3>
+                    <div class="section-content" id="projectOverview"></div>
+                </div>
+
+                <div class="features-section">
+                    <h3 class="section-header">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M10,17L5,12L6.41,10.58L10,14.17L17.59,6.58L19,8M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z"/>
+                        </svg>
+                        Tâches
+                    </h3>
+                    <ul class="features-list" id="featuresList"></ul>
+                </div>
+
+                <div class="challenges-section">
+                    <h3 class="section-header">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M13,14H11V10H13M13,18H11V16H13M1,21H23L12,2L1,21Z"/>
+                        </svg>
+                        Difficultés & Solutions
+                    </h3>
+                    <div class="section-content" id="challengesContent"></div>
+                </div>
+
+                <div class="project-images" id="projectImages" style="display: none;">
+                    <h3 class="section-header">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z"/>
+                        </svg>
+                        Images
+                    </h3>
+                    <div class="image-gallery" id="imageGallery"></div>
+                </div>
+
+                <div class="learnings-section">
+                    <h3 class="section-header">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12,3L1,9L12,15L21,10.09V17H23V9M5,13.18V17.18L12,21L19,17.18V13.18L12,17L5,13.18Z"/>
+                        </svg>
+                        Ce que j'ai appris
+                    </h3>
+                    <div class="section-content" id="learningsContent"></div>
+                </div>
+                
+                <div class="tech-stack-section">
+                    <h3 class="section-header">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12,2A2,2 0 0,1 14,4C14,4.74 13.6,5.39 13,5.73V7H14A7,7 0 0,1 21,14H22A1,1 0 0,1 23,15V18A1,1 0 0,1 22,19H21V20A2,2 0 0,1 19,22H5A2,2 0 0,1 3,20V19H2A1,1 0 0,1 1,18V15A1,1 0 0,1 2,14H3A7,7 0 0,1 10,7H11V5.73C10.4,5.39 10,4.74 10,4A2,2 0 0,1 12,2M7.5,13A2.5,2.5 0 0,0 5,15.5A2.5,2.5 0 0,0 7.5,18A2.5,2.5 0 0,0 10,15.5A2.5,2.5 0 0,0 7.5,13M16.5,13A2.5,2.5 0 0,0 14,15.5A2.5,2.5 0 0,0 16.5,18A2.5,2.5 0 0,0 19,15.5A2.5,2.5 0 0,0 16.5,13Z"/>
+                        </svg>
+                        Stack technologique
+                    </h3>
+                    <div class="tech-stack" id="techStack"></div>
+                </div>
+            </div>
+
+            <div class="modal-actions" id="modalActions"></div>
+        </div>
+    </div>
+    <script src="./projects/projects_script.js" type="module"></script>
+
+</body>
+</html>
