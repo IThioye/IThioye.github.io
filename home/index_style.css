@@ -531,65 +531,152 @@ header {
     border: 1px solid rgba(59, 130, 246, 0.2);
 }
 
-/* Skills Section */
+/* ===================================== */
+/* New Styles for #skills Definition List */
+/* ===================================== */
+
 .skills-section {
     padding: 6rem 0;
-    background: rgba(15, 23, 42, 0.8);
+    background: rgba(15, 23, 42, 0.85);
 }
 
-.skills-grid {
+/* Container grid */
+.skills-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 1.5rem;
-    margin-top: 3rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
 }
 
-.skill-item {
-    padding: 2rem 1rem;
-    background: rgba(30, 41, 59, 0.6);
-    border: 1px solid rgba(148, 163, 184, 0.1);
+/* Each card */
+.skill-card {
+    background: rgba(30, 41, 59, 0.55);
+    border: 1px solid rgba(96, 165, 250, 0.15);
     border-radius: 16px;
-    text-align: center;
+    padding: 2rem;
+    backdrop-filter: blur(8px);
     transition: all 0.3s ease;
+    overflow: hidden;
+}
+.skill-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center,
+                rgba(96,165,250,0.15) 0%, transparent 70%);
+    animation: rotateGlow 20s linear infinite;
+}
+.skill-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(96, 165, 250, 0.4);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* Title inside each card */
+.skill-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: #60a5fa;
+    position: relative;
+}
+.skill-title::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, #60a5fa, #c084fc);
+    border-radius: 2px;
+}
+
+/* Tags styling */
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+.skill-tag {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-radius: 10px;
+    color: #e0f2fe;
+    background: rgba(96, 165, 250, 0.1);
+    border: 1px solid rgba(96, 165, 250, 0.25);
+    transition: all 0.25s ease;
+}
+.skill-tag:hover {
+    background: rgba(96, 165, 250, 0.25);
+    box-shadow: 0 0 12px rgba(96, 165, 250, 0.35);
+    transform: translateY(-2px);
+}
+
+.ai-special {
+    background: rgba(30, 41, 59, 0.55);
+    border: 1px solid rgba(96, 165, 250, 0.25);
     position: relative;
     overflow: hidden;
 }
-
-.skill-item::before {
+.ai-special::before {
     content: '';
     position: absolute;
-    top: 0;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at center,
+                rgba(96,165,250,0.15) 0%, transparent 70%);
+    animation: rotateGlow 20s linear infinite;
+}
+
+/* Subsections */
+.ai-subblock {
+    margin-top: 1.5rem;
+}
+.ai-subtitle {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #a5b4fc;
+    margin-bottom: 0.75rem;
+    position: relative;
+}
+.ai-subtitle::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
     left: 0;
-    right: 0;
+    width: 40px;
     height: 2px;
     background: linear-gradient(90deg, #60a5fa, #c084fc);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
+    border-radius: 2px;
 }
 
-.skill-item:hover {
-    border-color: rgba(59, 130, 246, 0.3);
-    transform: translateY(-5px);
-    background: rgba(59, 130, 246, 0.1);
+/* Badges */
+.ai-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
 }
-
-.skill-item:hover::before {
-    transform: scaleX(1);
-}
-
-.skill-icon {
-    width: 60px;
-    height: 60px;
-    margin: 0 auto 1rem;
-    color: #60a5fa;
-    font-size: 3rem;
-}
-
-.skill-title {
+.ai-badge {
+    padding: 0.55rem 1rem;
+    border-radius: 12px;
+    font-size: 0.9rem;
     font-weight: 600;
-    color: #f1f5f9;
-    font-size: 1rem;
+    color: #e0f2fe;
+    background: rgba(96,165,250,0.1);
+    border: 1px solid rgba(96,165,250,0.3);
+    transition: all 0.25s ease;
 }
+.ai-badge:hover {
+    background: rgba(96,165,250,0.25);
+    box-shadow: 0 0 12px rgba(96,165,250,0.4);
+    transform: translateY(-2px);
+}
+
 
 /* Certifications Section */
 .certifications-section {
