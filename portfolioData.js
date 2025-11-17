@@ -13,15 +13,15 @@ const projects = [
                 tags: ["Python", "Excel", "Automatisation", "LLM"],
                 github: null,
                 demo: null,
-                overview: "A comprehensive CI/CD automation solution that streamlines the development workflow from code commit to production deployment. This system ensures reliable, repeatable deployments while maintaining high code quality and system reliability through automated testing and monitoring.",
+                overview: "Développement de solutions data & IA visant à automatiser/accélérer les processus métiers.",
                 duration: "En cours",
                 team: "Solo",
                 status: "En cours",
                 images: [{ url: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=800", caption: "GitHub Actions workflow visualization" }, { url: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=800", caption: "AWS infrastructure monitoring dashboard" }],
                 techStack: ["Python", "Excel","Hugging Face"],
-                features: ["Automated testing pipeline with unit, integration, and E2E tests", "Multi-stage Docker builds optimized for production", "Infrastructure as Code using Terraform and CloudFormation", "Blue-green deployments with zero-downtime rollouts", "Automated rollback mechanisms on deployment failures", "Real-time monitoring and alerting with Prometheus and Grafana", "Security scanning for containers and dependencies", "Environment-specific configurations and secrets management"],
-                challenges: "Setting up reliable blue-green deployments while managing database migrations was complex. I had to ensure that the pipeline could handle both forward and backward compatibility during deployments. Another challenge was implementing comprehensive monitoring that could detect issues before they affected users, requiring careful selection of metrics and alert thresholds.",
-                learnings: "This project taught me about infrastructure automation and the importance of treating infrastructure as code. I gained experience with AWS services and learned about deployment strategies that minimize risk. The project also improved my understanding of monitoring and observability practices in production systems."
+                features: ["Développement de solutions de reporting automatisées générant des fichiers Excel et Word (graphiques, tableaux, mise en forme).", "Implémentation d’un système de résumé de documents avec anonymisation via modèles NER et LLM", " Extraction et traitement de données réglementaires pour alimenter un chatbot interne."],
+                challenges: "Travailler avec des données sensibles limitent considérablement le champ des possibles quand on travaille dans l'IA. Au lieu de directement créer le prompt pour définir le format du résumé, j'ai dù d'abord créé un système d'anonymisation/déanonymisation des textes sensibles",
+                learnings: "J'ai appris à transformer un processus métier manuel en automatisation et j'ai pu apprendre à automatiser la création d'applications python"
             },
             {
                 id: 2,
@@ -37,15 +37,15 @@ const projects = [
                 tags: ["Python", "Excel", "Octoparse","Automatisation"],
                 github: "",
                 demo: "",
-                overview: "This comprehensive e-commerce platform was built to provide a complete online shopping experience. The project demonstrates full-stack development skills with a focus on user experience, security, and scalability. The application handles everything from product browsing to order fulfillment, with a robust admin panel for business management.",
+                overview: "Développement d’un funnel marketing de conversion data-driven et alimenté par l’IA.",
                 duration: "3 mois",
                 team: "7 personnes",
                 status: "Terminé",
                 images: [],
                 techStack: ["Python", "Excel", "Octoparse","Zapier","Appollo","Akkio"],
-                features: ["User authentication with JWT tokens and secure password hashing", "Product catalog with search, filtering, and pagination", "Shopping cart with persistent storage and real-time updates", "Secure payment processing using Stripe integration", "Order management system with status tracking", "Admin dashboard with inventory and user management", "Responsive design for mobile and desktop devices", "Email notifications for order confirmations and updates"],
-                challenges: "The main challenges included implementing secure payment processing, managing complex state across the application, and optimizing database queries for large product catalogs. I solved the payment security by implementing proper validation and using Stripe's secure tokenization. For state management, I used Redux with proper middleware, and optimized database performance with indexing and efficient query patterns.",
-                learnings: "This project taught me the importance of security in e-commerce applications, especially regarding payment processing and user data protection. I gained deep experience with full-stack architecture, API design, and the complexities of managing financial transactions. The project also improved my skills in database design and optimization."
+                features: ["Collecte et nettoyage de données de leads via Octoparse, Phantombuster, Appolo, Python, Excel.", "Développement et déploiement de modèles de lead scoring et d’analyse de sentiments (Akkio, API).", "Automatisation du funnel via Wix, Apolo et Zapier."],
+                challenges: "",
+                learnings: "J'ai appris l'importance de se former au no-code quand on travaille avec une équipe non-technique"
             },
             {
                 id: 3,
@@ -61,15 +61,15 @@ const projects = [
                 tags: ["Pandas","Beautiful Soup","Webscraping"],
                 github: "",
                 demo: null,
-                overview: "A comprehensive mobile expense tracking application that helps users manage their finances on the go. The app combines intuitive expense entry with powerful analytics and budgeting features, designed to work seamlessly both online and offline.",
+                overview: "Collecte et aggrégation de données de véhicules (marque,modèle,année,description,images,etc)",
                 duration: "2 mois",
                 team: "4 personnes",
                 status: "Terminé",
-                images: [{ url: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?w=400", caption: "Expense entry screen with camera integration" }, { url: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400", caption: "Analytics dashboard with spending insights" }, { url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400", caption: "Budget tracking and alert system" }],
+                images: [],
                 techStack: ["Pandas","Beautiful soup","Jupyter","Excel"],
-                features: ["Intuitive expense entry with category selection", "Camera integration for receipt capture and storage", "Offline functionality with local SQLite database", "Cloud synchronization when connection is available", "Budget setting and alert notifications", "Detailed analytics with charts and spending insights", "Export functionality for financial reports", "Multi-currency support with exchange rate updates"],
-                challenges: "Implementing reliable offline synchronization was the biggest challenge, especially handling conflicts when data changes both locally and on the server. The camera integration also required careful handling of permissions and image optimization. Performance optimization for large datasets on mobile devices needed special attention.",
-                learnings: "This project gave me extensive experience with React Native and mobile development patterns. I learned about offline-first application design and data synchronization strategies. The project also taught me about mobile UI/UX principles and the importance of performance optimization on resource-constrained devices."
+                features: ["Utilisation de scripts pour automatiser la collecte de données", "organisation des données par marque,modèles dans des dossiers bien nommés"],
+                challenges: "Scraper intensément un même site web entraine un blocage côté serveur, il fallait donc prendre en compte dans le script ces blocages pour relancer le code",
+                learnings: "J'ai appris à automatiser le scraping d'un site web"
             },
             {
                 id: 5,
