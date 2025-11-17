@@ -166,8 +166,31 @@ const projects = [
                 features: ["Automatic location detection using browser geolocation", "Search functionality for cities worldwide", "Current weather conditions with detailed metrics", "7-day weather forecast with hourly breakdowns", "Favorites system for quick access to saved locations", "Dark/light theme toggle with user preference persistence", "Responsive design optimized for all device sizes", "Weather data visualization with interactive charts"],
                 challenges: "The biggest challenge was handling the various edge cases with the geolocation API and managing API rate limits efficiently. Weather data can be inconsistent, so I implemented robust error handling and fallback mechanisms. I also had to optimize the app for different network conditions and handle offline scenarios gracefully.",
                 learnings: "This project improved my skills in working with external APIs and handling asynchronous data. I learned about browser APIs like Geolocation and gained experience in creating responsive designs that work well across different devices. The project also taught me about state management patterns in React and performance optimization techniques."
+            },
+            {
+                id: 8,
+                title: "Système multi-agents de connecteurs de concepts",
+                type: "project",
+                company: "Projet perso",
+                startDate: "11/2025",
+                endDate: "12/2025",
+                description: "Système multi-agents permettant de comprendre le lien entre deux concepts de disciplines différentes",
+                position: "Data Scientist",
+                category: ["Deep Learning"],
+                keywords: ["Deep Learning","Hugging Face"," Flask","Déploiement","Github","Agents IA"],
+                tags: ["Deep Learning","Hugging Face"," Flask","Déploiement","Github"],
+                github: "https://github.com/IThioye/Concept-Connector",
+                demo: "",
+                overview: "Un système d'IA multi-agents local qui découvre et explique les liens entre les concepts de différentes disciplines — construit avec Flask, Ollama et une interface légère utilisant HTML/CSS/JS.",
+                duration: "2 mois",
+                team: "Solo",
+                status: "Terminé",
+                images: [],
+                techStack: ["Python","Flask","Github","Ollama"],
+                features: ["Backend (Flask) utilisant un LLM open source", "7 agents travaillant de manière asynchronique avec chacun une tâche spécifique", "Personnalisation de la réponse selon le background utilisateur (niveau scolaire, système éducatif,etc.", "Détection de biais dans les réponses et métriques de fairness"],
+                challenges: "Le plus gros problème résidait dans la maitrise de l'output du LLM, à savoir obtenir exactement une sortie JSON lorsque c'est demandé car la logique du système en dépend",
+                learnings: "J'ai pu apprendre à développer un système d'agents IA en utilisant un modèle open source"
             }
-
         ];
         
 const certifications = [
