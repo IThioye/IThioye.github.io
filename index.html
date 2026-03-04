@@ -3,231 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ibrahima - Portfolio</title>
-    <link rel="stylesheet" href="./home/index_style.css">
+    <title>Ibrahima THIOYE - AI Engineer & Data Scientist | Home</title>
+    <link rel="stylesheet" href="style.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">    <script src="data.js"></script>
 </head>
 <body>
-    <div class="particles"></div>
-    <div class="progress-indicator"></div>
-
-    <nav class="navbar">
+    <div class="mesh-gradient"></div>
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    
+    <nav>
         <div class="container">
-            <ul>
-                <li><a href="#about" class="active">About Me</a></li>
-                <li><a href="#projects">Expériences pros et projets</a></li>
-                <li><a href="#skills">Compétences et Technologies</a></li>
-                <li><a href="#certifications">Certifications</a></li>
-            </ul>
+            <div class="nav-container-wrapper">
+                <ul class="nav-links">
+                    <li><a href="index.html">About</a></li>
+                    <li><a href="skills.html">Skills</a></li>
+                    <li><a href="articles.html">Articles</a></li>
+                    <li><a href="projects.html">Projects</a></li>
+                </ul>
+            </div>
         </div>
     </nav>
-
-    <header>
+    
+    <section id="about">
         <div class="container">
             <div class="hero">
-                <div class="hero-avatar reveal">
-                    <div class="hero-avatar-inner">IT</div>
+                <div class="hero-content">
+                    <h1 id="hero-name">Ibrahima THIOYE</h1> 
+                    <h2 id="hero-title">AI Engineer & Data Scientist</h2>
+                    <p class="hero-description" id="hero-description">Transforming complex data...</p>
+                    <div class="hero-buttons">
+                        <a href="articles.html" class="btn btn-primary">Read My Articles</a>
+                        <a href="cv_Ibrahima_THIOYE.pdf" download class="btn btn-secondary" id="cv-link">Download CV</a>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://github.com/IThioye" target="_blank" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
+                            </svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/ibrahima-thioye/" target="_blank" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                        <a href="mailto:ibrahimathioye03@gmail.com" class="social-link">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
-                <h1 class="reveal">Ibrahima THIOYE</h1>
-                <h2 class="hero-subtitle reveal">Ingénieur IA / Data scientist</h2>
-                <div class="typing-text reveal"></div>
-                <div class="hero-cta reveal">
-                    <a href="#projects" class="cta-button cta-primary">Voir mes derniers projets</a>
-                    <a href="cv_Ibrahima_THIOYE.pdf" download class="cta-button cta-secondary">Téléchargez mon CV</a>
-                </div>
-                <div class="social-links reveal">
-                    <a href="https://github.com/IThioye" target="_blank">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M12 0C5.374 0 0 5.373 0 12 0 17.302 3.438 21.8 8.207 23.387c.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/>
-                        </svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/ibrahima-thioye/" target="_blank">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle>
-                        </svg>
-                    </a>
-                    <a href="mailto:ibrahimathioye03@gmail.com" title="Email">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                        </svg>
-                    </a>
+                <div class="hero-visual">
+                    <div class="visual-card">
+                        <div class="card-icon">🤖</div>
+                        <div class="card-title">Machine Learning</div>
+                        <div class="card-text">Advanced algorithms & predictive models</div>
+                    </div>
+                    <div class="visual-card">
+                        <div class="card-icon">🧠</div>
+                        <div class="card-title">Deep Learning</div>
+                        <div class="card-text">Neural networks & computer vision</div>
+                    </div>
+                    <div class="visual-card">
+                        <div class="card-icon">📊</div>
+                        <div class="card-title">Data Science</div>
+                        <div class="card-text">Analysis & visualization expertise</div>
+                    </div>
                 </div>
             </div>
         </div>
-    </header>
+    </section>
 
-    <main>
-        <section id="about" class="about-section">
-            <div class="container reveal">
-                <h2 class="section-title">About Me</h2>
-                <div class="about-content">
-                    <div class="about-text">
-                        <p>
-                            Passionné par l'intelligence artificielle et la science des données, 
-                            je transforme des données complexes en insights exploitables pour 
-                            résoudre des problèmes concrets du monde réel.
-                        </p>
-                        <p>
-                            Mon expertise couvre l'apprentissage automatique, l'apprentissage 
-                            profond, et l'analyse de données. J'aime relever des défis techniques 
-                            complexes et partager mes connaissances à travers des projets impactants.
-                        </p>
-                    </div>
-                    <div class="about-highlights">
-                        <div class="highlight-item">
-                            <div class="highlight-icon">🤖</div>
-                            <div>
-                                <strong>Intelligence Artificielle</strong><br>
-                                <span style="color: #94a3b8;">Machine Learning & Deep Learning</span>
-                            </div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-icon">📊</div>
-                            <div>
-                                <strong>Science des Données</strong><br>
-                                <span style="color: #94a3b8;">Analyse & Visualisation</span>
-                            </div>
-                        </div>
-                        <div class="highlight-item">
-                            <div class="highlight-icon">🚀</div>
-                            <div>
-                                <strong>Innovation</strong><br>
-                                <span style="color: #94a3b8;">Solutions créatives & Impact</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="projects-section">
-            <div class="container reveal">
-                <h2 class="section-title">Expériences professionelles et projets</h2>
-                <div class="featured-projects">
-                    <div class="projects-grid" id="featuredProjectsGrid">
-                        </div>
-                    <div class="show-more-link">
-                        <a href="./projects.html" class="cta-button cta-primary">Voir tout</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="skills" class="skills-section reveal">
+    <section id="education">
         <div class="container">
-            <h2 class="section-title">Compétences & Technologies</h2>
-
-            <div class="skills-cards">
-
-            <!-- Card 1 -->
-            <div class="skill-card">
-                <h3 class="skill-title">Visualisation de données</h3>
-                <div class="skill-tags">
-                <span class="skill-tag">PowerBI</span>
-                <span class="skill-tag">Tableau</span>
-                <span class="skill-tag">Excel</span>
-                <span class="skill-tag">Matplotlib</span>
-                <span class="skill-tag">Seaborn</span>
-                </div>
+            <div class="section-header">
+                <span class="section-tag">Academic Journey</span>
+                <h2 class="section-title">Education</h2>
+                <p class="section-subtitle">Formal training and specialization in AI</p>
             </div>
-
-            <!-- Card 2 -->
-            <div class="skill-card">
-                <h3 class="skill-title">ETL</h3>
-                <div class="skill-tags">
-                <span class="skill-tag">Pandas</span>
-                <span class="skill-tag">Numpy</span>
-                <span class="skill-tag">Beautiful Soup</span>
-                <span class="skill-tag">Scrapy</span>
-                </div>
-            </div>
-
-            <!-- Card 3 -->
-            <div class="skill-card">
-                <h3 class="skill-title">Librairies Machine & Deep Learning</h3>
-                <div class="skill-tags">
-                <span class="skill-tag">Scikit-learn</span>
-                <span class="skill-tag">Tensorflow</span>
-                <span class="skill-tag">OpenCV</span>
-                <span class="skill-tag">Pytorch</span>
-                </div>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="skill-card">
-                <h3 class="skill-title">Langages de programmation</h3>
-                <div class="skill-tags">
-                <span class="skill-tag">Python</span>
-                <span class="skill-tag">R</span>
-                <span class="skill-tag">SQL</span>
-                <span class="skill-tag">Bash Linux</span>
-                </div>
-            </div>
-
-            <!-- Card 5 -->
-            <div class="skill-card ai-special">
-                <h3 class="skill-title">Intelligence Artificielle</h3>
-
-                <!-- Machine Learning -->
-                <div class="ai-subblock">
-                    <h4 class="ai-subtitle">Machine Learning</h4>
-                        <div class="ai-badges">
-                            <span class="ai-badge">Régression</span>
-                            <span class="ai-badge">Clustering</span>
-                            <span class="ai-badge">Classification</span>
-                        </div>
-                </div>
-
-                <!-- Deep Learning -->
-                <div class="ai-subblock">
-                    <h4 class="ai-subtitle">Deep Learning</h4>
-                        <div class="ai-badges">
-                            <span class="ai-badge">Computer Vision (Segmentation,Object Detection, Classification)</span>
-                            <span class="ai-badge">NLP (LLM, OCR, Analyse de sentiments)</span>
-                            <span class="ai-badge">HuggingFace</span>
-                        </div>
-                </div>
-
-            </div>
-
-            </div>
+            <div class="timeline-grid-single" id="education-container"> </div>
         </div>
-        </section>
-
-        <section id="certifications" class="certifications-section">
-            <div class="container reveal">
-                <h2 class="section-title">Certifications</h2>
-                <div class="certifications-grid" id="certificationsGrid">
-                    </div>
-            </div>
-        </section>
-        <button class="back-to-top" id="backToTop">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M7 14L12 9L17 14H7Z"/>
-            </svg>
-        </button>
-    </main>
-
-    <footer class="footer">
+    </section>
+    
+    <section id="experience">
         <div class="container">
-            <p>&copy; 2025 Ibrahima. All rights reserved.</p>
+            <div class="section-header">
+                <span class="section-tag">Professional Path</span>
+                <h2 class="section-title">Work Experience</h2>
+                <p class="section-subtitle">Applying AI and data science in industry</p>
+            </div>
+            <div class="timeline-grid" id="experience-container"> </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Ibrahima THIOYE. All rights reserved.</p>
         </div>
     </footer>
-
-    <div id="projectModal" class="modal">
-        <div class="modal-content">
-            <span class="close-btn" id="closeModal">&times;</span>
-            <h3 id="modal-title"></h3>
-            <div class="modal-meta">
-                <div class="modal-meta-item" id="modal-company"></div>
-                <div class="modal-meta-item" id="modal-date"></div>
-                <div class="modal-meta-item" id="modal-category"></div>
-            </div>
-            <p id="modal-description" class="modal-description"></p>
-            <div id="modal-details" class="modal-project-content"></div>
-            <div id="modal-tags" class="modal-tags"></div>
-            <div id="modal-links" class="modal-links"></div>
-        </div>
-    </div>
-
-    <script src="./home/index_script.js" type="module"></script>
+    
+    <script src="script.js"></script>
 </body>
 </html>
