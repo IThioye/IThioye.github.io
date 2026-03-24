@@ -5,29 +5,48 @@
 function setActiveNav() {
     const path = window.location.pathname;
     let currentPage = path.substring(path.lastIndexOf('/') + 1) || 'index.html';
-    
+
     if (currentPage === '') {
         currentPage = 'index.html';
     }
-    
+
     const pageAnchorMap = {
-        'index.html': 'About',
-        'skills.html': 'Skills',
-        'articles.html': 'Articles',
-        'projects.html': 'Projects',
+        'index.html': 'À propos',
+        'skills.html': 'Compétences',
+        'certifications.html': 'Certifications',
+        'projects.html': 'Projets',
     };
 
     const targetAnchorText = pageAnchorMap[currentPage.toLowerCase()];
 
     document.querySelectorAll('.nav-links a').forEach(link => {
         link.classList.remove('nav-active');
-        if (link.textContent === targetAnchorText) {
+        if (link.textContent.trim() === targetAnchorText) {
             link.classList.add('nav-active');
         }
     });
 }
 
 // --- Content Rendering Functions for index.html (Home Page) ---
+
+function formatDetails(details) {
+    if (!details) return "";
+
+    // Split by period, exclamation mark, or question mark followed by space or end of line.
+    // This regex ensures we keep the punctuation.
+    const sentences = details.match(/[^.!?]+[.!?]+(?:\s|$)/g);
+
+    if (!sentences || sentences.length <= 1) {
+        return `<p class="details-subtitle">${details}</p>`;
+    }
+
+    const subtitle = `<p class="details-subtitle">${sentences[0].trim()}</p>`;
+    const listItems = sentences.slice(1)
+        .map(s => `<li>${s.trim()}</li>`)
+        .join('');
+
+    return `${subtitle}<ul class="details-list">${listItems}</ul>`;
+}
 
 function renderEducation(education) {
     const container = document.getElementById('education-container');
@@ -38,7 +57,7 @@ function renderEducation(education) {
             <span class="timeline-year">${item.year}</span>
             <h3 class="timeline-title">${item.degree}</h3>
             <p class="timeline-subtitle">${item.institution}</p>
-            <div class="timeline-details">${item.details}</div> </div>
+            <div class="timeline-details">${formatDetails(item.details)}</div> </div>
     `).join('');
 
     container.innerHTML = educationHTML;
@@ -49,21 +68,58 @@ function renderExperience(experience) {
     if (!container) return;
 
     const experienceHTML = experience.map(item => `
-        <div class="timeline-item">
+        <div class="experience-card">
             <span class="timeline-year">${item.year}</span>
-            <h3 class="timeline-title">${item.title} at ${item.company}</h3>
-            <div class="timeline-details">${item.details}</div> <div class="skill-items" style="margin-top: 1rem; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 1rem;">
+            <h3 class="timeline-title">${item.title}</h3>
+            <p class="timeline-subtitle">${item.company}</p>
+            <div class="timeline-details">${formatDetails(item.details)}</div>
+            <div class="skill-items" style="margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
                 ${(item.tools || []).map(tool => `<span class="skill-tag">${tool}</span>`).join('')}
             </div>
         </div>
     `).join('');
 
-    container.innerHTML = experienceHTML;
+    container.innerHTML = `
+        <div class="experience-slider-wrapper">
+            <button class="slider-nav prev" id="exp-prev">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+            </button>
+            <div class="experience-slider-content" id="exp-slider-content">
+                ${experienceHTML}
+            </div>
+            <button class="slider-nav next" id="exp-next">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            </button>
+        </div>
+    `;
+
+    setupExperienceSlider();
+}
+
+function setupExperienceSlider() {
+    const slider = document.getElementById('exp-slider-content');
+    const prevBtn = document.getElementById('exp-prev');
+    const nextBtn = document.getElementById('exp-next');
+    if (!slider || !prevBtn || !nextBtn) return;
+
+    let scrollAmount = 0;
+
+    nextBtn.addEventListener('click', () => {
+        const card = slider.querySelector('.experience-card');
+        const step = card ? card.offsetWidth + 24 : 350; // 24 is the gap
+        slider.scrollBy({ left: step, behavior: 'smooth' });
+    });
+
+    prevBtn.addEventListener('click', () => {
+        const card = slider.querySelector('.experience-card');
+        const step = card ? card.offsetWidth + 24 : 350;
+        slider.scrollBy({ left: -step, behavior: 'smooth' });
+    });
 }
 
 // --- Project Filtering and Rendering Logic (for projects.html) ---
 
-let currentLevel1Filter = null; 
+let currentLevel1Filter = null;
 
 function renderProjects(projects, containerId = 'projects-container') {
     const container = document.getElementById(containerId);
@@ -92,8 +148,8 @@ function renderProjects(projects, containerId = 'projects-container') {
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
                     GitHub
                 </a>
-                ${project.demo_link && project.demo_link !== '#' ? 
-                `<a href="${project.demo_link}" target="_blank" class="cta-btn cta-demo">
+                ${project.demo_link && project.demo_link !== '#' ?
+            `<a href="${project.demo_link}" target="_blank" class="cta-btn cta-demo">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     Demo
                 </a>` : ''}
@@ -124,24 +180,24 @@ function renderProjects(projects, containerId = 'projects-container') {
 function openProjectModal(projectId) {
     const project = profileData.projects.find(p => p.project_id === projectId);
     const modal = document.getElementById('project-modal');
-    
+
     if (!project || !modal) return; // Fails if modal element is not found
 
     // Populate Modal Header
     document.getElementById('modal-icon').innerHTML = project.icon;
     document.getElementById('modal-title').textContent = project.title;
     document.getElementById('modal-company').textContent = project.company;
-    
+
     // Populate Tags
     document.getElementById('modal-tags').innerHTML = project.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
-    
+
     // Populate Details (safely injects HTML)
     document.getElementById('modal-details').innerHTML = project.full_details;
 
     // Populate CTA Footer
     const ctaFooter = document.getElementById('modal-cta');
     let ctaHTML = '';
-    
+
     if (project.github_link) {
         ctaHTML += `
             <a href="${project.github_link}" target="_blank" class="cta-btn cta-github">
@@ -186,7 +242,7 @@ function setupFilterTags() {
     // Attach click listeners to Level 1 Tags
     level1Container.querySelectorAll('.filter-tag').forEach(tagEl => {
         tagEl.addEventListener('click', () => {
-            document.getElementById('project-search').value = ''; 
+            document.getElementById('project-search').value = '';
             const tag = tagEl.dataset.tag;
             applyLevel1Filter(tag, level1Container, level2Container);
         });
@@ -202,12 +258,12 @@ function applyLevel1Filter(tag, level1Container, level2Container) {
 
     if (currentLevel1Filter === tag) {
         currentLevel1Filter = null;
-        level2Container.innerHTML = ''; 
-        renderProjects(profileData.projects); 
+        level2Container.innerHTML = '';
+        renderProjects(profileData.projects);
     } else {
         currentLevel1Filter = tag;
         level1Container.querySelector(`[data-tag="${tag}"]`).classList.add('active');
-        
+
         // Render Level 2 Tags
         const level2Tags = profileData.filterCategories[tag] || [];
         level2Container.innerHTML = level2Tags.map(l2Tag => `
@@ -231,7 +287,7 @@ function applyLevel2Filter(tag, level2Container) {
     level2Container.querySelectorAll('.filter-tag').forEach(el => el.classList.remove('active'));
     level2Container.querySelector(`[data-tag="${tag}"]`).classList.add('active');
 
-    const filteredProjects = profileData.projects.filter(p => 
+    const filteredProjects = profileData.projects.filter(p =>
         p.tags.includes(currentLevel1Filter) && p.tags.includes(tag)
     );
     renderProjects(filteredProjects);
@@ -243,12 +299,12 @@ function setupProjectSearch() {
 
     searchInput.addEventListener('input', (e) => {
         const searchTerm = e.target.value.toLowerCase();
-        
+
         document.querySelectorAll('.filter-tag').forEach(el => el.classList.remove('active'));
         document.getElementById('level-2-filters').innerHTML = '';
         currentLevel1Filter = null;
 
-        const filteredProjects = profileData.projects.filter(p => 
+        const filteredProjects = profileData.projects.filter(p =>
             p.title.toLowerCase().includes(searchTerm) ||
             p.description.toLowerCase().includes(searchTerm) ||
             p.tags.some(tag => tag.toLowerCase().includes(searchTerm))
@@ -258,53 +314,57 @@ function setupProjectSearch() {
 }
 
 
-// --- Content Rendering Functions for articles.html ---
+// --- Content Rendering Functions for certifications.html ---
 
-function renderArticles(articles, containerId = 'articles-container') {
+function renderCertifications(certifications, containerId = 'certifications-container') {
     const container = document.getElementById(containerId);
     if (!container) return;
 
-    const articleHTML = articles.map(article => `
-        <div class="article-card">
-            <div class="article-image">📝</div>
-            <div class="article-content">
-                <div class="article-meta">
-                    <span class="article-category">${article.category}</span>
-                    <span>${article.read_time}</span>
-                </div>
-                <h3 class="article-title">${article.title}</h3>
-                <p class="article-excerpt">${article.excerpt}</p>
-                <div class="article-footer">
-                    <span class="read-time">${article.date}</span>
-                    <a href="${article.link}" style="color: var(--accent-cyan); text-decoration: none;">Read more →</a>
+    const certificationHTML = certifications.map(cert => {
+        const isImage = cert.image && (cert.image.includes('/') || cert.image.includes('.'));
+        const imageHtml = isImage ? `<img src="${cert.image}" alt="${cert.title}" class="cert-img">` : cert.image;
+        
+        return `
+            <div class="certification-card">
+                <div class="certification-image">${imageHtml}</div>
+                <div class="certification-content">
+                    <h3 class="certification-title">${cert.title}</h3>
+                    <p class="certification-issuer">${cert.issuer}</p>
+                    <div class="certification-footer">
+                        <span class="cert-date">${cert.date}</span>
+                        <a href="${cert.link}" target="_blank" class="cert-link">Voir le certificat →</a>
+                    </div>
                 </div>
             </div>
-        </div>
-    `).join(''); 
+        `;
+    }).join('');
 
-    container.innerHTML = articleHTML;
+    container.innerHTML = certificationHTML;
 }
 
 // --- Main Initialization ---
 
 document.addEventListener('DOMContentLoaded', () => {
     setActiveNav();
-    
+
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    
+
     if (currentPage === 'index.html' || currentPage === '') {
         // Render Hero static data
-        document.getElementById('hero-name').textContent = profileData.hero.name; 
+        document.getElementById('hero-name').textContent = profileData.hero.name;
         document.getElementById('hero-title').textContent = profileData.hero.title;
         document.getElementById('hero-description').textContent = profileData.hero.description;
-        document.getElementById('cv-link').href = profileData.hero.cv_path;
-        
+        const cvLink = document.getElementById('cv-link');
+        if (cvLink) {
+            cvLink.href = profileData.hero.cv_path;
+        }
+
         // Render new sections: Education and Experience
         renderEducation(profileData.education);
         renderExperience(profileData.experience);
 
     } else if (currentPage === 'projects.html') {
-        setupFilterTags(); 
+        setupFilterTags();
         setupProjectSearch();
 
         // Modal close listeners
@@ -323,11 +383,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-    } else if (currentPage === 'articles.html') {
-        renderArticles(profileData.articles);
-        
-    } 
-    
+    } else if (currentPage === 'certifications.html') {
+        renderCertifications(profileData.certifications);
+    }
+
     // Smooth scroll for anchors on the same page (only used on index.html now)
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -349,9 +408,11 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
         if (currentScroll > 100) {
-            nav.style.background = 'rgba(10, 14, 26, 0.95)';
+            nav.style.background = 'rgba(255, 255, 255, 0.95)';
+            nav.style.boxShadow = 'var(--shadow-md)';
         } else {
-            nav.style.background = 'rgba(10, 14, 26, 0.8)';
+            nav.style.background = 'rgba(255, 255, 255, 0.85)';
+            nav.style.boxShadow = 'none';
         }
     });
 
@@ -360,7 +421,7 @@ document.addEventListener('DOMContentLoaded', () => {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
     };
-    
+
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {

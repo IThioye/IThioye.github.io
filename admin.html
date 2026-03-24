@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Gestion du Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="data.js"></script>
+    <style>
+        :root {
+            --admin-primary: #2563eb;
+            --admin-bg: #f8fafc;
+        }
+
+        body {
+            background-color: var(--admin-bg);
+            padding: 2rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .admin-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 1rem;
+        }
+
+        .section-box {
+            background: #fff;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .section-box h3 {
+            margin-top: 0;
+            color: var(--text-primary);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-family: inherit;
+        }
+
+        .item-row {
+            border: 1px solid #f1f5f9;
+            padding: 1rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            position: relative;
+            background: #fdfdfd;
+        }
+
+        .delete-btn {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
+        .add-btn {
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .save-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 1rem;
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            z-index: 100;
+        }
+
+        .btn-main {
+            padding: 0.75rem 2rem;
+            border-radius: 8px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-save { background: var(--admin-primary); color: white; }
+        .btn-save:hover { background: #1d4ed8; }
+
+        .status-msg {
+            text-align: center;
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 6px;
+            display: none;
+        }
+        .status-success { background: #dcfce7; color: #166534; display: block; }
+        .status-error { background: #fee2e2; color: #991b1b; display: block; }
+    </style>
+</head>
+<body>
+
+    <div class="admin-container">
+        <div class="admin-header">
+            <h1>Gestion du Portfolio</h1>
+            <a href="index.html" class="btn btn-secondary">Voir le site</a>
+        </div>
+
+        <div id="status-container" class="status-msg"></div>
+
+        <!-- 1. HERO -->
+        <div class="section-box">
+            <h3>🏠 En-tête (Hero)</h3>
+            <div class="form-group">
+                <label>Nom</label>
+                <input type="text" id="hero-name">
+            </div>
+            <div class="form-group">
+                <label>Titre</label>
+                <input type="text" id="hero-title">
+            </div>
+            <div class="form-group">
+                <label>Description</label>
+                <textarea id="hero-description" rows="3"></textarea>
+            </div>
+        </div>
+
+        <!-- 2. EDUCATION -->
+        <div class="section-box">
+            <h3>🎓 Formation <button class="add-btn" onclick="addItem('education')">+ Ajouter</button></h3>
+            <div id="education-list"></div>
+        </div>
+
+        <!-- 3. EXPERIENCE -->
+        <div class="section-box">
+            <h3>💼 Expérience <button class="add-btn" onclick="addItem('experience')">+ Ajouter</button></h3>
+            <div id="experience-list"></div>
+        </div>
+
+        <!-- 4. PROJECTS -->
+        <div class="section-box">
+            <h3>🚀 Projets <button class="add-btn" onclick="addItem('projects')">+ Ajouter</button></h3>
+            <div id="projects-list"></div>
+        </div>
+
+        <!-- 5. CERTIFICATIONS -->
+        <div class="section-box">
+            <h3>📜 Certifications <button class="add-btn" onclick="addItem('certifications')">+ Ajouter</button></h3>
+            <div id="certifications-list"></div>
+        </div>
+
+        <div style="height: 100px;"></div>
+    </div>
+
+    <div class="save-bar">
+        <button class="btn-main btn-save" onclick="saveAll()">💾 Enregistrer les modifications</button>
+    </div>
+
+    <script>
+        // Use local copy to avoid mutating original during edit
+        let data = JSON.parse(JSON.stringify(profileData));
+
+        function initForms() {
+            // Hero
+            document.getElementById('hero-name').value = data.hero.name;
+            document.getElementById('hero-title').value = data.hero.title;
+            document.getElementById('hero-description').value = data.hero.description;
+
+            renderList('education');
+            renderList('experience');
+            renderList('projects');
+            renderList('certifications');
+        }
+
+        function renderList(key) {
+            const container = document.getElementById(`${key}-list`);
+            container.innerHTML = '';
+            
+            data[key].forEach((item, index) => {
+                const row = document.createElement('div');
+                row.className = 'item-row';
+                
+                let fields = '';
+                if (key === 'education') {
+                    fields = `
+                        <input type="text" value="${item.year}" onchange="updateItem('${key}', ${index}, 'year', this.value)" placeholder="Années">
+                        <input type="text" value="${item.degree}" onchange="updateItem('${key}', ${index}, 'degree', this.value)" placeholder="Diplôme">
+                        <input type="text" value="${item.institution}" onchange="updateItem('${key}', ${index}, 'institution', this.value)" placeholder="Établissement">
+                        <textarea onchange="updateItem('${key}', ${index}, 'details', this.value)" placeholder="Détails">${item.details}</textarea>
+                    `;
+                } else if (key === 'experience') {
+                    fields = `
+                        <input type="text" value="${item.year}" onchange="updateItem('${key}', ${index}, 'year', this.value)" placeholder="Dates">
+                        <input type="text" value="${item.title}" onchange="updateItem('${key}', ${index}, 'title', this.value)" placeholder="Poste">
+                        <input type="text" value="${item.company}" onchange="updateItem('${key}', ${index}, 'company', this.value)" placeholder="Entreprise">
+                        <textarea onchange="updateItem('${key}', ${index}, 'details', this.value)" placeholder="Détails">${item.details}</textarea>
+                    `;
+                } else if (key === 'projects') {
+                    fields = `
+                        <input type="text" value="${item.title}" onchange="updateItem('${key}', ${index}, 'title', this.value)" placeholder="Titre">
+                        <input type="text" value="${item.icon}" onchange="updateItem('${key}', ${index}, 'icon', this.value)" placeholder="Emoji/Icône">
+                        <input type="text" value="${item.tags.join(', ')}" onchange="updateArray('${key}', ${index}, 'tags', this.value)" placeholder="Tags (séparés par virgule)">
+                        <textarea onchange="updateItem('${key}', ${index}, 'description', this.value)" placeholder="Description courte">${item.description}</textarea>
+                    `;
+                } else if (key === 'certifications') {
+                    fields = `
+                        <input type="text" value="${item.title}" onchange="updateItem('${key}', ${index}, 'title', this.value)" placeholder="Nom">
+                        <input type="text" value="${item.issuer}" onchange="updateItem('${key}', ${index}, 'issuer', this.value)" placeholder="Émetteur">
+                        <input type="text" value="${item.date}" onchange="updateItem('${key}', ${index}, 'date', this.value)" placeholder="Date">
+                        <input type="text" value="${item.image}" onchange="updateItem('${key}', ${index}, 'image', this.value)" placeholder="Image path ou Emoji">
+                        <input type="text" value="${item.link}" onchange="updateItem('${key}', ${index}, 'link', this.value)" placeholder="Lien">
+                    `;
+                }
+
+                row.innerHTML = `
+                    <div style="display:flex; justify-content:flex-end; margin-bottom:0.5rem">
+                        <button class="delete-btn" onclick="removeItem('${key}', ${index})">Supprimer</button>
+                    </div>
+                    <div class="form-group">${fields}</div>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        function updateItem(key, index, field, value) {
+            data[key][index][field] = value;
+        }
+
+        function updateArray(key, index, field, value) {
+            data[key][index][field] = value.split(',').map(s => s.trim());
+        }
+
+        function removeItem(key, index) {
+            data[key].splice(index, 1);
+            renderList(key);
+        }
+
+        function addItem(key) {
+            const templates = {
+                education: { year: "", degree: "", institution: "", details: "" },
+                experience: { year: "", title: "", company: "", details: "" },
+                projects: { project_id: "p" + Date.now(), title: "", icon: "🚀", company: "Perso", description: "", tags: [], github_link: "#", demo_link: "#", full_details: "" },
+                certifications: { title: "", issuer: "", date: "", image: "", link: "#" }
+            };
+            data[key].push({...templates[key]});
+            renderList(key);
+        }
+
+        async function saveAll() {
+            // Update Hero from statics
+            data.hero.name = document.getElementById('hero-name').value;
+            data.hero.title = document.getElementById('hero-title').value;
+            data.hero.description = document.getElementById('hero-description').value;
+
+            const status = document.getElementById('status-container');
+            status.textContent = "Tentative d'enregistrement...";
+            status.className = 'status-msg';
+
+            try {
+                const response = await fetch('http://localhost:3000/api/save', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    status.textContent = "✅ Changements enregistrés avec succès !";
+                    status.className = 'status-msg status-success';
+                } else {
+                    throw new Error('Server rejected save');
+                }
+            } catch (err) {
+                status.textContent = "❌ Erreur : Assurez-vous que 'node admin-server.js' est bien lancé sur votre machine.";
+                status.className = 'status-msg status-error';
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', initForms);
+    </script>
+</body>
+</html>
