@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ibrahima THIOYE</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f4ee;
+    --fg: #111111;
+    --muted: #2f2f2f;
+    --border: #d9d4c9;
+    --tag-bg: #ebe5da;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.7;
+    min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 48px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(247, 244, 238, 0.96);
+    backdrop-filter: blur(10px);
+  }
+
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    cursor: pointer;
+    color: var(--fg);
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    list-style: none;
+  }
+
+  .nav-links li a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: color var(--transition);
+    font-weight: 600;
+  }
+
+  .nav-links li a:hover,
+  .nav-links li a.active { color: var(--fg); }
+
+  .page { display: none; padding-top: 80px; min-height: 100vh; }
+  .page.active { display: block; animation: fadeIn 0.35s ease; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .home-hero {
+    padding: 80px 48px 60px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hero-eyebrow, .section-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .hero-eyebrow { margin-bottom: 20px; }
+
+  .hero-name {
+    font-family: var(--serif);
+    font-size: clamp(56px, 8vw, 110px);
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+    margin-bottom: 32px;
+  }
+
+  .hero-name em { font-style: italic; color: #5a564e; }
+
+  .hero-bio {
+    max-width: 760px;
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--fg);
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 28px;
+  }
+
+  .action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    min-height: 42px;
+    padding: 0 16px;
+    border: 1px solid var(--fg);
+    background: var(--fg);
+    color: var(--bg);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    transition: all var(--transition);
+    cursor: pointer;
+  }
+
+  .action-btn.secondary {
+    background: transparent;
+    color: var(--fg);
+    border-color: var(--border);
+  }
+
+  .action-btn:hover {
+    transform: translateY(-1px);
+    opacity: 0.95;
+  }
+
+  .action-btn.secondary:hover {
+    background: var(--tag-bg);
+    border-color: var(--fg);
+  }
+
+  .section-label {
+    padding: 40px 48px 16px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+  }
+
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    border-bottom: 1px solid var(--border);
+  }
+
+  .edu-card {
+    padding: 32px 48px;
+    border-right: 1px solid var(--border);
+    transition: background var(--transition);
+  }
+
+  .edu-card:hover,
+  .cert-item:hover,
+  .skill-cat-header:hover,
+  .skill-item:hover,
+  .project-card:hover,
+  .exp-item-btn:hover,
+  .exp-item-btn.active {
+    background: var(--tag-bg);
+  }
+
+  .edu-year, .cert-year, .exp-period {
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .edu-year { margin-bottom: 8px; }
+  .edu-degree { font-family: var(--serif); font-size: 20px; margin-bottom: 4px; letter-spacing: -0.01em; }
+  .edu-school, .edu-desc, .cert-issuer, .exp-company, .exp-desc, .project-desc { color: var(--fg); }
+  .edu-school { font-size: 13px; }
+  .edu-desc { font-size: 13px; margin-top: 8px; line-height: 1.75; opacity: 0.86; }
+
+  .cert-list { border-bottom: 1px solid var(--border); }
+  .cert-item {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding: 18px 48px;
+    border-bottom: 1px solid var(--border);
+    transition: background var(--transition);
+    gap: 16px;
+  }
+  .cert-item:last-child { border-bottom: none; }
+  .cert-name { font-size: 14px; font-weight: 600; }
+  .cert-issuer { font-size: 12px; opacity: 0.84; }
+  .cert-year { white-space: nowrap; }
+  .cert-actions { margin-top: 10px; }
+
+  .exp-section { border-bottom: 1px solid var(--border); }
+  .exp-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 16px 48px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(255,255,255,0.35);
+  }
+  .exp-buttons { display: flex; gap: 8px; }
+  .exp-btn {
+    min-width: 44px;
+    height: 44px;
+    border: 1px solid var(--fg);
+    background: var(--fg);
+    color: var(--bg);
+    font-size: 18px;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+  .exp-btn.alt {
+    background: transparent;
+    color: var(--fg);
+    border-color: var(--border);
+  }
+  .exp-btn:hover { transform: translateY(-1px); }
+  .exp-status {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .exp-view {
+    min-height: 320px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 260px;
+  }
+  .exp-main {
+    padding: 40px 48px;
+    border-right: 1px solid var(--border);
+  }
+  .exp-role {
+    font-family: var(--serif);
+    font-size: 34px;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin: 12px 0 8px;
+  }
+  .exp-company { font-size: 14px; margin-bottom: 18px; opacity: 0.9; }
+  .exp-desc { font-size: 14px; line-height: 1.85; max-width: 720px; opacity: 0.92; }
+  .exp-tags, .project-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 18px;
+  }
+  .exp-tag, .stack-tag {
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    padding: 5px 10px;
+    border: 1px solid var(--border);
+    color: var(--fg);
+    background: rgba(255,255,255,0.4);
+    border-radius: 2px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  .exp-list { display: flex; flex-direction: column; }
+  .exp-item-btn {
+    appearance: none;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    background: transparent;
+    text-align: left;
+    padding: 18px 20px;
+    cursor: pointer;
+    transition: background var(--transition);
+    color: var(--fg);
+  }
+  .exp-item-btn small {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 4px;
+    font-weight: 600;
+  }
+  .exp-item-btn strong {
+    display: block;
+    font-family: var(--serif);
+    font-size: 18px;
+    letter-spacing: -0.02em;
+    font-weight: 400;
+  }
+  .exp-item-btn span {
+    display: block;
+    font-size: 12px;
+    color: var(--fg);
+    opacity: 0.85;
+    margin-top: 4px;
+  }
+
+  .skills-header, .projects-header {
+    padding: 60px 48px 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .skills-title, .projects-title {
+    font-family: var(--serif);
+    font-size: clamp(36px, 5vw, 72px);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .skills-title em, .projects-title em { font-style: italic; color: #5a564e; }
+
+  .skill-category { border-bottom: 1px solid var(--border); }
+  .skill-cat-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 48px;
+    cursor: pointer;
+    user-select: none;
+    transition: background var(--transition);
+  }
+  .skill-cat-name {
+    font-family: var(--serif);
+    font-size: 22px;
+    letter-spacing: -0.02em;
+  }
+  .skill-cat-count {
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .skill-cat-arrow { font-size: 16px; color: var(--fg); transition: transform 0.2s ease; }
+  .skill-cat-header.open .skill-cat-arrow { transform: rotate(90deg); }
+  .skill-items {
+    display: none;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    border-top: 1px solid var(--border);
+  }
+  .skill-items.open { display: grid; }
+  .skill-item {
+    padding: 22px 48px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    transition: background var(--transition);
+  }
+  .skill-name { font-size: 14px; font-weight: 600; }
+
+  .projects-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .search-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--border);
+    padding: 12px 16px;
+    min-width: 300px;
+    background: #fff;
+    transition: border-color var(--transition), background var(--transition);
+  }
+  .search-box:focus-within { border-color: var(--fg); }
+  .search-icon { color: var(--fg); font-size: 13px; }
+  .search-box input {
+    background: none;
+    border: none;
+    outline: none;
+    color: var(--fg);
+    font-family: var(--sans);
+    font-size: 13px;
+    width: 100%;
+    caret-color: var(--fg);
+  }
+  .search-box input::placeholder { color: #555; }
+
+  .filter-bar {
+    padding: 20px 48px;
+    border-bottom: 1px solid var(--border);
+  }
+  .filter-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .filter-row + .filter-row { margin-top: 10px; }
+  .filter-btn {
+    font-family: var(--sans);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 8px 12px;
+    border: 1px solid var(--border);
+    background: #fff;
+    color: var(--fg);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all var(--transition);
+    white-space: nowrap;
+  }
+  .filter-btn:hover { border-color: var(--fg); background: var(--tag-bg); }
+  .filter-btn.active { background: var(--fg); color: var(--bg); border-color: var(--fg); }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  }
+  .project-card {
+    padding: 36px 48px;
+    border-right: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: background var(--transition);
+    position: relative;
+    overflow: hidden;
+  }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: var(--fg);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+  }
+  .project-card:hover::before { transform: scaleX(1); }
+  .project-card.hidden { display: none; }
+  .project-cat {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  .project-title { font-family: var(--serif); font-size: 24px; letter-spacing: -0.02em; line-height: 1.15; }
+  .project-desc { font-size: 13px; line-height: 1.8; opacity: 0.9; }
+  .project-links {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 14px;
+    flex-wrap: wrap;
+  }
+  .project-link {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bg);
+    background: var(--fg);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all var(--transition);
+    padding: 10px 12px;
+    border: 1px solid var(--fg);
+  }
+  .project-link:hover { opacity: 0.94; transform: translateY(-1px); }
+  .project-link.ghost {
+    background: transparent;
+    color: var(--fg);
+    border-color: var(--border);
+  }
+  .project-link.ghost:hover { background: var(--tag-bg); border-color: var(--fg); }
+
+  .project-modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(17,17,17,0.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    z-index: 200;
+  }
+  .project-modal.open { display: flex; }
+  .project-modal-card {
+    width: min(860px, 100%);
+    max-height: 88vh;
+    overflow-y: auto;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: 28px;
+  }
+  .project-modal-head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 18px;
+  }
+  .project-modal-title {
+    font-family: var(--serif);
+    font-size: 30px;
+    line-height: 1.05;
+  }
+  .project-modal-close {
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--fg);
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 18px;
+  }
+  .project-modal-content h3 {
+    font-family: var(--serif);
+    font-size: 22px;
+    margin: 20px 0 8px;
+  }
+  .project-modal-content p,
+  .project-modal-content li {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--fg);
+  }
+  .project-modal-content ul { padding-left: 18px; }
+
+  .no-results {
+    padding: 80px 48px;
+    font-size: 14px;
+    color: var(--fg);
+    display: none;
+    grid-column: 1/-1;
+    font-style: italic;
+    font-family: var(--serif);
+  }
+  .no-results.visible { display: block; }
+
+  @media (max-width: 900px) {
+    .exp-view { grid-template-columns: 1fr; }
+    .exp-main { border-right: none; border-bottom: 1px solid var(--border); }
+  }
+
+  @media (max-width: 640px) {
+    nav { padding: 14px 20px; }
+    .hero-name { font-size: 48px; }
+    .home-hero, .section-label, .cert-item, .edu-card, .skill-cat-header, .skill-item, .project-card, .projects-header,
+    .skills-header, .filter-bar, .exp-controls, .exp-main { padding-left: 20px; padding-right: 20px; }
+    .exp-item-btn { padding: 16px 20px; }
+    .nav-links { gap: 20px; }
+    .projects-header { flex-direction: column; align-items: flex-start; }
+    .search-box { min-width: 100%; }
+    .hero-actions { width: 100%; }
+    .action-btn { width: 100%; }
+  }
+</style>
+</head>
+<body>
+  <nav>
+    <span class="nav-logo" onclick="navigate('home')" id="nav-logo">IT</span>
+    <ul class="nav-links">
+      <li><a href="#" onclick="navigate('home'); return false;" id="nav-home">Accueil</a></li>
+      <li><a href="#" onclick="navigate('skills'); return false;" id="nav-skills">Compétences</a></li>
+      <li><a href="#" onclick="navigate('projects'); return false;" id="nav-projects">Projets</a></li>
+    </ul>
+  </nav>
+
+  <div class="page active" id="page-home">
+    <section class="home-hero">
+      <p class="hero-eyebrow" id="hero-eyebrow"></p>
+      <h1 class="hero-name" id="hero-name"></h1>
+      <p class="hero-bio" id="hero-bio"></p>
+      <div class="hero-actions" id="hero-actions"></div>
+    </section>
+
+    <p class="section-label">Formation</p>
+    <div class="edu-grid" id="edu-grid"></div>
+
+    <p class="section-label">Certifications</p>
+    <div class="cert-list" id="cert-list"></div>
+
+    <p class="section-label">Expérience</p>
+    <div class="exp-section">
+      <div class="exp-controls">
+        <div class="exp-status" id="exp-status"></div>
+        <div class="exp-buttons">
+          <button class="exp-btn alt" onclick="changeExperience(-1)" aria-label="Expérience précédente">←</button>
+          <button class="exp-btn" onclick="changeExperience(1)" aria-label="Expérience suivante">→</button>
+        </div>
+      </div>
+      <div class="exp-view">
+        <div class="exp-main" id="exp-main"></div>
+        <div class="exp-list" id="exp-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page" id="page-skills">
+    <div class="skills-header">
+      <h2 class="skills-title">Compétences &<br><em>expertise</em></h2>
+    </div>
+    <div id="skills-list"></div>
+  </div>
+
+  <div class="page" id="page-projects">
+    <div class="projects-header">
+      <h2 class="projects-title">Projets &<br><em>réalisations</em></h2>
+      <div class="search-box">
+        <span class="search-icon">⌕</span>
+        <input type="text" id="search-input" placeholder="Rechercher un projet…" oninput="filterProjects()" autocomplete="off">
+      </div>
+    </div>
+    <div class="filter-bar" id="filter-bar"></div>
+    <div class="projects-grid" id="projects-grid"></div>
+  </div>
+
+  <div class="project-modal" id="project-modal" onclick="closeProjectModal(event)">
+    <div class="project-modal-card">
+      <div class="project-modal-head">
+        <div>
+          <div class="project-cat" id="modal-subtitle"></div>
+          <div class="project-modal-title" id="modal-title"></div>
+        </div>
+        <button class="project-modal-close" onclick="closeProjectModal(event)">×</button>
+      </div>
+      <div class="project-modal-content" id="modal-content"></div>
+    </div>
+  </div>
+
+<script>
+const profileData = {
+  hero: {
+    name: "Ibrahima THIOYE",
+    title: "Ingénieur IA & Data Scientist",
+    description: "Étudiant en Master en Intelligence Artificielle et Science des Données, spécialisé en Machine Learning, Deep Learning et systèmes multi-agents. Passionné par l'automatisation intelligente des processus métiers et la création de solutions IA à fort impact.",
+    cv_path: "cv_Ibrahima_THIOYE.pdf"
+  },
+  education: [
+    {
+      year: "2021 - 2026",
+      degree: "Diplôme d'études supérieures en Intelligence Artificielle et Science des Données (RNCP Niveau 7)",
+      institution: "aivancity - Paris / Villejuif",
+      details: "Formation spécialisée en Machine Learning, Deep Learning (NLP, LLM, OCR, RAG, Computer Vision), analyse de données et systèmes intelligents."
+    }
+  ],
+  experience: [
+    {
+      year: "01/2025 - 12/2025",
+      title: "Alternant Développeur Data / IA",
+      company: "ATC",
+      details: "Automatisation de processus métiers via des solutions IA & Data. Développement d'outils automatisés pour la génération de rapports Word et tableaux de bord Excel, avec réduction de 6 heures à 3 minutes. Mise en place d'un système de résumé de documents confidentiels avec anonymisation des données sensibles à l'aide de modèles NER et LLM.",
+      tags: ["Automatisation", "LLM", "NER", "Word", "Excel"]
+    },
+    {
+      year: "06/2024 - 09/2024",
+      title: "Data Analyst / Data Scientist",
+      company: "PicturifyAI",
+      details: "Développement d'un funnel marketing de conversion data-driven alimenté par l'IA. Collecte, traitement et structuration de données de leads. Déploiement d'un modèle de machine learning pour la prédiction de conversion et automatisation du workflow via des outils no-code.",
+      tags: ["Machine Learning", "Marketing", "No-code", "Lead Scoring"]
+    },
+    {
+      year: "09/2023 - 12/2023",
+      title: "Data Scientist",
+      company: "Ba&sh",
+      details: "Développement d'un modèle de prédiction des retours de commandes en ligne. Analyse et visualisation des données, préparation des datasets et entraînement d'un modèle Random Forest atteignant 91 % de précision.",
+      tags: ["Random Forest", "Classification", "Power BI", "E-commerce"]
+    },
+    {
+      year: "01/2023 - 03/2023",
+      title: "Data Scientist",
+      company: "TinyCoaching",
+      details: "Conception d'un modèle de machine learning pour la personnalisation des parcours d'apprentissage. Analyse des données pédagogiques, création d'un système de recommandation basé sur les préférences utilisateurs.",
+      tags: ["Recommandation", "Personnalisation", "Python"]
+    },
+    {
+      year: "07/2023 - 09/2023",
+      title: "Web Scraping / Data Analyst",
+      company: "Consult Trends",
+      details: "Automatisation de la collecte de données de véhicules, incluant images, marque et modèle, depuis plusieurs sources. Structuration des données et restitution via des tableaux de bord.",
+      tags: ["Web Scraping", "Python", "Automatisation", "Dashboards"]
+    },
+    {
+      year: "05/2022 - 07/2022",
+      title: "Data Analyst",
+      company: "Custeed",
+      details: "Création d'une pipeline de données reliant MongoDB à Power BI via Python. Automatisation de rapports, conception de tableaux de bord et communication des analyses aux parties prenantes.",
+      tags: ["MongoDB", "Power BI", "Pipeline", "Python"]
+    }
+  ],
+  filterCategories: {
+    "Machine Learning": ["Classification", "Régression", "Clustering", "Recommandation"],
+    "Deep Learning": ["NLP", "LLM", "OCR", "RAG", "Computer Vision"],
+    "Data Analysis": ["Power BI", "Visualisation", "SQL", "ETL"],
+    "Web Scraping": ["Python", "Collecte de données", "Automatisation"],
+    "Agentic AI": ["Multi-agents", "Prompt Engineering", "LLM Open-Source"]
+  },
+  skillSections: [
+    { category: "Intelligence Artificielle", items: ["Classification", "Régression", "Clustering", "Computer Vision", "NLP", "Object Detection", "Segmentation", "LLM"] },
+    { category: "Programmation", items: ["Python", "R", "SQL", "Bash"] },
+    { category: "Librairies ML/DL", items: ["Scikit-learn", "TensorFlow", "PyTorch", "OpenCV", "HuggingFace"] },
+    { category: "Visualisation de données", items: ["PowerBI", "Tableau", "Matplotlib", "Seaborn"] },
+    { category: "ETL & Gestion de données", items: ["Pandas", "NumPy", "Beautiful Soup", "Scrapy"] }
+  ],
+  projects: [
+    {
+      project_id: "p1",
+      icon: "🤖",
+      title: "Système IA multi-agents local",
+      company: "Projet personnel",
+      description: "Développement d'un système multi-agents capable de découvrir et expliquer les liens entre concepts de disciplines différentes. Agents asynchrones, réponses personnalisées selon le profil utilisateur et détection des biais.",
+      tags: ["Agentic AI", "LLM", "Multi-agents", "Flask", "Python"],
+      github_link: "https://github.com/IThioye/multi-agent-system-demo",
+      demo_link: "#",
+      full_details: "<h3>Objectif</h3><p>Concevoir un système d'IA capable de simuler un <strong>brainstorming spécialisé</strong> en utilisant plusieurs agents LLM agissant de manière asynchrone pour explorer des concepts interdisciplinaires.</p><h3>Technologies clés</h3><ul><li><strong>Orchestration :</strong> LangChain / CrewAI.</li><li><strong>Modèles :</strong> LLM open-source exécutés localement via Ollama.</li><li><strong>Interface :</strong> Flask pour le backend et HTMX pour le frontend dynamique.</li></ul><h3>Impact</h3><p>Ce projet démontre une maîtrise de l'architecture agentive, du RAG avancé et de la détection proactive des biais dans les systèmes autonomes.</p>"
+    },
+    {
+      project_id: "p2",
+      icon: "📄",
+      title: "Résumé intelligent de documents confidentiels",
+      company: "ATC",
+      description: "Système d'automatisation pour le résumé de documents sensibles avec anonymisation des données via NER et LLM, intégré à des workflows métiers existants.",
+      tags: ["Deep Learning", "NLP", "LLM", "RAG", "Automatisation"],
+      github_link: "https://github.com/IThioye/confidential-summarizer",
+      demo_link: "#",
+      full_details: "<h3>Contexte</h3><p>Développement d'un système de résumé de documents confidentiels permettant d'anonymiser les données sensibles avant traitement.</p><h3>Approche</h3><p>Utilisation de modèles de NER pour la détection des entités sensibles, combinés à des LLM pour la génération de résumés fidèles et exploitables dans les processus métiers.</p><h3>Résultat</h3><p>Une intégration dans les workflows existants afin d'accélérer la lecture documentaire tout en renforçant la confidentialité.</p>"
+    },
+    {
+      project_id: "p4",
+      icon: "🛍️",
+      title: "Prédiction des retours clients e-commerce",
+      company: "Ba&sh",
+      description: "Modèle prédictif des retours de commandes en ligne avec 91 % de précision, basé sur l'analyse comportementale et transactionnelle.",
+      tags: ["Machine Learning", "Classification", "Random Forest", "Power BI"],
+      github_link: "https://github.com/IThioye/ecommerce-returns-prediction",
+      demo_link: "#",
+      full_details: "<h3>Mission</h3><p>Analyser les comportements clients et les variables transactionnelles afin de prédire les retours de commandes.</p><h3>Méthodes</h3><p>Préparation des données, feature engineering, entraînement d'un modèle Random Forest et restitution des résultats via des visualisations orientées métier.</p><h3>Performance</h3><p>Le modèle a atteint 91 % de précision sur les données de validation.</p>"
+    },
+    {
+      project_id: "p5",
+      icon: "🎓",
+      title: "Système de recommandation pédagogique",
+      company: "TinyCoaching",
+      description: "Développement d'un modèle adaptatif pour personnaliser les parcours d'apprentissage en fonction des préférences et performances des utilisateurs.",
+      tags: ["Machine Learning", "Recommandation", "Python", "Data Analysis"],
+      github_link: "https://github.com/IThioye/educational-recommender",
+      demo_link: "#",
+      full_details: "<h3>Objectif</h3><p>Concevoir un moteur de recommandation capable d'adapter les parcours pédagogiques au profil de chaque utilisateur.</p><h3>Implémentation</h3><p>Analyse des données d'usage, segmentation des préférences et proposition de contenus pertinents selon les performances observées.</p><h3>Valeur</h3><p>Le système améliore l'engagement et soutient une personnalisation plus fine des apprentissages.</p>"
+    }
+  ],
+  certifications: [
+    {
+      title: "Microsoft Certified: Azure Data Scientist Associate",
+      issuer: "Microsoft",
+      date: "2025",
+      link: "https://learn.microsoft.com/api/credentials/share/en-us/IbrahimaTHIOYE-2392/321034E6B5AA0D55?sharingId=571CABD87EB452E1"
+    },
+    {
+      title: "AI Product Engineering: From Concept to Market",
+      issuer: "UC Berkeley",
+      date: "2025",
+      link: "https://badgr.com/public/assertions/kltf95JQQQWVjNzApdzw6w"
+    }
+  ]
+};
+
+const DATA = {
+  name: { first: "Ibrahima", last: "THIOYE" },
+  title: profileData.hero.title,
+  bio: profileData.hero.description,
+  location: "Paris, France",
+  primaryActions: [
+    { label: "Voir les projets", action: "projects" },
+    { label: "Voir les compétences", action: "skills", secondary: true },
+    { label: "Télécharger le CV", href: profileData.hero.cv_path, secondary: true }
+  ],
+  education: profileData.education.map(function(item) {
+    return {
+      year: item.year,
+      degree: item.degree,
+      school: item.institution,
+      description: item.details
+    };
+  }),
+  certifications: profileData.certifications.map(function(item) {
+    return {
+      name: item.title,
+      issuer: item.issuer,
+      year: item.date,
+      link: item.link
+    };
+  }),
+  experience: profileData.experience.map(function(item) {
+    return {
+      period: item.year,
+      role: item.title,
+      company: item.company,
+      description: item.details,
+      tags: item.tags || []
+    };
+  }),
+  skills: profileData.skillSections,
+  projects: profileData.projects.map(function(item) {
+    return {
+      title: item.title,
+      category: item.tags[0] || item.company,
+      subcategory: item.company,
+      description: item.description,
+      stack: item.tags,
+      links: [
+        { label: "Détails", url: "#", kind: "ghost", modal: item.project_id }
+      ].concat(item.github_link && item.github_link !== "#" ? [{ label: "GitHub", url: item.github_link, kind: "primary" }] : []).concat(item.demo_link && item.demo_link !== "#" ? [{ label: "Démo", url: item.demo_link, kind: "ghost" }] : []),
+      keywords: item.tags.join(" ") + " " + item.company,
+      modalId: item.project_id,
+      fullDetails: item.full_details,
+      icon: item.icon
+    };
+  })
+};
+
+function navigate(page) {
+  document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
+  document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
+  document.getElementById('page-' + page).classList.add('active');
+  document.getElementById('nav-' + page).classList.add('active');
+  return false;
+}
+
+function goTo(page) {
+  navigate(page);
+}
+
+function renderHome() {
+  document.title = DATA.name.first + ' ' + DATA.name.last;
+  document.getElementById('nav-logo').textContent = DATA.name.first[0] + DATA.name.last[0];
+  document.getElementById('hero-eyebrow').textContent = DATA.title + ' · ' + DATA.location;
+  document.getElementById('hero-name').innerHTML = DATA.name.first + ' <em>' + DATA.name.last + '</em>';
+  document.getElementById('hero-bio').textContent = DATA.bio;
+
+  var heroActions = document.getElementById('hero-actions');
+  heroActions.innerHTML = DATA.primaryActions.map(function(action) {
+    var cls = action.secondary ? 'action-btn secondary' : 'action-btn';
+    if (action.href) {
+      return '<a class="' + cls + '" href="' + action.href + '" target="_blank" rel="noreferrer">' + action.label + '</a>';
+    }
+    return '<button class="' + cls + '" onclick="goTo(\'' + action.action + '\')">' + action.label + '</button>';
+  }).join('');
+
+  document.getElementById('edu-grid').innerHTML = DATA.education.map(function(e) {
+    return '<div class="edu-card">' +
+      '<div class="edu-year">' + e.year + '</div>' +
+      '<div class="edu-degree">' + e.degree + '</div>' +
+      '<div class="edu-school">' + e.school + '</div>' +
+      (e.description ? '<div class="edu-desc">' + e.description + '</div>' : '') +
+    '</div>';
+  }).join('');
+
+  document.getElementById('cert-list').innerHTML = DATA.certifications.map(function(c) {
+    return '<div class="cert-item">' +
+      '<div>' +
+        '<div class="cert-name">' + c.name + '</div>' +
+        '<div class="cert-issuer">' + c.issuer + '</div>' +
+        '<div class="cert-actions">' +
+          '<a href="' + c.link + '" target="_blank" rel="noreferrer" class="project-link ghost">Voir certification</a>' +
+        '</div>' +
+      '</div>' +
+      '<div class="cert-year">' + c.year + '</div>' +
+    '</div>';
+  }).join('');
+
+  renderExperience();
+}
+
+var currentExperience = 0;
+
+function changeExperience(direction) {
+  currentExperience = (currentExperience + direction + DATA.experience.length) % DATA.experience.length;
+  renderExperience();
+}
+
+function setExperience(index) {
+  currentExperience = index;
+  renderExperience();
+}
+
+function renderExperience() {
+  var item = DATA.experience[currentExperience];
+  document.getElementById('exp-status').textContent = 'Expérience ' + (currentExperience + 1) + ' / ' + DATA.experience.length;
+  document.getElementById('exp-main').innerHTML =
+    '<div class="exp-period">' + item.period + '</div>' +
+    '<div class="exp-role">' + item.role + '</div>' +
+    '<div class="exp-company">' + item.company + '</div>' +
+    '<div class="exp-desc">' + item.description + '</div>' +
+    '<div class="exp-tags">' + item.tags.map(function(t) { return '<span class="exp-tag">' + t + '</span>'; }).join('') + '</div>';
+
+  document.getElementById('exp-list').innerHTML = DATA.experience.map(function(exp, index) {
+    return '<button class="exp-item-btn ' + (index === currentExperience ? 'active' : '') + '" onclick="setExperience(' + index + ')">' +
+      '<small>' + exp.period + '</small>' +
+      '<strong>' + exp.role + '</strong>' +
+      '<span>' + exp.company + '</span>' +
+    '</button>';
+  }).join('');
+}
+
+function renderSkills() {
+  var list = document.getElementById('skills-list');
+  list.innerHTML = DATA.skills.map(function(cat, ci) {
+    return '<div class="skill-category">' +
+      '<div class="skill-cat-header open" onclick="toggleCat(' + ci + ', this)">' +
+        '<span class="skill-cat-name">' + cat.category + '</span>' +
+        '<span style="display:flex;align-items:center;gap:16px">' +
+          '<span class="skill-cat-count">' + cat.items.length + ' compétences</span>' +
+          '<span class="skill-cat-arrow">›</span>' +
+        '</span>' +
+      '</div>' +
+      '<div class="skill-items open" id="cat-items-' + ci + '">' +
+        cat.items.map(function(item) {
+          return '<div class="skill-item"><div class="skill-name">' + item + '</div></div>';
+        }).join('') +
+      '</div>' +
+    '</div>';
+  }).join('');
+}
+
+function toggleCat(ci, el) {
+  var items = document.getElementById('cat-items-' + ci);
+  el.classList.toggle('open');
+  items.classList.toggle('open');
+}
+
+var activeCategory = 'All';
+var activeSubcategory = 'All';
+
+function renderProjects() {
+  var filterBar = document.getElementById('filter-bar');
+  filterBar.innerHTML = '';
+
+  var categoryRow = document.createElement('div');
+  categoryRow.className = 'filter-row';
+  var categories = ['All'].concat(Object.keys(profileData.filterCategories));
+
+  categories.forEach(function(cat) {
+    var btn = document.createElement('button');
+    btn.className = 'filter-btn' + (cat === activeCategory ? ' active' : '');
+    btn.textContent = cat;
+    btn.onclick = function() {
+      activeCategory = cat;
+      activeSubcategory = 'All';
+      renderProjects();
+    };
+    categoryRow.appendChild(btn);
+  });
+
+  filterBar.appendChild(categoryRow);
+
+  if (activeCategory !== 'All' && profileData.filterCategories[activeCategory]) {
+    var subcategoryRow = document.createElement('div');
+    subcategoryRow.className = 'filter-row';
+    var subs = ['All'].concat(profileData.filterCategories[activeCategory]);
+    subs.forEach(function(sub) {
+      var btn = document.createElement('button');
+      btn.className = 'filter-btn' + (sub === activeSubcategory ? ' active' : '');
+      btn.textContent = sub;
+      btn.onclick = function() {
+        activeSubcategory = sub;
+        renderProjects();
+      };
+      subcategoryRow.appendChild(btn);
+    });
+    filterBar.appendChild(subcategoryRow);
+  }
+
+  var grid = document.getElementById('projects-grid');
+  var searchInput = document.getElementById('search-input');
+  var query = (searchInput && searchInput.value ? searchInput.value : '').toLowerCase();
+  grid.innerHTML = '';
+
+  var visible = 0;
+
+  DATA.projects.forEach(function(p) {
+    var searchTarget = [p.title, p.description, p.category, p.subcategory].concat(p.stack || []).concat([p.keywords || '']).join(' ').toLowerCase();
+    var matchSearch = !query || searchTarget.indexOf(query) !== -1;
+    var matchCat = activeCategory === 'All' || p.category === activeCategory;
+    var matchSub = activeSubcategory === 'All' || (p.stack || []).indexOf(activeSubcategory) !== -1;
+
+    if (!(matchSearch && matchCat && matchSub)) {
+      return;
+    }
+
+    visible += 1;
+
+    var card = document.createElement('div');
+    card.className = 'project-card';
+    card.innerHTML =
+      '<div class="project-cat">' + p.category + ' · ' + p.subcategory + '</div>' +
+      '<div class="project-title">' + (p.icon ? p.icon + ' ' : '') + p.title + '</div>' +
+      '<div class="project-desc">' + p.description + '</div>' +
+      '<div class="project-stack">' + p.stack.map(function(s) { return '<span class="stack-tag">' + s + '</span>'; }).join('') + '</div>' +
+      '<div class="project-links">' + p.links.map(function(l) {
+        if (l.modal) {
+          return '<a class="project-link ' + (l.kind === 'ghost' ? 'ghost' : '') + '" href="#" onclick="openProjectModal(\'' + l.modal + '\'); return false;">' + l.label + '</a>';
+        }
+        return '<a class="project-link ' + (l.kind === 'ghost' ? 'ghost' : '') + '" href="' + l.url + '" target="_blank" rel="noreferrer">' + l.label + ' ↗</a>';
+      }).join('') + '</div>';
+
+    grid.appendChild(card);
+  });
+
+  if (visible === 0) {
+    var noResults = document.createElement('p');
+    noResults.className = 'no-results visible';
+    noResults.textContent = 'Aucun projet ne correspond à votre recherche.';
+    grid.appendChild(noResults);
+  }
+}
+
+function openProjectModal(projectId) {
+  var project = profileData.projects.find(function(p) { return p.project_id === projectId; });
+  if (!project) return;
+  document.getElementById('modal-title').textContent = project.title;
+  document.getElementById('modal-subtitle').textContent = project.company;
+  document.getElementById('modal-content').innerHTML = project.full_details || '<p>Détails à venir.</p>';
+  document.getElementById('project-modal').classList.add('open');
+}
+
+function closeProjectModal(event) {
+  if (event && event.target && event.target.id !== 'project-modal' && !event.target.classList.contains('project-modal-close')) {
+    return;
+  }
+  document.getElementById('project-modal').classList.remove('open');
+}
+
+function filterProjects() {
+  renderProjects();
+}
+
+document.addEventListener('keydown', function(event) {
+  if (event.key === 'Escape') {
+    document.getElementById('project-modal').classList.remove('open');
+  }
+});
+
+renderHome();
+renderSkills();
+renderProjects();
+navigate('home');
+</script>
+</body>
+</html>
