@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <style>
   :root {
     --bg: #f7f4ee;
@@ -546,7 +547,12 @@
     color: var(--fg);
   }
   .project-modal-content ul { padding-left: 18px; }
-
+  .icon-btn {
+    width: 42px;
+    padding: 0;
+    justify-content: center;
+    font-size: 16px;
+  }
   .no-results {
     padding: 80px 48px;
     font-size: 14px;
@@ -793,7 +799,10 @@ const DATA = {
   primaryActions: [
     { label: "Voir les projets", action: "projects" },
     { label: "Voir les compétences", action: "skills", secondary: true },
-    { label: "Télécharger le CV", href: profileData.hero.cv_path, secondary: true }
+    { label: "Télécharger le CV", href: profileData.hero.cv_path, secondary: true },
+    { label: '<i class="fab fa-github"></i>', href: "https://github.com/IThioye", icon: true },
+    { label: '<i class="fab fa-linkedin"></i>', href: "https://linkedin.com/in/ibrahima-thioye", icon: true },
+    { label: '<i class="fas fa-envelope"></i>', href: "mailto:ibrahimathioye03@gmail.com", icon: true }
   ],
   education: profileData.education.map(function(item) {
     return {
@@ -862,7 +871,7 @@ function renderHome() {
   heroActions.innerHTML = DATA.primaryActions.map(function(action) {
     var cls = action.secondary ? 'action-btn secondary' : 'action-btn';
     if (action.href) {
-      return '<a class="' + cls + '" href="' + action.href + '" target="_blank" rel="noreferrer">' + action.label + '</a>';
+      return '<a class="' + cls + (action.icon ? ' icon-btn' : '') + '" href="' + action.href + '" target="_blank" rel="noreferrer">' + action.label + '</a>';
     }
     return '<button class="' + cls + '" onclick="goTo(\'' + action.action + '\')">' + action.label + '</button>';
   }).join('');
