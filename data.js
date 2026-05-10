@@ -125,7 +125,19 @@ const profileData = {
       tags: ["Deep Learning", "Computer Vision", "Python", "Flask", "Hugging Face"],
       github_link: "https://github.com/IThioye/pcb-annotation-yolo-sam",
       demo_link: "https://ibrahimathioye-sam-yolo-flask.hf.space/",
-      full_details: "<h3>Objectif</h3><p>Développer un système d’analyse automatisée pour l’inspection de circuits imprimés (PCB), combinant segmentation avancée et classification afin de détecter les défauts (voids) et identifier les composants.</p><h3>Implémentation</h3><p>Intégration de SAM2 pour la segmentation interactive et de YOLO pour la détection et la classification des composants. Mise en place d’une application Flask permettant l’annotation, la génération de masques, le calcul de statistiques de surface et le réentraînement du modèle avec de nouvelles données.</p><h3>Valeur</h3><p>Le système permet d’automatiser et d’accélérer l’analyse visuelle des PCB, en améliorant la précision de détection et en facilitant la création de datasets pour des workflows industriels.</p>"    }
+      full_details: "<h3>Objectif</h3><p>Développer un système d’analyse automatisée pour l’inspection de circuits imprimés (PCB), combinant segmentation avancée et classification afin de détecter les défauts (voids) et identifier les composants.</p><h3>Implémentation</h3><p>Intégration de SAM2 pour la segmentation interactive et de YOLO pour la détection et la classification des composants. Mise en place d’une application Flask permettant l’annotation, la génération de masques, le calcul de statistiques de surface et le réentraînement du modèle avec de nouvelles données.</p><h3>Valeur</h3><p>Le système permet d’automatiser et d’accélérer l’analyse visuelle des PCB, en améliorant la précision de détection et en facilitant la création de datasets pour des workflows industriels.</p>"    
+    },
+    {
+      project_id: "p7",
+      icon: "",
+      title: "Prédiction du succès de fondateurs de startups (VCBench)",
+      company: "VCBench (challenge data science)",
+      description: "Pipeline de classification binaire qui prédit la réussite de fondateurs à partir de données de parcours (éducation, carrière, exits, industrie) enrichies par des features sémantiques TF-IDF.",
+      tags: ["Machine Learning", "Classification", "Optuna", "TF-IDF", "Scikit-learn", "Ablation Study"],
+      github_link: "https://github.com/IThioye/vcbench-ml",
+      demo_link: "#",
+      full_details: "<h3>Mission</h3><p>Concevoir un modèle de scoring des fondateurs capable d’anticiper la variable cible <code>success</code> dans le cadre du benchmark VCBench.</p><h3>Méthodes</h3><p>Feature engineering sur des données structurées et semi-structurées (éducation, expériences, IPO/acquisitions, industrie), vectorisation TF-IDF d’un résumé texte, entraînement multi-modèles avec validation croisée et tuning Optuna, puis sélection automatique selon le score F0.5.</p><h3>Livrables</h3><p>Un mode recherche avec diagnostics (comparaison de modèles, courbes d’apprentissage, matrices de confusion, importance des variables) et un mode benchmark produisant un <code>submission.csv</code> binaire prêt pour évaluation privée.</p>"
+    }
   ],
   certifications: [
     {
