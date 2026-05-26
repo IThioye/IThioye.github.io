@@ -145,7 +145,7 @@ const profileData = {
       title: "Hybrid Semantic-numeric Modeling for Founder Success Prediction: A VCBench Submission",
       company: "Ibrahima Thioye",
       description: "Papier de recherche détaillant la méthodologie derrière le projet de prédiction du succès de fondateurs de startups",
-      tags: ["Machine Learning", "Classification", "Papier de recherche"],
+      tags: ["Papier de recherche","Machine Learning", "Classification"],
       github_link: "https://github.com/IThioye/vcbench-ml",
       demo_link: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6748838",
       full_details: ""
