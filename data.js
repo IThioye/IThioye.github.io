@@ -62,7 +62,8 @@ const profileData = {
     "Deep Learning": ["NLP", "LLM", "OCR", "RAG", "Computer Vision"],
     "Data Analysis": ["Power BI", "Visualisation", "SQL", "ETL"],
     "Web Scraping": ["Python", "Collecte de données", "Automatisation"],
-    "Agentic AI": ["Multi-agents", "Prompt Engineering", "LLM Open-Source"]
+    "Agentic AI": ["Multi-agents", "Prompt Engineering", "LLM Open-Source"],
+    "Papier de recherche": []
   },
   skillSections: [
     { category: "Intelligence Artificielle", items: ["Classification", "Régression", "Clustering", "Computer Vision", "NLP", "Object Detection", "Segmentation", "LLM"] },
@@ -137,6 +138,17 @@ const profileData = {
       github_link: "https://github.com/IThioye/vcbench-ml",
       demo_link: "#",
       full_details: "<h3>Mission</h3><p>Concevoir un modèle de scoring des fondateurs capable d’anticiper la variable cible <code>success</code> dans le cadre du benchmark VCBench.</p><h3>Méthodes</h3><p>Feature engineering sur des données structurées et semi-structurées (éducation, expériences, IPO/acquisitions, industrie), vectorisation TF-IDF d’un résumé texte, entraînement multi-modèles avec validation croisée et tuning Optuna, puis sélection automatique selon le score F0.5.</p><h3>Livrables</h3><p>Un mode recherche avec diagnostics (comparaison de modèles, courbes d’apprentissage, matrices de confusion, importance des variables) et un mode benchmark produisant un <code>submission.csv</code> binaire prêt pour évaluation privée.</p>"
+    },
+    {
+      project_id: "p8",
+      icon: "",
+      title: "Hybrid Semantic-numeric Modeling for Founder Success Prediction: A VCBench Submission",
+      company: "Ibrahima Thioye",
+      description: "Papier de recherche détaillant la méthodologie derrière le projet de prédiction du succès de fondateurs de startups",
+      tags: ["Machine Learning", "Classification", "Optuna", "TF-IDF", "Scikit-learn", "Ablation Study"],
+      github_link: "https://github.com/IThioye/vcbench-ml",
+      demo_link: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6748838",
+      full_details: ""
     }
   ],
   certifications: [
