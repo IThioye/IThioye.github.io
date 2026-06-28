@@ -149,7 +149,26 @@ const profileData = {
       github_link: "https://github.com/IThioye/vcbench-ml",
       demo_link: "https://papers.ssrn.com/sol3/papers.cfm?abstract_id=6748838",
       full_details: ""
-    }
+    },
+    {
+      "project_id": "p9",
+      "icon": "",
+      "title": "Prediction du prix de voitures d'occasion",
+      "company": "Projet personel",
+      "description": "Pipeline de regression qui estime le prix de vente de voitures d'occasion a partir de caracteristiques techniques et commerciales, avec nettoyage des unites, fusion de datasets Kaggle, analyse exploratoire et ensemble learning.",
+      "tags": [
+        "Machine Learning",
+        "Regression",
+        "Scikit-learn",
+        "XGBoost",
+        "LightGBM",
+        "Stacking",
+        "EDA"
+      ],
+      "github_link": "https://github.com/IThioye/car-price-regression",
+      "demo_link": "#",
+      "full_details": "<h3>Mission</h3><p>Concevoir un modele capable d'estimer le <code>selling_price</code> de voitures d'occasion a partir de variables comme l'annee, le kilometrage, le carburant, la transmission, la cylindree, la puissance maximale, le couple et le nombre de sieges.</p><h3>Methodes</h3><p>Nettoyage des colonnes contenant des unites, conversion du couple en Nm, fusion de deux datasets Kaggle, traitement des valeurs manquantes par interpolation, analyse exploratoire, encodage des variables categorielles, transformation logarithmique et comparaison de modeles de regression avec validation croisee KFold.</p><h3>Livrables</h3><p>Un notebook complet avec EDA, comparaison de modeles par MSE, modele final en stacking et analyse des residus. Le modele final atteint un score R2 de validation d'environ <strong>0.91</strong> et un score R2 sur le dataset traite complet d'environ <strong>0.94</strong>, avec <code>max_power (bhp)</code> et <code>year</code> comme variables les plus influentes.</p>"
+}
   ],
   certifications: [
     {
