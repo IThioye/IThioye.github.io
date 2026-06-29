@@ -66,9 +66,10 @@ const profileData = {
     "Papier de recherche": []
   },
   skillSections: [
-    { category: "Intelligence Artificielle", items: ["Classification", "Régression", "Clustering", "Computer Vision", "NLP", "Object Detection", "Segmentation", "LLM"] },
+    { category: "Intelligence Artificielle", items: ["Classification", "Régression", "Clustering", "Computer Vision", "NLP", "Object Detection", "Segmentation", "LLM","RAG","OCR"] },
     { category: "Programmation", items: ["Python", "R", "SQL", "Bash"] },
-    { category: "Librairies ML/DL", items: ["Scikit-learn", "TensorFlow", "PyTorch", "OpenCV", "HuggingFace"] },
+    { category: "Librairies ML/DL", items: ["Scikit-learn", "TensorFlow", "PyTorch", "OpenCV", "HuggingFace","MLflow"] },
+    { category: "Interfaces et Déploiement", items: ["Git/GitHub", "Docker", "Flask", "Streamlit"] },
     { category: "Visualisation de données", items: ["PowerBI", "Tableau", "Matplotlib", "Seaborn"] },
     { category: "ETL & Gestion de données", items: ["Pandas", "NumPy", "Beautiful Soup", "Scrapy"] }
   ],
