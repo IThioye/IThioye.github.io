@@ -16,16 +16,16 @@ const profileData = {
   experience: [
     {
       year: "01/2025 - 12/2025",
-      title: "Alternant Développeur Data / IA",
+      title: "Alternant Data Scientist",
       company: "ATC",
-      details: "Automatisation de processus métiers via des solutions IA & Data. Développement d'outils automatisés pour la génération de rapports Word et tableaux de bord Excel, avec réduction de 6 heures à 3 minutes. Mise en place d'un système de résumé de documents confidentiels avec anonymisation des données sensibles à l'aide de modèles NER et LLM.",
+      details: "Conception et déploiement de pipelines d’automatisation en Python pour la génération de reporting et tableaux de bord Excel,réduisant le temps de traitement de 99% (6h à 3 min).Développement d’un système de traitement documentaire intégrant extraction de texte avec OCR, anonymisation des données sensibles (NER) et résumé par LLM dans un contexte de conformité et de sécurité des données.Accompagnement des utilisateurs dans l’adoption des outils déployés et présentation des résultats obtenus",
       tags: ["Automatisation", "LLM", "NER", "Word", "Excel"]
     },
     {
       year: "06/2024 - 09/2024",
       title: "Data Analyst / Data Scientist",
       company: "PicturifyAI",
-      details: "Développement d'un funnel marketing de conversion data-driven alimenté par l'IA. Collecte, traitement et structuration de données de leads. Déploiement d'un modèle de machine learning pour la prédiction de conversion et automatisation du workflow via des outils no-code.",
+      details: "Collecte,structuration et exploitations de données multi-sources (LinkedIn, Infonet, APIs publiques) avec Python et Excel.Développement et déploiement d’un modèle de machine learning de prédiction de conversion (scoring de leads).Automatisation du workflow via des outils no-code.",
       tags: ["Machine Learning", "Marketing", "No-code", "Lead Scoring"]
     },
     {
@@ -53,7 +53,7 @@ const profileData = {
       year: "05/2022 - 07/2022",
       title: "Data Analyst",
       company: "Custeed",
-      details: "Création d'une pipeline de données reliant MongoDB à Power BI via Python. Automatisation de rapports, conception de tableaux de bord et communication des analyses aux parties prenantes.",
+      details: "Conception d’une pipeline de données entre MongoDB, Python et Power BI pour une visualisation dynamique des données métier.Analyses des données clients pour améliorer la fidélisation.Automatisation de la génération de reporting et tableaux de bord Power BI pour les données récurrentes.Présentation d’analyses permettant d’identifier les opportunités d’améliorations aux parties prenantes",
       tags: ["MongoDB", "Power BI", "Pipeline", "Python"]
     }
   ],
