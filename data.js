@@ -169,7 +169,7 @@ const profileData = {
       "github_link": "https://github.com/IThioye/car-price-regression",
       "demo_link": "https://github.com/IThioye/car-price-regression/blob/main/docs/REPORT.md",
       "full_details": "<h3>Mission</h3><p>Concevoir un modele capable d'estimer le <code>selling_price</code> de voitures d'occasion a partir de variables comme l'annee, le kilometrage, le carburant, la transmission, la cylindree, la puissance maximale, le couple et le nombre de sieges.</p><h3>Methodes</h3><p>Nettoyage des colonnes contenant des unites, conversion du couple en Nm, fusion de deux datasets Kaggle, traitement des valeurs manquantes par interpolation, analyse exploratoire, encodage des variables categorielles, transformation logarithmique et comparaison de modeles de regression avec validation croisee KFold.</p><h3>Livrables</h3><p>Un notebook complet avec EDA, comparaison de modeles par MSE, modele final en stacking et analyse des residus. Le modele final atteint un score R2 de validation d'environ <strong>0.91</strong> et un score R2 sur le dataset traite complet d'environ <strong>0.94</strong>, avec <code>max_power (bhp)</code> et <code>year</code> comme variables les plus influentes.</p>"
-},
+    },
     {
       "project_id": "p10",
       "icon": "",
