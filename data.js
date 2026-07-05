@@ -169,6 +169,28 @@ const profileData = {
       "github_link": "https://github.com/IThioye/car-price-regression",
       "demo_link": "https://github.com/IThioye/car-price-regression/blob/main/docs/REPORT.md",
       "full_details": "<h3>Mission</h3><p>Concevoir un modele capable d'estimer le <code>selling_price</code> de voitures d'occasion a partir de variables comme l'annee, le kilometrage, le carburant, la transmission, la cylindree, la puissance maximale, le couple et le nombre de sieges.</p><h3>Methodes</h3><p>Nettoyage des colonnes contenant des unites, conversion du couple en Nm, fusion de deux datasets Kaggle, traitement des valeurs manquantes par interpolation, analyse exploratoire, encodage des variables categorielles, transformation logarithmique et comparaison de modeles de regression avec validation croisee KFold.</p><h3>Livrables</h3><p>Un notebook complet avec EDA, comparaison de modeles par MSE, modele final en stacking et analyse des residus. Le modele final atteint un score R2 de validation d'environ <strong>0.91</strong> et un score R2 sur le dataset traite complet d'environ <strong>0.94</strong>, avec <code>max_power (bhp)</code> et <code>year</code> comme variables les plus influentes.</p>"
+},
+    {
+      "project_id": "p10",
+      "icon": "",
+      "title": "GitHub Repository Reviewer Agent",
+      "company": "Projet personnel",
+      "description": "Agent FastAPI qui analyse un depot GitHub public et retourne une revue structuree de sa qualite portfolio, avec outils GitHub API, analyse statique, guardrails, monitoring, evaluation et deux modes d'inference LLM via Mistral ou Ollama.",
+      "tags": [
+        "Agentic AI",
+        "FastAPI",
+        "LLM",
+        "Mistral",
+        "Ollama",
+        "GitHub API",
+        "Guardrails",
+        "Evaluation",
+        "Monitoring",
+        "Hugging Face Spaces"
+      ],
+      "github_link": "https://github.com/IThioye/github-repo-reviewer-agent",
+      "demo_link": "https://huggingface.co/spaces/IbrahimaThioye/github-repo-reviewer",
+      "full_details": "<h3>Mission</h3><p>Concevoir un agent capable de recevoir l'URL d'un depot GitHub public et de produire une analyse claire de sa qualite portfolio: resume du projet, langages principaux, structure du depot, instructions d'installation, instructions d'execution, forces, faiblesses, ameliorations possibles, avertissements de securite ou maintenabilite, score portfolio et recommandation finale.</p><h3>Methodes</h3><p>Developpement d'une API avec <code>FastAPI</code>, creation d'un handler agentique centralise, integration de deux outils principaux: un outil <code>GitHub API</code> pour recuperer les metadonnees, le README, les langages et l'arborescence, et un analyseur statique pour detecter le type de projet, les fichiers importants, les fichiers manquants, les signaux de qualite et les avertissements. Le systeme inclut des guardrails pour accepter uniquement les URL <code>github.com</code>, bloquer les injections de prompt, refuser les depots prives ou inaccessibles, limiter le nombre de fichiers analyses et eviter toute execution de code externe. L'inference LLM est configurable via <code>config.yaml</code> avec deux modes: <code>mistral</code> pour l'API Mistral et <code>ollama</code> pour une execution locale.</p><h3>Livrables</h3><p>Une application complete deployable sur <code>Hugging Face Spaces</code> avec frontend web, endpoint <code>/review</code>, endpoint <code>/health</code>, logs JSONL dans <code>monitoring/logs.jsonl</code>, scripts d'evaluation, dataset de test et mini-rapport final. L'evaluation stockee montre un taux de succes de <strong>100%</strong>, une latence moyenne d'environ <strong>3535 ms</strong>, un taux de succes des outils de <strong>100%</strong> et une precision de detection du type de projet de <strong>100%</strong> sur le jeu de liens de test.</p>"
 }
   ],
   certifications: [
