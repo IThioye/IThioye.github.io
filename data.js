@@ -83,7 +83,7 @@ const profileData = {
       tags: ["Agentic AI", "LLM", "Multi-agents", "Flask", "Python"],
       github_link: "https://github.com/IThioye/Concept-Connector",
       demo_link: "#",
-      full_details: "<h3>Objectif</h3><p>Concevoir un système d'IA capable de simuler un <strong>brainstorming spécialisé</strong> en utilisant plusieurs agents LLM agissant de manière asynchrone pour explorer des concepts interdisciplinaires.</p><h3>Technologies clés</h3><ul><li><strong>Orchestration :</strong> LangChain / CrewAI.</li><li><strong>Modèles :</strong> LLM open-source exécutés localement via Ollama.</li><li><strong>Interface :</strong> Flask pour le backend et HTMX pour le frontend dynamique.</li></ul><h3>Impact</h3><p>Ce projet démontre une maîtrise de l'architecture agentive, du RAG avancé et de la détection proactive des biais dans les systèmes autonomes.</p>"
+      full_details: "<h3>Objectif</h3><p>Concevoir un système d'IA capable de simuler un <strong>brainstorming spécialisé</strong> en utilisant plusieurs agents LLM agissant de manière asynchrone pour explorer des concepts interdisciplinaires.</p><h3>Technologies clés</h3><ul><li><strong>Modèles :</strong> LLM open-source exécutés localement via Ollama.</li><li><strong>Interface :</strong> Flask pour le backend et HTMX pour le frontend dynamique.</li></ul><h3>Impact</h3><p>Ce projet démontre une maîtrise de l'architecture agentive, du RAG avancé et de la détection proactive des biais dans les systèmes autonomes.</p>"
     },
     {
       project_id: "p2",
