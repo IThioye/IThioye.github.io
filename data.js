@@ -71,7 +71,8 @@ const profileData = {
     { category: "Librairies ML/DL", items: ["Scikit-learn", "TensorFlow", "PyTorch", "OpenCV", "HuggingFace","MLflow"] },
     { category: "Interfaces et Déploiement", items: ["Git/GitHub", "Docker", "Flask", "Streamlit"] },
     { category: "Visualisation de données", items: ["PowerBI", "Tableau", "Matplotlib", "Seaborn"] },
-    { category: "ETL & Gestion de données", items: ["Pandas", "NumPy", "Beautiful Soup", "Scrapy"] }
+    { category: "ETL & Gestion de données", items: ["Pandas", "NumPy", "Beautiful Soup", "Scrapy"] },
+    { category: "Outils de développement", items: ["VS Code", "Codex", "AntiGravity", "Jupyter Notebook"] }
   ],
   projects: [
     {
