@@ -192,7 +192,31 @@ const profileData = {
       "github_link": "https://github.com/IThioye/github-repo-reviewer-agent",
       "demo_link": "https://huggingface.co/spaces/IbrahimaThioye/github-repo-reviewer",
       "full_details": "<h3>Mission</h3><p>Concevoir un agent capable de recevoir l'URL d'un depot GitHub public et de produire une analyse claire de sa qualite portfolio: resume du projet, langages principaux, structure du depot, instructions d'installation, instructions d'execution, forces, faiblesses, ameliorations possibles, avertissements de securite ou maintenabilite, score portfolio et recommandation finale.</p><h3>Methodes</h3><p>Developpement d'une API avec <code>FastAPI</code>, creation d'un handler agentique centralise, integration de deux outils principaux: un outil <code>GitHub API</code> pour recuperer les metadonnees, le README, les langages et l'arborescence, et un analyseur statique pour detecter le type de projet, les fichiers importants, les fichiers manquants, les signaux de qualite et les avertissements. Le systeme inclut des guardrails pour accepter uniquement les URL <code>github.com</code>, bloquer les injections de prompt, refuser les depots prives ou inaccessibles, limiter le nombre de fichiers analyses et eviter toute execution de code externe. L'inference LLM est configurable via <code>config.yaml</code> avec deux modes: <code>mistral</code> pour l'API Mistral et <code>ollama</code> pour une execution locale.</p><h3>Livrables</h3><p>Une application complete deployable sur <code>Hugging Face Spaces</code> avec frontend web, endpoint <code>/review</code>, endpoint <code>/health</code>, logs JSONL dans <code>monitoring/logs.jsonl</code>, scripts d'evaluation, dataset de test et mini-rapport final. L'evaluation stockee montre un taux de succes de <strong>100%</strong>, une latence moyenne d'environ <strong>3535 ms</strong>, un taux de succes des outils de <strong>100%</strong> et une precision de detection du type de projet de <strong>100%</strong> sur le jeu de liens de test.</p>"
-}
+    },
+    {
+      "project_id": "p11",
+      "icon": "",
+      "title": "Climate Displacement Evidence Agent",
+      "company": "Projet academique",
+      "description": "Agent RAG securise qui analyse un corpus de rapports sur les deplacements climatiques et produit des syntheses comparatives citees, avec recherche hybride, reranking, serveur MCP, guardrails, raisonnement par Self-Consistency, critique independant, evaluation RAGAS et observabilite Langfuse.",
+      "tags": [
+        "Agentic AI",
+        "RAG",
+        "Flask",
+        "Mistral",
+        "Ollama",
+        "MCP",
+        "Hybrid Search",
+        "Cross-Encoder",
+        "Guardrails",
+        "RAGAS",
+        "Langfuse",
+        "Climate Tech"
+      ],
+      "github_link": "https://github.com/IThioye/climate-displacement-agent",
+      "demo_link": "",
+      "full_details": "<h3>Mission</h3><p>Concevoir un agent de recherche destine aux analystes humanitaires afin de comparer les risques et les preuves documentees concernant les deplacements lies aux catastrophes et au changement climatique. L'agent interroge un corpus controle de rapports institutionnels, distingue les observations historiques des projections, identifie les limites des donnees et genere une synthese structuree au format <code>EVIDENCE / ANALYSIS / CONCLUSION / CONFIDENCE</code>. Chaque reponse est accompagnee de references indiquant le document, l'editeur, l'annee, la page et l'URL de la source.</p><h3>Methodes</h3><p>Developpement d'une application avec une interface conversationnelle <code>Flask</code> et une page d'administration pour consulter les executions, les journaux, la latence, les couts estimes et l'utilisation des outils. Le pipeline RAG applique une recherche hybride combinant <code>BM25</code> et embeddings denses, puis fusionne les classements avec <code>Reciprocal Rank Fusion</code>. Une strategie de decoupage parent-enfant permet de rechercher des passages precis tout en retournant un contexte plus complet. Les passages candidats sont ensuite classes par un <code>cross-encoder</code> avant l'assemblage du contexte. L'agent applique un filtrage d'entree L1 avec normalisation Unicode et detection d'injections, une autorisation d'action L4 fondee sur une matrice de risque, une limitation des appels et du budget avec <code>TokenBudget</code>, ainsi qu'une sanitisation du contenu documentaire. Trois brouillons sont generes avec une strategie de <code>Self-Consistency k=3</code>, puis un second role d'agent critique controle les citations, l'incertitude et la distinction entre faits observes et projections. L'inference est configurable avec l'API <code>Mistral</code> ou un modele local via <code>Ollama</code>.</p><h3>Livrables</h3><p>Une application complete avec interface utilisateur de type chatbot, affichage en direct des etapes operationnelles, panneau administrateur, journalisation SQLite, corpus documentaire local et scripts d'ingestion et d'evaluation. Un serveur <code>FastMCP</code> expose quatre outils: recherche de preuves, comparaison de regions, consultation des metadonnees d'une source et enregistrement d'un constat verifie. L'observabilite <code>Langfuse</code> couvre l'agent principal, les appels d'outils, la chaine de Self-Consistency, les generations LLM et le critique. L'evaluation repose sur dix questions et compare une baseline TF-IDF au pipeline final. Les resultats enregistres montrent une amelioration du MRR de <strong>0,900 a 0,933</strong>, du context recall de <strong>0,800 a 0,833</strong> et du context precision de <strong>0,642 a 0,700</strong>. La suite automatisee contient <strong>15 tests reussis</strong>, notamment les tests de securite contre les injections de prompt.</p>"
+    }
   ],
   certifications: [
     {
