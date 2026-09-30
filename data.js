@@ -216,6 +216,27 @@ const profileData = {
       "github_link": "https://github.com/IThioye/climate-displacement-agent",
       "demo_link": "",
       "full_details": "<h3>Mission</h3><p>Concevoir un agent de recherche destine aux analystes humanitaires afin de comparer les risques et les preuves documentees concernant les deplacements lies aux catastrophes et au changement climatique. L'agent interroge un corpus controle de rapports institutionnels, distingue les observations historiques des projections, identifie les limites des donnees et genere une synthese structuree au format <code>EVIDENCE / ANALYSIS / CONCLUSION / CONFIDENCE</code>. Chaque reponse est accompagnee de references indiquant le document, l'editeur, l'annee, la page et l'URL de la source.</p><h3>Methodes</h3><p>Developpement d'une application avec une interface conversationnelle <code>Flask</code> et une page d'administration pour consulter les executions, les journaux, la latence, les couts estimes et l'utilisation des outils. Le pipeline RAG applique une recherche hybride combinant <code>BM25</code> et embeddings denses, puis fusionne les classements avec <code>Reciprocal Rank Fusion</code>. Une strategie de decoupage parent-enfant permet de rechercher des passages precis tout en retournant un contexte plus complet. Les passages candidats sont ensuite classes par un <code>cross-encoder</code> avant l'assemblage du contexte. L'agent applique un filtrage d'entree L1 avec normalisation Unicode et detection d'injections, une autorisation d'action L4 fondee sur une matrice de risque, une limitation des appels et du budget avec <code>TokenBudget</code>, ainsi qu'une sanitisation du contenu documentaire. Trois brouillons sont generes avec une strategie de <code>Self-Consistency k=3</code>, puis un second role d'agent critique controle les citations, l'incertitude et la distinction entre faits observes et projections. L'inference est configurable avec l'API <code>Mistral</code> ou un modele local via <code>Ollama</code>.</p><h3>Livrables</h3><p>Une application complete avec interface utilisateur de type chatbot, affichage en direct des etapes operationnelles, panneau administrateur, journalisation SQLite, corpus documentaire local et scripts d'ingestion et d'evaluation. Un serveur <code>FastMCP</code> expose quatre outils: recherche de preuves, comparaison de regions, consultation des metadonnees d'une source et enregistrement d'un constat verifie. L'observabilite <code>Langfuse</code> couvre l'agent principal, les appels d'outils, la chaine de Self-Consistency, les generations LLM et le critique. L'evaluation repose sur dix questions et compare une baseline TF-IDF au pipeline final. Les resultats enregistres montrent une amelioration du MRR de <strong>0,900 a 0,933</strong>, du context recall de <strong>0,800 a 0,833</strong> et du context precision de <strong>0,642 a 0,700</strong>. La suite automatisee contient <strong>15 tests reussis</strong>, notamment les tests de securite contre les injections de prompt.</p>"
+    },
+    {
+      "project_id": "p12",
+      "icon": "",
+      "title": "Génération de données synthétiques pour la normalisation du wolof",
+      "company": "Projet de fin d'études · aivancity",
+      "description": "Benchmark de six stratégies de génération formel→informel pour entraîner un Transformer d'édition caractère par caractère à normaliser des commentaires wolof authentiques et code-switchés.",
+      "tags": [
+        "Deep Learning",
+        "NLP",
+        "Synthetic Data",
+        "Transformers",
+        "Wolof",
+        "PyTorch",
+        "Hugging Face",
+        "Recherche"
+      ],
+      "github_link": "https://github.com/IThioye/wolof_synthetic_data_generation",
+      "case_study_link": "wolof-normalization.html",
+      "demo_link": "",
+      "full_details": "<h3>Question de recherche</h3><p>Mesurer, sous une architecture et un protocole identiques, dans quelle mesure différentes stratégies de génération synthétique améliorent la normalisation de commentaires YouTube en wolof informel et code-switché français–wolof.</p><h3>Approche</h3><p>Comparaison de méthodes par règles, alignement bilingue, mélange distributionnel, données externes et moteur linguistique appris uniquement sur le Gold train. Chaque condition préentraîne le même Transformer d'édition non autorégressif, puis le fine-tune sur les mêmes 142 paires authentiques.</p><h3>Résultat</h3><p>La meilleure condition synthétique réduit le CER de 0,220 à 0,191 sur le test gelé. Le corpus reste petit et le taux de surcorrection élevé : le projet est présenté comme un benchmark de recherche, pas comme un correcteur prêt pour la production.</p>"
     }
   ],
   certifications: [
@@ -282,7 +303,7 @@ const DATA = {
       stack: item.tags,
       links: [
         { label: "Détails", url: "#", kind: "ghost", modal: item.project_id }
-      ].concat(item.github_link && item.github_link !== "#" ? [{ label: "GitHub", url: item.github_link, kind: "primary" }] : []).concat(item.demo_link && item.demo_link !== "#" ? [{ label: "Démo", url: item.demo_link, kind: "ghost" }] : []),
+      ].concat(item.case_study_link ? [{ label: "Explorer", url: item.case_study_link, kind: "primary", internal: true }] : []).concat(item.github_link && item.github_link !== "#" ? [{ label: "GitHub", url: item.github_link, kind: item.case_study_link ? "ghost" : "primary" }] : []).concat(item.demo_link && item.demo_link !== "#" ? [{ label: "Démo", url: item.demo_link, kind: "ghost" }] : []),
       keywords: item.tags.join(" ") + " " + item.company,
       modalId: item.project_id,
       fullDetails: item.full_details,
