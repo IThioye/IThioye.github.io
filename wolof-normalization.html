@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Étude interactive du projet de génération de données synthétiques pour la normalisation du wolof d'Ibrahima THIOYE.">
+  <title>Normalisation du wolof — Ibrahima THIOYE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f2efe7;
+      --ink: #151511;
+      --muted: #68675f;
+      --line: #c9c5b9;
+      --navy: #08141f;
+      --navy-soft: #102437;
+      --cyan: #68d7e7;
+      --gold: #f3bd54;
+      --coral: #ff8066;
+      --green: #8bd49c;
+      --white: #f8fbfc;
+      --sans: "Inter", sans-serif;
+      --serif: "DM Serif Display", serif;
+      --mono: "DM Mono", monospace;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: inherit; }
+    button { font: inherit; }
+    .shell { width: min(1180px, calc(100% - 48px)); margin: 0 auto; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      height: 66px;
+      display: flex;
+      align-items: center;
+      background: rgba(242, 239, 231, 0.92);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(16px);
+    }
+    .topbar .shell { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .back, .repo-link {
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .back::before { content: "←"; margin-right: 9px; }
+    .repo-link { border-bottom: 1px solid currentColor; padding-bottom: 3px; }
+
+    .hero { padding: 110px 0 84px; border-bottom: 1px solid var(--line); }
+    .eyebrow, .section-kicker {
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+    }
+    h1 {
+      max-width: 1040px;
+      margin: 22px 0 28px;
+      font-family: var(--serif);
+      font-size: clamp(52px, 8vw, 102px);
+      font-weight: 400;
+      letter-spacing: -.04em;
+      line-height: .92;
+    }
+    h1 em { color: #57554d; font-weight: 400; }
+    .hero-bottom { display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; align-items: end; }
+    .lead { margin: 0; max-width: 720px; font-size: 17px; line-height: 1.8; }
+    .facts { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--line); }
+    .fact { padding: 18px; border-right: 1px solid var(--line); }
+    .fact:last-child { border-right: 0; }
+    .fact strong { display: block; font-family: var(--serif); font-size: 28px; font-weight: 400; }
+    .fact span { color: var(--muted); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+
+    section { padding: 88px 0; border-bottom: 1px solid var(--line); }
+    .section-head { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-bottom: 42px; }
+    h2 { margin: 12px 0 0; font-family: var(--serif); font-size: clamp(38px, 5vw, 66px); font-weight: 400; letter-spacing: -.035em; line-height: 1; }
+    .section-copy { align-self: end; color: #383832; font-size: 14px; line-height: 1.8; }
+
+    .demo {
+      overflow: hidden;
+      color: var(--white);
+      background:
+        radial-gradient(circle at 75% 12%, rgba(104, 215, 231, .12), transparent 25%),
+        linear-gradient(150deg, #07111b, #0a1a28 62%, #07131e);
+      border: 1px solid #24394a;
+      box-shadow: 0 28px 80px rgba(10, 18, 25, .16);
+    }
+    .demo-head { display: flex; justify-content: space-between; gap: 20px; padding: 20px 24px; border-bottom: 1px solid #263949; }
+    .demo-label { color: #8ca0af; font: 10px var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .demo-status { color: var(--cyan); font: 11px var(--mono); }
+    .stage {
+      position: relative;
+      min-height: 480px;
+      padding: 46px clamp(24px, 5vw, 70px) 38px;
+      isolation: isolate;
+    }
+    .stage::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      opacity: .16;
+      background-image: linear-gradient(#6f8797 1px, transparent 1px), linear-gradient(90deg, #6f8797 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: linear-gradient(to bottom, #000, transparent 90%);
+    }
+    .stage-title { margin: 0; color: #8ca0af; font: 11px var(--mono); text-transform: uppercase; letter-spacing: .14em; }
+    .sentence-wrap { position: relative; margin: 66px auto 0; max-width: 970px; }
+    .sentence {
+      position: relative;
+      z-index: 3;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      min-height: 68px;
+    }
+    .word {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      min-height: 54px;
+      padding: 0 13px;
+      border: 1px solid #355064;
+      background: rgba(7, 17, 27, .74);
+      border-radius: 4px;
+      font: 500 clamp(15px, 2vw, 22px) var(--mono);
+      transition: color .45s ease, border-color .45s ease, transform .45s ease, background .45s ease, opacity .45s ease;
+    }
+    .word::after {
+      content: attr(data-op);
+      position: absolute;
+      top: -24px;
+      left: 50%;
+      transform: translate(-50%, 5px);
+      opacity: 0;
+      font: 9px var(--mono);
+      letter-spacing: .08em;
+      transition: all .4s ease;
+    }
+    .demo[data-step="2"] .word::after, .demo[data-step="3"] .word::after { opacity: 1; transform: translate(-50%, 0); }
+    .demo[data-step="2"] .word.edit, .demo[data-step="3"] .word.edit { color: var(--gold); border-color: var(--gold); background: rgba(243, 189, 84, .08); transform: translateY(-4px); }
+    .demo[data-step="2"] .word.keep::after, .demo[data-step="3"] .word.keep::after { color: var(--green); }
+    .demo[data-step="2"] .word.edit::after, .demo[data-step="3"] .word.edit::after { color: var(--gold); }
+
+    .attention {
+      position: absolute;
+      left: 3%; right: 3%; top: -56px;
+      width: 94%; height: 180px;
+      opacity: 0;
+      transition: opacity .5s ease;
+      pointer-events: none;
+    }
+    .demo[data-step="1"] .attention { opacity: .9; }
+    .attention path { fill: none; stroke: var(--cyan); stroke-width: 1.2; stroke-dasharray: 7 8; animation: dash 1.7s linear infinite; }
+    .attention circle { fill: var(--cyan); filter: drop-shadow(0 0 7px var(--cyan)); }
+    @keyframes dash { to { stroke-dashoffset: -30; } }
+
+    .output {
+      margin: 64px auto 0;
+      max-width: 800px;
+      opacity: 0;
+      transform: translateY(18px);
+      text-align: center;
+      transition: all .55s ease;
+    }
+    .demo[data-step="3"] .output { opacity: 1; transform: translateY(0); }
+    .output small { display: block; margin-bottom: 10px; color: #8ca0af; font: 10px var(--mono); letter-spacing: .12em; text-transform: uppercase; }
+    .output strong { font: 400 clamp(25px, 4vw, 44px) var(--serif); color: var(--white); }
+    .output mark { color: var(--gold); background: transparent; }
+
+    .operation-legend { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-top: 42px; opacity: .28; transition: opacity .4s ease; }
+    .demo[data-step="2"] .operation-legend, .demo[data-step="3"] .operation-legend { opacity: 1; }
+    .operation-legend span { padding: 7px 10px; border: 1px solid #355064; font: 9px var(--mono); letter-spacing: .08em; }
+
+    .demo-controls { display: grid; grid-template-columns: auto 1fr; gap: 20px; align-items: center; padding: 18px 24px 22px; border-top: 1px solid #263949; }
+    .play {
+      width: 42px; height: 42px;
+      color: var(--navy); background: var(--cyan); border: 0; border-radius: 50%; cursor: pointer;
+      font-weight: 700;
+    }
+    .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
+    .step { padding: 11px 8px; color: #8499a8; background: transparent; border: 1px solid #2a4051; cursor: pointer; font: 9px var(--mono); text-transform: uppercase; letter-spacing: .06em; transition: .25s ease; }
+    .step.active { color: var(--navy); background: var(--gold); border-color: var(--gold); }
+    .demo-note { margin: 14px 0 0; color: var(--muted); font-size: 11px; line-height: 1.6; }
+
+    .pipeline { display: grid; grid-template-columns: repeat(4, 1fr); border: 1px solid var(--line); }
+    .pipe-node { position: relative; min-height: 250px; padding: 28px; border-right: 1px solid var(--line); }
+    .pipe-node:last-child { border-right: 0; }
+    .pipe-node:not(:last-child)::after { content: "→"; position: absolute; top: 28px; right: -10px; z-index: 2; width: 20px; text-align: center; background: var(--paper); }
+    .pipe-number { color: var(--muted); font: 10px var(--mono); }
+    .pipe-node h3 { margin: 42px 0 10px; font-family: var(--serif); font-size: 27px; font-weight: 400; }
+    .pipe-node p { margin: 0; color: #4f4e48; font-size: 12px; line-height: 1.7; }
+    .pipe-code { display: inline-block; margin-top: 18px; padding: 5px 7px; color: #344853; background: #e5e2d9; font: 9px var(--mono); }
+
+    .methods { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+    .method { min-height: 205px; padding: 26px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .method-id { color: var(--muted); font: 10px var(--mono); }
+    .method h3 { margin: 26px 0 10px; font-family: var(--serif); font-size: 24px; font-weight: 400; }
+    .method p { margin: 0; color: #4f4e48; font-size: 12px; line-height: 1.7; }
+    .method.featured { color: var(--white); background: var(--navy); }
+    .method.featured p, .method.featured .method-id { color: #a9bac5; }
+
+    .benchmark { display: grid; grid-template-columns: 1.2fr .8fr; gap: 24px; }
+    .chart { padding: 32px; color: var(--white); background: var(--navy); }
+    .bar-row { display: grid; grid-template-columns: 90px 1fr 55px; gap: 14px; align-items: center; margin: 18px 0; }
+    .bar-label, .bar-value { font: 10px var(--mono); }
+    .track { height: 8px; background: #1f3445; }
+    .bar { height: 100%; background: var(--cyan); transform-origin: left; animation: grow 1s ease both; }
+    .bar.best { background: var(--gold); }
+    @keyframes grow { from { transform: scaleX(0); } }
+    .metric-note { margin-top: 25px; color: #94a8b5; font-size: 11px; line-height: 1.7; }
+    .finding { display: flex; flex-direction: column; justify-content: space-between; padding: 34px; border: 1px solid var(--line); }
+    .finding strong { font-family: var(--serif); font-size: clamp(52px, 7vw, 90px); font-weight: 400; line-height: 1; }
+    .finding p { margin: 24px 0 0; color: #4f4e48; font-size: 13px; line-height: 1.8; }
+
+    .limits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
+    .limit { padding: 28px; background: var(--paper); }
+    .limit b { display: block; margin-bottom: 12px; font-family: var(--serif); font-size: 24px; font-weight: 400; }
+    .limit p { margin: 0; color: #4f4e48; font-size: 12px; line-height: 1.75; }
+
+    footer { padding: 42px 0 70px; }
+    footer .shell { display: flex; justify-content: space-between; align-items: center; gap: 24px; }
+    footer p { margin: 0; color: var(--muted); font-size: 11px; }
+    .footer-links { display: flex; gap: 20px; }
+
+    @media (max-width: 850px) {
+      .hero-bottom, .section-head, .benchmark { grid-template-columns: 1fr; }
+      .pipeline { grid-template-columns: repeat(2, 1fr); }
+      .pipe-node:nth-child(2) { border-right: 0; }
+      .pipe-node:nth-child(2)::after { display: none; }
+      .pipe-node:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+      .methods, .limits { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .shell { width: min(100% - 28px, 1180px); }
+      .hero { padding: 72px 0 60px; }
+      .facts { grid-template-columns: 1fr; }
+      .fact { border-right: 0; border-bottom: 1px solid var(--line); }
+      .fact:last-child { border-bottom: 0; }
+      section { padding: 64px 0; }
+      .stage { min-height: 530px; padding-left: 14px; padding-right: 14px; }
+      .sentence-wrap { margin-top: 72px; }
+      .word { min-height: 43px; padding: 0 8px; }
+      .demo-controls { grid-template-columns: 1fr; }
+      .play { margin: 0 auto; }
+      .steps { grid-template-columns: repeat(2, 1fr); }
+      .pipeline, .methods, .limits { grid-template-columns: 1fr; }
+      .pipe-node { border-right: 0; border-bottom: 1px solid var(--line); }
+      .pipe-node::after { display: none; }
+      footer .shell { align-items: flex-start; flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="topbar" aria-label="Navigation du projet">
+    <div class="shell">
+      <a class="back" href="index.html#projects">Portfolio</a>
+      <a class="repo-link" href="https://github.com/IThioye/wolof_synthetic_data_generation" target="_blank" rel="noreferrer">Voir le code ↗</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="shell">
+      <p class="eyebrow">NLP · Recherche appliquée · 2026</p>
+      <h1>Apprendre à une machine à <em>relire le wolof informel.</em></h1>
+      <div class="hero-bottom">
+        <p class="lead">Un benchmark reproductible qui transforme des phrases wolof formelles en exemples informels synthétiques, puis mesure leur utilité pour normaliser de vrais commentaires YouTube code-switchés.</p>
+        <div class="facts" aria-label="Chiffres clés du projet">
+          <div class="fact"><strong>6</strong><span>conditions comparées</span></div>
+          <div class="fact"><strong>2,15 M</strong><span>paramètres</span></div>
+          <div class="fact"><strong>142</strong><span>paires Gold train</span></div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="demo">
+      <div class="shell">
+        <div class="section-head">
+          <div><p class="section-kicker">Démonstration visuelle</p><h2>Une phrase,<br>caractère par caractère.</h2></div>
+          <p class="section-copy">Le modèle ne réécrit pas la phrase de gauche à droite comme un chatbot. Il observe tous les caractères en parallèle, prédit une opération locale pour chacun, puis reconstruit le résultat dans l’ordre.</p>
+        </div>
+
+        <div class="demo" id="normalization-demo" data-step="0">
+          <div class="demo-head">
+            <span class="demo-label">Gold pair · exemple pédagogique</span>
+            <span class="demo-status" id="demo-status" aria-live="polite">01 — Entrée bruitée</span>
+          </div>
+          <div class="stage">
+            <p class="stage-title" id="stage-title">Commentaire wolof informel</p>
+            <div class="sentence-wrap">
+              <svg class="attention" viewBox="0 0 900 180" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M80 150 Q235 5 390 150"/><path d="M225 150 Q450 10 675 150"/><path d="M390 150 Q550 35 710 150"/><path d="M520 150 Q350 24 180 150"/>
+                <circle cx="80" cy="150" r="3"/><circle cx="225" cy="150" r="3"/><circle cx="390" cy="150" r="3"/><circle cx="520" cy="150" r="3"/><circle cx="675" cy="150" r="3"/><circle cx="710" cy="150" r="3"/>
+              </svg>
+              <div class="sentence" aria-label="Phrase source : khame lan la taye mo nékh">
+                <span class="word edit" data-op="SUBSTITUTE">khame</span>
+                <span class="word keep" data-op="KEEP">lan</span>
+                <span class="word keep" data-op="KEEP">la</span>
+                <span class="word edit" data-op="SUBSTITUTE">taye</span>
+                <span class="word edit" data-op="EXPAND">mo</span>
+                <span class="word edit" data-op="SUBSTITUTE">nékh</span>
+              </div>
+            </div>
+            <div class="operation-legend" aria-label="Opérations disponibles">
+              <span>KEEP · conserver</span><span>DELETE · supprimer</span><span>SUBSTITUTE · remplacer</span><span>EXPAND · développer</span>
+            </div>
+            <div class="output">
+              <small>Reconstruction normalisée</small>
+              <strong><mark>xam</mark> lan la <mark>tey</mark> <mark>moo</mark> <mark>neex</mark></strong>
+            </div>
+          </div>
+          <div class="demo-controls">
+            <button class="play" id="play" type="button" aria-label="Mettre l'animation en pause">Ⅱ</button>
+            <div class="steps" role="group" aria-label="Étapes de l'animation">
+              <button class="step active" data-step="0" type="button">1 · Entrée</button>
+              <button class="step" data-step="1" type="button">2 · Contexte</button>
+              <button class="step" data-step="2" type="button">3 · Éditions</button>
+              <button class="step" data-step="3" type="button">4 · Sortie</button>
+            </div>
+          </div>
+        </div>
+        <p class="demo-note">La transformation affichée correspond à une référence annotée du corpus Gold et illustre le mécanisme d’édition visé. Elle ne prétend pas être une prédiction exacte réussie par chaque condition du benchmark.</p>
+      </div>
+    </section>
+
+    <section id="architecture">
+      <div class="shell">
+        <div class="section-head">
+          <div><p class="section-kicker">Architecture</p><h2>Un Transformer<br>d’édition compact.</h2></div>
+          <p class="section-copy">L’architecture TNT-inspired contient trois couches d’encodeur et quatre têtes d’attention. Deux projections apprennent conjointement l’opération d’édition et les caractères à produire, jusqu’à 32 emplacements de sortie par caractère source.</p>
+        </div>
+        <div class="pipeline">
+          <article class="pipe-node"><span class="pipe-number">01</span><h3>Encoder</h3><p>Chaque caractère reçoit un embedding de contenu et de position. Les 3 couches contextualisent toute la phrase.</p><span class="pipe-code">d_model = 192</span></article>
+          <article class="pipe-node"><span class="pipe-number">02</span><h3>Attention</h3><p>Quatre têtes mettent en relation les caractères éloignés, les frontières de mots et le contexte code-switché.</p><span class="pipe-code">heads = 4</span></article>
+          <article class="pipe-node"><span class="pipe-number">03</span><h3>Deux têtes</h3><p>Une projection choisit l’opération locale ; l’autre prédit le segment de caractères associé aux réécritures.</p><span class="pipe-code">op + char loss</span></article>
+          <article class="pipe-node"><span class="pipe-number">04</span><h3>Reconstruction</h3><p>Les segments prédits sont assemblés dans l’ordre source. Aucun beam search : la sortie est déterministe.</p><span class="pipe-code">non-autoregressive</span></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="methods">
+      <div class="shell">
+        <div class="section-head">
+          <div><p class="section-kicker">Protocole expérimental</p><h2>Six façons de<br>fabriquer du bruit.</h2></div>
+          <p class="section-copy">Toutes les conditions reçoivent les mêmes 3 330 cibles formelles, le même modèle initial et le même fine-tuning Gold. La variable étudiée est donc la stratégie qui produit les phrases informelles synthétiques.</p>
+        </div>
+        <div class="methods">
+          <article class="method"><span class="method-id">M0 · référence</span><h3>Identité</h3><p>La phrase reste inchangée. Une référence directe, non entraînée, pour mesurer le coût initial du bruit.</p></article>
+          <article class="method"><span class="method-id">M1 · règles</span><h3>Beqi-inspired</h3><p>Transformations déterministes de l’orthographe wolof : substitutions, suppressions et variations graphiques.</p></article>
+          <article class="method"><span class="method-id">M2 · alignement</span><h3>Eflomal + M1</h3><p>Substitutions françaises guidées par un lexique d’alignement bilingue, puis application des règles M1.</p></article>
+          <article class="method"><span class="method-id">M3 · distribution</span><h3>CMDR + M1</h3><p>Mélange bilingue distributionnel pour simuler le code-switching, complété par les transformations M1.</p></article>
+          <article class="method featured"><span class="method-id">M4 · meilleure CER</span><h3>Oolel</h3><p>Paires wolof non standard générées par un LLM externe. Cette condition obtient la CER la plus basse sur le test gelé.</p></article>
+          <article class="method"><span class="method-id">M6 · linguistique</span><h3>Moteur Gold train</h3><p>171 mappings et 105 patrons contextuels appris uniquement sur les annotations d’entraînement, sans fuite dev/test.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="results">
+      <div class="shell">
+        <div class="section-head">
+          <div><p class="section-kicker">Résultats gelés</p><h2>Moins d’erreurs,<br>mais pas encore robuste.</h2></div>
+          <p class="section-copy">La Character Error Rate (CER) mesure la distance entre prédiction et référence : plus elle est basse, mieux c’est. M4 améliore la CER face à l’entrée inchangée, mais les autres signaux empêchent toute conclusion de mise en production.</p>
+        </div>
+        <div class="benchmark">
+          <div class="chart" aria-label="CER par condition, plus bas est meilleur">
+            <div class="bar-row"><span class="bar-label">M0 identité</span><div class="track"><div class="bar" style="width:100%"></div></div><span class="bar-value">0,220</span></div>
+            <div class="bar-row"><span class="bar-label">M1 règles</span><div class="track"><div class="bar" style="width:88.7%"></div></div><span class="bar-value">0,195</span></div>
+            <div class="bar-row"><span class="bar-label">M2 align.</span><div class="track"><div class="bar" style="width:90.8%"></div></div><span class="bar-value">0,200</span></div>
+            <div class="bar-row"><span class="bar-label">M3 CMDR</span><div class="track"><div class="bar" style="width:95.2%"></div></div><span class="bar-value">0,210</span></div>
+            <div class="bar-row"><span class="bar-label">M4 Oolel</span><div class="track"><div class="bar best" style="width:86.9%"></div></div><span class="bar-value">0,191</span></div>
+            <div class="bar-row"><span class="bar-label">M6 Gold</span><div class="track"><div class="bar" style="width:93.4%"></div></div><span class="bar-value">0,206</span></div>
+            <p class="metric-note">Évaluation finale unique sur 29 phrases authentiques, séparées par vidéo. Sélection des checkpoints sur Gold-dev avant ouverture du test.</p>
+          </div>
+          <aside class="finding">
+            <div><span class="section-kicker">Gain relatif M4 vs M0</span><strong>−13,1 %</strong></div>
+            <p>Un signal encourageant pour l’utilité des données synthétiques, à interpréter avec prudence compte tenu de la taille du test et du faible rappel de correction.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="limits">
+      <div class="shell">
+        <div class="section-head">
+          <div><p class="section-kicker">Lecture responsable</p><h2>Ce que le benchmark<br>ne prouve pas.</h2></div>
+          <p class="section-copy">La valeur principale du projet tient autant à son protocole, ses audits et ses artefacts reproductibles qu’au score final.</p>
+        </div>
+        <div class="limits">
+          <article class="limit"><b>Petit test</b><p>Vingt-neuf phrases ne suffisent pas à établir une généralisation large aux variétés, domaines et usages du wolof.</p></article>
+          <article class="limit"><b>Surcorrection</b><p>Les modèles modifient trop de caractères qui devraient rester stables. La précision de correction demeure très faible.</p></article>
+          <article class="limit"><b>Pas un produit</b><p>Il s’agit d’un benchmark de génération de données et de normalisation expérimentale, pas d’un correcteur prêt à servir des utilisateurs.</p></article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <p>Projet de fin d’études · Ibrahima THIOYE · 2026</p>
+      <div class="footer-links"><a class="back" href="index.html#projects">Portfolio</a><a class="repo-link" href="https://github.com/IThioye/wolof_synthetic_data_generation" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var demo = document.getElementById('normalization-demo');
+      var status = document.getElementById('demo-status');
+      var title = document.getElementById('stage-title');
+      var play = document.getElementById('play');
+      var buttons = Array.prototype.slice.call(document.querySelectorAll('.step'));
+      var labels = [
+        ['01 — Entrée bruitée', 'Commentaire wolof informel'],
+        ['02 — Encodage contextuel', 'L’attention relie les caractères et les mots'],
+        ['03 — Opérations locales', 'Chaque position choisit une opération d’édition'],
+        ['04 — Reconstruction', 'Les segments sont assemblés dans l’ordre source']
+      ];
+      var current = 0;
+      var running = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var timer;
+
+      function render(step) {
+        current = step;
+        demo.setAttribute('data-step', String(step));
+        status.textContent = labels[step][0];
+        title.textContent = labels[step][1];
+        buttons.forEach(function (button, index) { button.classList.toggle('active', index === step); });
+      }
+
+      function schedule() {
+        window.clearInterval(timer);
+        if (running) timer = window.setInterval(function () { render((current + 1) % labels.length); }, 2600);
+        play.textContent = running ? 'Ⅱ' : '▶';
+        play.setAttribute('aria-label', running ? "Mettre l'animation en pause" : "Relancer l'animation");
+      }
+
+      buttons.forEach(function (button) {
+        button.addEventListener('click', function () { render(Number(button.getAttribute('data-step'))); schedule(); });
+      });
+      play.addEventListener('click', function () { running = !running; schedule(); });
+      render(0);
+      schedule();
+    }());
+  </script>
+</body>
+</html>
