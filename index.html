@@ -13,11 +13,11 @@
 </head>
 <body>
   <nav>
-    <span class="nav-logo" onclick="navigate('home')" id="nav-logo">IT</span>
+    <a class="nav-logo" href="#home" onclick="return navigate('home');" id="nav-logo" aria-label="Retour à l'accueil">IT</a>
     <ul class="nav-links">
-      <li><a href="#" onclick="navigate('home'); return false;" id="nav-home">Accueil</a></li>
-      <li><a href="#" onclick="navigate('skills'); return false;" id="nav-skills">Compétences</a></li>
-      <li><a href="#" onclick="navigate('projects'); return false;" id="nav-projects">Projets</a></li>
+      <li><a href="#home" onclick="return navigate('home');" id="nav-home">Accueil</a></li>
+      <li><a href="#skills" onclick="return navigate('skills');" id="nav-skills">Compétences</a></li>
+      <li><a href="#projects" onclick="return navigate('projects');" id="nav-projects">Projets</a></li>
     </ul>
   </nav>
 
@@ -63,21 +63,22 @@
       <h2 class="projects-title">Projets &<br><em>réalisations</em></h2>
       <div class="search-box">
         <span class="search-icon">⌕</span>
-        <input type="text" id="search-input" placeholder="Rechercher un projet…" oninput="filterProjects()" autocomplete="off">
+        <label class="sr-only" for="search-input">Rechercher un projet</label>
+        <input type="search" id="search-input" placeholder="Rechercher un projet…" oninput="filterProjects()" autocomplete="off">
       </div>
     </div>
     <div class="filter-bar" id="filter-bar"></div>
     <div class="projects-grid" id="projects-grid"></div>
   </div>
 
-  <div class="project-modal" id="project-modal" onclick="closeProjectModal(event)">
-    <div class="project-modal-card">
+  <div class="project-modal" id="project-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modal-title" onclick="closeProjectModal(event)">
+    <div class="project-modal-card" tabindex="-1">
       <div class="project-modal-head">
         <div>
           <div class="project-cat" id="modal-subtitle"></div>
           <div class="project-modal-title" id="modal-title"></div>
         </div>
-        <button class="project-modal-close" onclick="closeProjectModal(event)">×</button>
+        <button class="project-modal-close" onclick="closeProjectModal(event)" aria-label="Fermer les détails du projet">×</button>
       </div>
       <div class="project-modal-content" id="modal-content"></div>
     </div>
@@ -86,11 +87,16 @@
 <script src="data.js"></script>
 
 <script>
-function navigate(page) {
+function navigate(page, options) {
+  options = options || {};
   document.querySelectorAll('.page').forEach(function(p) { p.classList.remove('active'); });
   document.querySelectorAll('.nav-links a').forEach(function(a) { a.classList.remove('active'); });
   document.getElementById('page-' + page).classList.add('active');
   document.getElementById('nav-' + page).classList.add('active');
+  if (!options.fromHistory && window.location.hash !== '#' + page) {
+    window.history.pushState({ page: page }, '', '#' + page);
+  }
+  if (!options.preserveScroll) window.scrollTo(0, 0);
   return false;
 }
 
@@ -257,7 +263,7 @@ function renderProjects() {
 
     visible += 1;
 
-    var card = document.createElement('div');
+    var card = document.createElement('article');
     card.className = 'project-card';
     card.innerHTML =
       '<div class="project-cat">' + p.category + ' · ' + p.subcategory + '</div>' +
@@ -285,20 +291,31 @@ function renderProjects() {
   }
 }
 
+var modalReturnFocus = null;
+
 function openProjectModal(projectId) {
   var project = profileData.projects.find(function(p) { return p.project_id === projectId; });
   if (!project) return;
   document.getElementById('modal-title').textContent = project.title;
   document.getElementById('modal-subtitle').textContent = project.company;
   document.getElementById('modal-content').innerHTML = project.full_details || '<p>Détails à venir.</p>';
-  document.getElementById('project-modal').classList.add('open');
+  var modal = document.getElementById('project-modal');
+  modalReturnFocus = document.activeElement;
+  modal.classList.add('open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.classList.add('modal-open');
+  modal.querySelector('.project-modal-close').focus();
 }
 
 function closeProjectModal(event) {
   if (event && event.target && event.target.id !== 'project-modal' && !event.target.classList.contains('project-modal-close')) {
     return;
   }
-  document.getElementById('project-modal').classList.remove('open');
+  var modal = document.getElementById('project-modal');
+  modal.classList.remove('open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.classList.remove('modal-open');
+  if (modalReturnFocus) modalReturnFocus.focus();
 }
 
 function filterProjects() {
@@ -307,7 +324,17 @@ function filterProjects() {
 
 document.addEventListener('keydown', function(event) {
   if (event.key === 'Escape') {
-    document.getElementById('project-modal').classList.remove('open');
+    closeProjectModal();
+  }
+  if (event.key === 'Tab') {
+    var modal = document.getElementById('project-modal');
+    if (!modal.classList.contains('open')) return;
+    var focusable = Array.prototype.slice.call(modal.querySelectorAll('a[href], button, [tabindex]:not([tabindex="-1"])'));
+    if (!focusable.length) return;
+    var first = focusable[0];
+    var last = focusable[focusable.length - 1];
+    if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last.focus(); }
+    else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
   }
 });
 
@@ -317,7 +344,11 @@ renderProjects();
 var initialPage = ['home', 'skills', 'projects'].indexOf(window.location.hash.slice(1)) !== -1
   ? window.location.hash.slice(1)
   : 'home';
-navigate(initialPage);
+navigate(initialPage, { fromHistory: true, preserveScroll: true });
+window.addEventListener('hashchange', function () {
+  var page = window.location.hash.slice(1);
+  if (['home', 'skills', 'projects'].indexOf(page) !== -1) navigate(page, { fromHistory: true });
+});
 </script>
 </body>
 </html>
