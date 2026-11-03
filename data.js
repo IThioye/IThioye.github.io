@@ -90,12 +90,12 @@ const profileData = {
       project_id: "p2",
       icon: "",
       title: "Résumé intelligent de documents confidentiels",
-      company: "ATC",
-      description: "Système d'automatisation pour le résumé de documents sensibles avec anonymisation des données via NER et LLM, intégré à des workflows métiers existants.",
-      tags: ["Deep Learning", "NLP", "LLM", "RAG", "Automatisation"],
-      github_link: "#",
+      company: "ATC · version open source",
+      description: "Application locale de traitement de procès-verbaux : extraction PDF/OCR, pseudonymisation NER, synthèse contrôlée par LLM et export Word chronologique.",
+      tags: ["NLP", "LLM", "NER", "OCR", "FastAPI", "Docker"],
+      github_link: "https://github.com/IThioye/confidential_doc_summarizer",
       demo_link: "#",
-      full_details: "<h3>Contexte</h3><p>Développement d'un système de résumé de documents confidentiels permettant d'anonymiser les données sensibles avant traitement.</p><h3>Approche</h3><p>Utilisation de modèles de NER pour la détection des entités sensibles, combinés à des LLM pour la génération de résumés fidèles et exploitables dans les processus métiers.</p><h3>Résultat</h3><p>Une intégration dans les workflows existants afin d'accélérer la lecture documentaire tout en renforçant la confidentialité.</p>"
+      full_details: "<h3>Version open source</h3><p><strong>LexisExtract</strong> transpose le workflow documentaire dans une application FastAPI exécutable localement. Les documents sont extraits nativement avec PyMuPDF ou traités page par page par OCR si nécessaire.</p><h3>Workflow contrôlé</h3><p>Les entités sensibles sont annotées, pseudonymisées et peuvent être corrigées manuellement. La synthèse utilise Ollama en local ou Aion Labs après contrôle des données personnelles, puis génère un document Word trié chronologiquement. Le pipeline s'arrête au premier résultat non fiable pour permettre une correction avant reprise, et les sessions restent persistées localement.</p><h3>Limite de déploiement</h3><p>Le dépôt documente une exécution locale et n'est pas présenté comme prêt à être exposé directement sur Internet : authentification, TLS, chiffrement du stockage et contrôles d'exploitation restent à mettre en place.</p><p><a class='project-link' href='https://github.com/IThioye/confidential_doc_summarizer' target='_blank' rel='noreferrer'>Explorer le dépôt open source ↗</a></p>"
     },
     {
       project_id: "p4",
@@ -236,7 +236,28 @@ const profileData = {
       "github_link": "https://github.com/IThioye/wolof_synthetic_data_generation",
       "case_study_link": "wolof-normalization.html",
       "demo_link": "",
-      "full_details": "<h3>Question de recherche</h3><p>Mesurer, sous une architecture et un protocole identiques, dans quelle mesure différentes stratégies de génération synthétique améliorent la normalisation de commentaires YouTube en wolof informel et code-switché français–wolof.</p><h3>Ce que montre l'étude</h3><p>Une démonstration explique la normalisation caractère par caractère, puis relie les 3 330 cibles formelles aux 201 paires Gold réparties en 142 exemples d'entraînement, 30 de développement et 29 de test. Les six conditions, l'architecture et les limites sont présentées sans faire passer le benchmark pour un produit fini.</p><h3>Résultat</h3><p>La meilleure condition synthétique réduit le CER de 0,220 à 0,191 sur le test gelé, soit un gain relatif de 13,1 %. Le corpus reste petit et le taux de surcorrection élevé.</p><p><a class='project-link' href='wolof-normalization.html'>Explorer l'étude interactive →</a></p>"
+      "full_details": "<h3>Question de recherche</h3><p>Mesurer, sous une architecture et un protocole identiques, dans quelle mesure différentes stratégies de génération synthétique améliorent la normalisation de commentaires YouTube en wolof informel et code-switché français–wolof.</p><h3>Ce que montre l'étude</h3><p>Une démonstration explique la normalisation caractère par caractère, puis relie les 3 330 cibles formelles aux 201 paires Gold réparties en 142 exemples d'entraînement, 30 de développement et 29 de test. Les six conditions, l'architecture et les limites sont présentées sans faire passer le benchmark pour un produit fini.</p><h3>Résultat</h3><p>La meilleure condition synthétique réduit le CER de 0,220 à 0,191 sur le test gelé, soit un gain relatif de 13,1 %. Le corpus reste petit et le taux de surcorrection élevé.</p><p><a class='project-link' href='wolof-normalization.html'>Explorer le benchmark upstream →</a> <a class='project-link ghost' href='wolof-normalization.html#downstream'>Voir son prolongement downstream →</a></p>"
+    },
+    {
+      "project_id": "p13",
+      "icon": "",
+      "title": "Impact de la normalisation du wolof sur la classification d'intentions",
+      "company": "Étude downstream · aivancity",
+      "description": "Étude contrôlée avec Laya sur 638 exemples : la normalisation aide sous bruit M1 sévère, mais dégrade le texte propre ou légèrement bruité et ne généralise pas aux autres méthodes testées.",
+      "tags": [
+        "Deep Learning",
+        "NLP",
+        "Évaluation",
+        "Wolof",
+        "Laya",
+        "Hugging Face",
+        "Recherche"
+      ],
+      "github_link": "https://github.com/IThioye/wolof-normalization-downstream",
+      "model_link": "https://huggingface.co/IbrahimaThioye/laya-injongo-wolof-intent",
+      "case_study_link": "wolof-normalization.html#downstream",
+      "demo_link": "",
+      "full_details": "<h3>Question downstream</h3><p>Déterminer si normaliser un texte wolof informel ou bruité aide réellement un classifieur à reconnaître l'intention. Le même checkpoint Laya gelé évalue les 638 exemples appariés dans chaque condition ; aucun réentraînement du classifieur n'a lieu entre REAL, NOISY et NORMALIZED.</p><h3>Résultats principaux</h3><p>Sur le stress test M1 sévère, TNT fait passer l'accuracy de 48,59 % à 60,34 %, soit <strong>+11,76 points</strong>. Le signe change toutefois avec la sévérité : −2,98 points sur le texte propre, −2,04 sur M1 léger et +2,82 sur M1 moyen. Les tests M5 et M6 ne montrent pas de généralisation hors M1.</p><h3>Routeur et limites</h3><p>Le routeur exploratoire normalise 12,5 % des entrées et atteint 72,75 % d'accuracy sur les conditions déjà analysées, contre 71,08 % en n'appliquant jamais TNT et 71,79 % en l'appliquant toujours. Ce résultat n'est pas une validation de déploiement : les bruits évalués restent synthétiques, le meilleur gain est aligné sur les erreurs M1 vues par TNT et un nouveau holdout humain est nécessaire.</p><p><a class='project-link' href='wolof-normalization.html#downstream'>Lire la synthèse dans le portfolio →</a> <a class='project-link ghost' href='https://github.com/IThioye/wolof-normalization-downstream' target='_blank' rel='noreferrer'>GitHub ↗</a> <a class='project-link ghost' href='https://huggingface.co/IbrahimaThioye/laya-injongo-wolof-intent' target='_blank' rel='noreferrer'>Modèle Laya ↗</a></p>"
     }
   ],
   certifications: [
@@ -303,7 +324,7 @@ const DATA = {
       stack: item.tags,
       links: [
         { label: "Détails", url: "#", kind: "ghost", modal: item.project_id }
-      ].concat(item.case_study_link ? [{ label: "Explorer", url: item.case_study_link, kind: "primary", internal: true }] : []).concat(item.github_link && item.github_link !== "#" ? [{ label: "GitHub", url: item.github_link, kind: item.case_study_link ? "ghost" : "primary" }] : []).concat(item.demo_link && item.demo_link !== "#" ? [{ label: "Démo", url: item.demo_link, kind: "ghost" }] : []),
+      ].concat(item.case_study_link ? [{ label: "Explorer", url: item.case_study_link, kind: "primary", internal: true }] : []).concat(item.github_link && item.github_link !== "#" ? [{ label: "GitHub", url: item.github_link, kind: item.case_study_link ? "ghost" : "primary" }] : []).concat(item.model_link ? [{ label: "Modèle", url: item.model_link, kind: "ghost" }] : []).concat(item.demo_link && item.demo_link !== "#" ? [{ label: "Démo", url: item.demo_link, kind: "ghost" }] : []),
       keywords: item.tags.join(" ") + " " + item.company,
       modalId: item.project_id,
       fullDetails: item.full_details,
