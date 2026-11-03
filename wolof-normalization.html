@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Étude interactive du projet de génération de données synthétiques pour la normalisation du wolof d'Ibrahima THIOYE.">
+  <meta name="description" content="Étude interactive sur la normalisation du wolof, de la génération synthétique à son impact sur la classification d’intentions.">
   <title>Normalisation du wolof — Ibrahima THIOYE</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -255,6 +255,27 @@
     .finding strong { font-family: var(--serif); font-size: clamp(52px, 7vw, 90px); font-weight: 400; line-height: 1; }
     .finding p { margin: 24px 0 0; color: #4f4e48; font-size: 13px; line-height: 1.8; }
 
+    #downstream { color: var(--white); background: var(--navy); }
+    #downstream .section-copy { color: #b8c6cf; }
+    #downstream .section-kicker { color: var(--cyan); }
+    .downstream-grid { display: grid; grid-template-columns: 1.35fr .65fr; gap: 24px; align-items: start; }
+    .downstream-table-wrap { overflow-x: auto; border: 1px solid #2a4051; }
+    .downstream-table { width: 100%; min-width: 610px; border-collapse: collapse; font-size: 12px; }
+    .downstream-table th, .downstream-table td { padding: 15px 17px; text-align: right; border-bottom: 1px solid #2a4051; }
+    .downstream-table th:first-child, .downstream-table td:first-child { text-align: left; }
+    .downstream-table thead { color: #8fa4b2; font: 9px var(--mono); letter-spacing: .06em; text-transform: uppercase; }
+    .downstream-table tbody tr:last-child td { border-bottom: 0; }
+    .delta-positive { color: var(--green); font-weight: 700; }
+    .delta-negative { color: var(--coral); font-weight: 700; }
+    .downstream-notes { display: grid; gap: 12px; }
+    .downstream-note { padding: 22px; border: 1px solid #2a4051; background: var(--navy-soft); }
+    .downstream-note b { display: block; margin-bottom: 8px; color: var(--gold); font-family: var(--serif); font-size: 22px; font-weight: 400; }
+    .downstream-note p { margin: 0; color: #b8c6cf; font-size: 11px; line-height: 1.7; }
+    .downstream-caveat { margin: 20px 0 0; padding: 18px 20px; color: #c7d2d9; border-left: 3px solid var(--coral); background: #0d1c29; font-size: 12px; line-height: 1.75; }
+    .resource-links { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+    .resource-links a { padding: 10px 13px; color: var(--white); border: 1px solid #496174; text-decoration: none; font: 10px var(--mono); }
+    .resource-links a:hover { color: var(--navy); background: var(--cyan); border-color: var(--cyan); }
+
     .limits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); }
     .limit { padding: 28px; background: var(--paper); }
     .limit b { display: block; margin-bottom: 12px; font-family: var(--serif); font-size: 24px; font-weight: 400; }
@@ -266,7 +287,7 @@
     .footer-links { display: flex; gap: 20px; }
 
     @media (max-width: 850px) {
-      .hero-bottom, .section-head, .benchmark { grid-template-columns: 1fr; }
+      .hero-bottom, .section-head, .benchmark, .downstream-grid { grid-template-columns: 1fr; }
       .project-nav { display: none; }
       .definition-grid { grid-template-columns: 1fr; gap: 14px; }
       .dataset-flow { grid-template-columns: repeat(2, 1fr); }
@@ -311,9 +332,9 @@
     <div class="shell">
       <a class="back" href="index.html#projects">Portfolio</a>
       <div class="project-nav" aria-label="Sommaire de l'étude">
-        <a href="#demo">Exemple</a><a href="#data">Données</a><a href="#architecture">Modèle</a><a href="#methods">Méthodes</a><a href="#results">Résultats</a><a href="#limits">Limites</a>
+        <a href="#demo">Exemple</a><a href="#data">Données</a><a href="#architecture">Modèle</a><a href="#methods">Méthodes</a><a href="#results">Upstream</a><a href="#downstream">Downstream</a><a href="#limits">Limites</a>
       </div>
-      <a class="repo-link" href="https://github.com/IThioye/wolof_synthetic_data_generation" target="_blank" rel="noreferrer">Voir le code ↗</a>
+      <a class="repo-link" href="https://github.com/IThioye/wolof_synthetic_data_generation" target="_blank" rel="noreferrer">Code upstream ↗</a>
     </div>
   </nav>
 
@@ -464,6 +485,42 @@
       </div>
     </section>
 
+
+    <section id="downstream">
+      <div class="shell">
+        <div class="section-head">
+          <div><p class="section-kicker">Étude downstream · classification d’intentions</p><h2>Normaliser aide-t-il<br>à comprendre l’intention ?</h2></div>
+          <p class="section-copy">Cette seconde étude ne mesure plus seulement la proximité avec une référence écrite. Elle applique le même classifieur Laya gelé aux 638 exemples appariés de chaque condition afin d’isoler l’effet du texte fourni en entrée.</p>
+        </div>
+        <div class="downstream-grid">
+          <div>
+            <div class="downstream-table-wrap">
+              <table class="downstream-table">
+                <thead><tr><th>Entrée pour Laya</th><th>Sans TNT</th><th>Avec TNT</th><th>Variation</th></tr></thead>
+                <tbody>
+                  <tr><td>REAL · texte propre</td><td>80,88 %</td><td>77,90 %</td><td class="delta-negative">−2,98 pp</td></tr>
+                  <tr><td>M1 léger · ≈ 2 opérations</td><td>74,29 %</td><td>72,26 %</td><td class="delta-negative">−2,04 pp</td></tr>
+                  <tr><td>M1 moyen · ≈ 5 opérations</td><td>63,95 %</td><td>66,77 %</td><td class="delta-positive">+2,82 pp</td></tr>
+                  <tr><td>M1 sévère · ≈ 9,31 opérations</td><td>48,59 %</td><td>60,34 %</td><td class="delta-positive">+11,76 pp</td></tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="downstream-caveat"><strong>Conclusion :</strong> « toujours normaliser » n’est pas une bonne politique. TNT devient utile quand la corruption M1 est suffisamment forte, mais surcorrige le texte propre ou légèrement bruité. Les essais M5 (−3,29 pp) et M6 (−2,04 pp) ne montrent pas de généralisation hors M1 ; M5 ne modifie en outre que 46 phrases sur 638.</p>
+          </div>
+          <aside class="downstream-notes">
+            <article class="downstream-note"><b>+11,76 pp</b><p>Gain d’accuracy sur le stress test M1 sévère : 48,59 % sans TNT, 60,34 % après normalisation.</p></article>
+            <article class="downstream-note"><b>Routeur exploratoire</b><p>72,75 % d’accuracy en normalisant 12,5 % des entrées, contre 71,08 % en sautant toujours TNT et 71,79 % en l’appliquant toujours.</p></article>
+            <article class="downstream-note"><b>Limite décisive</b><p>Les bruits restent synthétiques et les résultats du test ont déjà informé l’analyse du routeur. Un nouveau holdout humain naturellement informel est nécessaire.</p></article>
+          </aside>
+        </div>
+        <div class="resource-links" aria-label="Ressources de l’étude downstream">
+          <a href="https://github.com/IThioye/wolof-normalization-downstream" target="_blank" rel="noreferrer">Dépôt downstream ↗</a>
+          <a href="https://huggingface.co/IbrahimaThioye/laya-injongo-wolof-intent" target="_blank" rel="noreferrer">Modèle Laya sur Hugging Face ↗</a>
+          <a href="#results">Revenir au benchmark upstream ↑</a>
+        </div>
+      </div>
+    </section>
+
     <section id="limits">
       <div class="shell">
         <div class="section-head">
@@ -482,7 +539,7 @@
   <footer>
     <div class="shell">
       <p>Projet de fin d’études · Ibrahima THIOYE · 2026</p>
-      <div class="footer-links"><a class="back" href="index.html#projects">Portfolio</a><a class="repo-link" href="https://github.com/IThioye/wolof_synthetic_data_generation" target="_blank" rel="noreferrer">GitHub ↗</a></div>
+      <div class="footer-links"><a class="back" href="index.html#projects">Portfolio</a><a class="repo-link" href="https://github.com/IThioye/wolof_synthetic_data_generation" target="_blank" rel="noreferrer">Upstream ↗</a><a class="repo-link" href="https://github.com/IThioye/wolof-normalization-downstream" target="_blank" rel="noreferrer">Downstream ↗</a></div>
     </div>
   </footer>
 
